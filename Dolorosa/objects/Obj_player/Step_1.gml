@@ -13,9 +13,9 @@ lastdir -= angledif/4
 }
 
 if speed < 8 then speed ++
-} else if speed > 0 then speed= speed*0.85
+} else if speed > 0 then speed-= speed
 direction = lastdir
 
-hspeed = floor(abs(hspeed))*sign(hspeed)
-vspeed = floor(abs(vspeed))*sign(vspeed)
+//hspeed = floor(abs(hspeed))*sign(hspeed)
+//vspeed = floor(abs(vspeed))*sign(vspeed)
 
