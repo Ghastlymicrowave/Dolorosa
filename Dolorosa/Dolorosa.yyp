@@ -47,6 +47,14 @@
             }
         },
         {
+            "Key": "108c8421-1c77-457d-901d-681e1d51ab28",
+            "Value": {
+                "id": "6c738f05-70a1-4947-9120-2147a3b21269",
+                "resourcePath": "objects\\obj_camera_follow\\obj_camera_follow.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "1b992197-064d-468c-9b7f-f93a32a307ec",
             "Value": {
                 "id": "21c223d4-6c3f-453b-bf2d-6b98c88e3f65",
@@ -66,7 +74,7 @@
             "Key": "2886c0c0-5229-4e1c-9676-50b6213b475a",
             "Value": {
                 "id": "10724add-f8fe-4729-81e1-5aedaf3ae9a2",
-                "resourcePath": "objects\\Obj_player\\Obj_player.yy",
+                "resourcePath": "objects\\obj_player\\obj_player.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -92,6 +100,14 @@
                 "id": "189ad86d-419b-4fb4-9493-31425eb019a3",
                 "resourcePath": "views\\42bba6da-0500-4a83-9361-c6bb17a01a3d.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "4ba3b632-8236-4961-a992-161e6d6c21bb",
+            "Value": {
+                "id": "ecd37761-2556-45eb-8de3-ece4f9a1ac69",
+                "resourcePath": "objects\\obj_camera_place\\obj_camera_place.yy",
+                "resourceType": "GMObject"
             }
         },
         {
