@@ -19,7 +19,7 @@ if stamina>0&&keyboard_check(vk_shift)&&staminaExaust=0 { sprint=1;stamina-=1;st
 if (vinput!=0)||(hinput!=0){
 	//gets input direction and calulates the angle difference between the input and current direction
 	var inputdir = point_direction(0,0,hinput,vinput)
-	angledif = angle_difference(direction,inputdir)
+	angledif = angle_difference(lastdir,inputdir)
 	if spd = 0 {
 		lastdir=inputdir // if you're still moving it sets the lastdir to not get a dir of 0 when you're not moving
 	} else{
@@ -32,7 +32,8 @@ if (vinput!=0)||(hinput!=0){
 } else if spd > 0 then spd-= sign(spd)
 speed = spd
 direction = lastdir
-
+hspeed = round(hspeed)
+vspeed=round(vspeed)
 //for (var angle = 0;angle<=50; angle += 1){
 //				xtarg = x+lengthdir_x(spd,angle+direction)
 //				ytarg = y+lengthdir_y(spd,angle+direction)
