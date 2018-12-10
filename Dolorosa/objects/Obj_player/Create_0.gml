@@ -5,7 +5,7 @@ stamina = 100
 staminaExaust=0
 staminaTimer=0
 sprint=0
-
+spd = 0
 
 //change these when you want
 room_speed=60

@@ -20,15 +20,43 @@ if (vinput!=0)||(hinput!=0){
 	//gets input direction and calulates the angle difference between the input and current direction
 	var inputdir = point_direction(0,0,hinput,vinput)
 	angledif = angle_difference(direction,inputdir)
-	if speed = 0 {
+	if spd = 0 {
 		lastdir=inputdir // if you're still moving it sets the lastdir to not get a dir of 0 when you're not moving
 	} else{
 		lastdir -= angledif/4 //rotates player direction twords where they want to go
 	}
-	if staminaExaust=1 {maxspeed=exaustSpd}else maxspeed=walkSpd
-	if sprint==1{ maxspeed=sprintSpd}
-	if speed<maxspeed then speed++ else {speed-=(speed-maxspeed)/2; speed=round(speed)}
+	if staminaExaust=1 {maxspd=exaustSpd}else maxspd=walkSpd
+	if sprint==1{ maxspd=sprintSpd}
+	if spd<maxspd then spd++ else {spd-=(spd-maxspd)/2; spd=round(spd)}
 	
-} else if speed > 0 then speed-= sign(speed)
+} else if spd > 0 then spd-= sign(spd)
+speed = spd
 direction = lastdir
 
+//for (var angle = 0;angle<=50; angle += 1){
+//				xtarg = x+lengthdir_x(spd,angle+direction)
+//				ytarg = y+lengthdir_y(spd,angle+direction)
+//				if !place_meeting(xtarg,ytarg,obj_obstacle){
+//					direction = direction + angle
+//					hspd=round(hspd)
+//					vspd=round(vspd)
+//					x=round(x)
+//					y=round(y)
+//					exit;
+//				}
+//			}
+		
+//		for (var angle = 0;angle<=50; angle += 1){
+//				xtarg = x+lengthdir_x(spd,-angle+direction)
+//				ytarg = y+lengthdir_y(spd,-angle+direction)
+//				if !place_meeting(xtarg,ytarg,obj_obstacle){
+//					direction = direction -angle
+//					hspd=round(hspd)
+//					vspd=round(vspd)
+//					x=round(x)
+//					y=round(y)
+//					exit;
+//				}
+//			}
+			
+CollisionWith(obj_obstacle)
