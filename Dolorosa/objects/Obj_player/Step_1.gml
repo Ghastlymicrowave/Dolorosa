@@ -34,13 +34,18 @@ speed = spd
 direction = lastdir
 hspeed = round(hspeed)
 vspeed=round(vspeed)
+
+
+// probably not worth fixing right now?
+
+
 //for (var angle = 0;angle<=50; angle += 1){
 //				xtarg = x+lengthdir_x(spd,angle+direction)
 //				ytarg = y+lengthdir_y(spd,angle+direction)
 //				if !place_meeting(xtarg,ytarg,obj_obstacle){
 //					direction = direction + angle
-//					hspd=round(hspd)
-//					vspd=round(vspd)
+//					hspeed=round(hspeed)
+//					vspeed=round(vspeed)
 //					x=round(x)
 //					y=round(y)
 //					exit;
@@ -52,8 +57,8 @@ vspeed=round(vspeed)
 //				ytarg = y+lengthdir_y(spd,-angle+direction)
 //				if !place_meeting(xtarg,ytarg,obj_obstacle){
 //					direction = direction -angle
-//					hspd=round(hspd)
-//					vspd=round(vspd)
+//					hspeed=round(hspeed)
+//					vspeed=round(vspeed)
 //					x=round(x)
 //					y=round(y)
 //					exit;
