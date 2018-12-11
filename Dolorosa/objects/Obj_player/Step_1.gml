@@ -27,13 +27,16 @@ if stamina>0&&keyboard_check_pressed(vk_control)&&dodgedelay=0{
 	
 	if staminaExaust=0{					//backstep
 		backsteptime = 10
+		initalbacksteptime=10
 		backstepspeed=16
 		iframes=20
 	}else{								//exausted backsep
 		backsteptime = 15
+		initalbacksteptime=15
 		backstepspeed=12
 		iframes=12
 	}
+	backstepping=1
 	lockeddir = lastdir+180
 	staminaTimer=40
 	stamina=stamina-15
@@ -45,14 +48,17 @@ if stamina>0&&keyboard_check_pressed(vk_space)&&dodgedelay=0{
 	
 	if staminaExaust=0{					//roll
 		backsteptime = 20
+		initalbacksteptime=20
 		backstepspeed=12
 		iframes=12
 	}else{								//exausted roll
 		backsteptime = 25
+		initalbacksteptime=25
 		backstepspeed=8
 		iframes=10
 	}
 	lockeddir = lastdir
+	
 	staminaTimer=50
 	stamina=stamina-15
 	dodgedelay=30
@@ -63,13 +69,14 @@ if stamina>0&&keyboard_check_pressed(vk_space)&&dodgedelay=0{
 
 if backsteptime>0{
 	
-spd=backstepspeed
+spd=cos(((backsteptime-initalbacksteptime)*pi)/(initalbacksteptime*2))*backstepspeed
 lastdir =lockeddir
+
 backsteptime--
-//backstepspeed--
+
 if backsteptime=0 {
 	spd=0
-	//lastdir=lastdir+180
+	if backstepping=1 {lastdir=lastdir+180;backstepping=0}
 }
 } else{
 //if any input
