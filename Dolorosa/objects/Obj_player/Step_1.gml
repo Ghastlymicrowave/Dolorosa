@@ -20,7 +20,7 @@ if (vinput!=0)||(hinput!=0){
 	//gets input direction and calulates the angle difference between the input and current direction
 	var inputdir = point_direction(0,0,hinput,vinput)
 	angledif = angle_difference(lastdir,inputdir)
-	if spd = 0 {
+	if spd = 0 || (vinput!=0 xor hinput!=0){
 		lastdir=inputdir // if you're still moving it sets the lastdir to not get a dir of 0 when you're not moving
 	} else{
 		lastdir -= angledif/4 //rotates player direction twords where they want to go
