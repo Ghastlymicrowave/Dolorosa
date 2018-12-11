@@ -1,4 +1,6 @@
 // Get input, vinput and hinput will either be 1,0, or -1 because bools in gamemaker return a 1 or 0 insted of a actuall bool
+
+
 vinput = keyboard_check(ord("S")) - keyboard_check(ord("W"))
 hinput = keyboard_check(ord("D")) - keyboard_check(ord("A"))
 
@@ -39,30 +41,26 @@ vspeed=round(vspeed)
 // probably not worth fixing right now?
 
 
-//for (var angle = 0;angle<=50; angle += 1){
-//				xtarg = x+lengthdir_x(spd,angle+direction)
-//				ytarg = y+lengthdir_y(spd,angle+direction)
-//				if !place_meeting(xtarg,ytarg,obj_obstacle){
-//					direction = direction + angle
-//					hspeed=round(hspeed)
-//					vspeed=round(vspeed)
-//					x=round(x)
-//					y=round(y)
-//					exit;
-//				}
-//			}
+for (var angle = 0;angle<=50; angle += 1){
+				xtarg = x+lengthdir_x(speed,angle+direction)
+				ytarg = y+lengthdir_y(speed,angle+direction)
+				if !place_meeting(xtarg,ytarg,obj_obstacle){
+					direction = direction + angle
+					//hspeed=floor(abs(hspeed))*sign(hspeed)
+					//vspeed=floor(abs(vspeed))*sign(vspeed)
+					exit;
+				}
+			}
 		
-//		for (var angle = 0;angle<=50; angle += 1){
-//				xtarg = x+lengthdir_x(spd,-angle+direction)
-//				ytarg = y+lengthdir_y(spd,-angle+direction)
-//				if !place_meeting(xtarg,ytarg,obj_obstacle){
-//					direction = direction -angle
-//					hspeed=round(hspeed)
-//					vspeed=round(vspeed)
-//					x=round(x)
-//					y=round(y)
-//					exit;
-//				}
-//			}
+		for (var angle = 0;angle<=50; angle += 1){
+				xtarg = x+lengthdir_x(speed,-angle+direction)
+				ytarg = y+lengthdir_y(speed,-angle+direction)
+				if !place_meeting(xtarg,ytarg,obj_obstacle){
+					direction = direction -angle
+					//hspeed=floor(abs(hspeed))*sign(hspeed)
+					//vspeed=floor(abs(vspeed))*sign(vspeed)
+					exit;
+				}
+			}
 			
 CollisionWith(obj_obstacle)
