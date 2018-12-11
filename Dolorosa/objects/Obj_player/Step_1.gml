@@ -25,6 +25,51 @@ if iframes>0 then iframes--
 #region DODGEDELAY
 if dodgedelay>0 then dodgedelay--
 #endregion
+
+
+if dodgetime!=0 then atktimeheld = 0 else if mouse_check_button(mb_left){
+atktimeheld++	
+}
+
+if stamina>0&&dodgetime=0&&staminaExaust=0&&mouse_check_button_released(mb_left){
+	
+atkID = instance_create_depth(x,y,-1,obj_PlayerAttack)	
+if atktimeheld < heavyAtkTimeThreshold{ // Light Attack
+	ScreenshakeAmt(2,8,2,10)
+	with(atkID){
+	image_angle=direction
+	range=40
+	duration=8
+	}
+	if keyboardAiming =1 {
+	lockeddir=direction} else lockeddir= point_direction(camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])/2,camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2,mouse_x,mouse_y)
+	dodgetime=10
+	initaldodgetime=10
+	dodgespeed=10
+	staminaTimer=40
+	stamina=stamina-10
+	dodgedelay=dodgetime+5
+	
+} else{
+ScreenshakeAmt(4,16,2,4)
+with(atkID){
+	range=40
+	duration=14
+	image_yscale=1.5
+	}
+	if keyboardAiming =1 {
+	lockeddir=direction} else lockeddir= point_direction(camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])/2,camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2,mouse_x,mouse_y)
+	dodgetime=16
+	initaldodgetime=16
+	dodgespeed=8
+	staminaTimer=50
+	stamina=stamina-25
+	dodgedelay=dodgetime+5
+
+}
+}
+
+
 #region BACKSTEP
 if stamina>0&&keyboard_check_pressed(vk_control)&&dodgedelay=0{
 	
@@ -91,6 +136,7 @@ if (vinput!=0)||(hinput!=0){
 	}
 	if staminaExaust=1 {maxspd=exaustSpd}else maxspd=walkSpd
 	if sprint==1{ maxspd=sprintSpd}
+	if atktimeheld>0 {maxspd = 3}
 	if spd<maxspd then spd++ else {spd-=(spd-maxspd)/2; spd=round(spd)}
 	
 } else if spd > 0 then spd-= sign(spd)

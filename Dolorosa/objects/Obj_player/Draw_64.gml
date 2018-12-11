@@ -1,4 +1,4 @@
-draw_healthbar(20,20,120,40,stamina,c_white,c_red,c_green,0,1,1)
+draw_healthbar(20,20,520,40,stamina,c_white,c_red,c_green,0,1,1)
 
 
 draw_text(10,10,"lastdir:" + string(lastdir))

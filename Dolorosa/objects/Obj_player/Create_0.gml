@@ -10,6 +10,8 @@ dodgetime=0
 iframes=0
 dodgedelay=0
 backstepping=0
+attacking=0
+atktimeheld=0
 #endregion
 
 
@@ -18,6 +20,8 @@ room_speed=60
 exaustSpd=5
 walkSpd=8
 sprintSpd=12
+heavyAtkTimeThreshold=40
+keyboardAiming=0
 
 
 //right click, special ability (parry, block,)

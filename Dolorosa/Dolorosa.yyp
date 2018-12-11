@@ -239,6 +239,14 @@
             }
         },
         {
+            "Key": "c1f90b29-7cfe-4a21-bf19-b58856a2f6aa",
+            "Value": {
+                "id": "62f2c61d-3f8d-4028-b7d2-7422a552762c",
+                "resourcePath": "sprites\\sp_smallArc\\sp_smallArc.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "c2c526aa-f59b-402d-9332-22758b95c877",
             "Value": {
                 "id": "9a935d38-330a-451f-a678-1c1193c7a274",
