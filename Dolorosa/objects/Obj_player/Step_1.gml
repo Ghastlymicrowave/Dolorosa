@@ -15,8 +15,63 @@ staminaTimer=40
 stamina=0
 }
 if staminaTimer>0 then staminaTimer-- else if stamina<100 then stamina++
+// SPRINT
 if stamina>0&&keyboard_check(vk_shift)&&staminaExaust=0 { sprint=1;stamina-=1;staminaTimer=20}else sprint=0
 
+// IFRAMES
+if iframes>0 then iframes--
+// DODGEDELAY
+if dodgedelay>0 then dodgedelay--
+// BACKSTEP
+if stamina>0&&keyboard_check_pressed(vk_control)&&dodgedelay=0{
+	
+	if staminaExaust=0{					//backstep
+		backsteptime = 10
+		backstepspeed=16
+		iframes=20
+	}else{								//exausted backsep
+		backsteptime = 15
+		backstepspeed=12
+		iframes=12
+	}
+	lockeddir = lastdir+180
+	staminaTimer=40
+	stamina=stamina-15
+	dodgedelay=20
+}
+
+// ROLL
+if stamina>0&&keyboard_check_pressed(vk_space)&&dodgedelay=0{
+	
+	if staminaExaust=0{					//roll
+		backsteptime = 20
+		backstepspeed=12
+		iframes=12
+	}else{								//exausted roll
+		backsteptime = 25
+		backstepspeed=8
+		iframes=10
+	}
+	lockeddir = lastdir
+	staminaTimer=50
+	stamina=stamina-15
+	dodgedelay=30
+
+}
+
+
+
+if backsteptime>0{
+	
+spd=backstepspeed
+lastdir =lockeddir
+backsteptime--
+//backstepspeed--
+if backsteptime=0 {
+	spd=0
+	//lastdir=lastdir+180
+}
+} else{
 //if any input
 if (vinput!=0)||(hinput!=0){
 	//gets input direction and calulates the angle difference between the input and current direction
@@ -32,6 +87,7 @@ if (vinput!=0)||(hinput!=0){
 	if spd<maxspd then spd++ else {spd-=(spd-maxspd)/2; spd=round(spd)}
 	
 } else if spd > 0 then spd-= sign(spd)
+}
 speed = spd
 direction = lastdir
 hspeed = round(hspeed)

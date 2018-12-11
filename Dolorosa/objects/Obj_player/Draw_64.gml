@@ -1,3 +1,6 @@
+draw_healthbar(20,20,120,40,stamina,c_white,c_red,c_green,0,1,1)
+
+
 draw_text(10,10,"lastdir:" + string(lastdir))
 draw_text(10,30,"hinput:" + string(hinput))
 draw_text(10,50,"vinput:" + string(vinput))
