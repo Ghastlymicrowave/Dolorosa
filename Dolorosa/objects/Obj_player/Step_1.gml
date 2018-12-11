@@ -1,12 +1,12 @@
 // Get input, vinput and hinput will either be 1,0, or -1 because bools in gamemaker return a 1 or 0 insted of a actuall bool
 
-
+#region MOVEMENT INPUT
 vinput = keyboard_check(ord("S")) - keyboard_check(ord("W"))
 hinput = keyboard_check(ord("D")) - keyboard_check(ord("A"))
-
+#endregion
+#region STAMINA
 if stamina=100 then staminaExaust=0
 //happens once when stamina = 0
-
 //staminatimer counts down to 0, when it hits 0 begins adding stamina until stamina reaches 100
 // also staminaExaust is a bool to determine this check once
 if stamina<=0&&staminaExaust=0 {
@@ -15,25 +15,28 @@ staminaTimer=40
 stamina=0
 }
 if staminaTimer>0 then staminaTimer-- else if stamina<100 then stamina++
-// SPRINT
+#endregion
+#region SPRINT
 if stamina>0&&keyboard_check(vk_shift)&&staminaExaust=0 { sprint=1;stamina-=1;staminaTimer=20}else sprint=0
-
-// IFRAMES
+#endregion
+#region IFRAMES
 if iframes>0 then iframes--
-// DODGEDELAY
+#endregion
+#region DODGEDELAY
 if dodgedelay>0 then dodgedelay--
-// BACKSTEP
+#endregion
+#region BACKSTEP
 if stamina>0&&keyboard_check_pressed(vk_control)&&dodgedelay=0{
 	
 	if staminaExaust=0{					//backstep
-		backsteptime = 10
-		initalbacksteptime=10
-		backstepspeed=16
+		dodgetime = 10
+		initaldodgetime=10
+		dodgespeed=16
 		iframes=20
 	}else{								//exausted backsep
-		backsteptime = 15
-		initalbacksteptime=15
-		backstepspeed=12
+		dodgetime = 15
+		initaldodgetime=15
+		dodgespeed=12
 		iframes=12
 	}
 	backstepping=1
@@ -42,19 +45,19 @@ if stamina>0&&keyboard_check_pressed(vk_control)&&dodgedelay=0{
 	stamina=stamina-15
 	dodgedelay=20
 }
-
-// ROLL
+#endregion
+#region ROLL
 if stamina>0&&keyboard_check_pressed(vk_space)&&dodgedelay=0{
 	
 	if staminaExaust=0{					//roll
-		backsteptime = 20
-		initalbacksteptime=20
-		backstepspeed=12
+		dodgetime = 20
+		initaldodgetime=20
+		dodgespeed=12
 		iframes=12
 	}else{								//exausted roll
-		backsteptime = 25
-		initalbacksteptime=25
-		backstepspeed=8
+		dodgetime = 25
+		initaldodgetime=25
+		dodgespeed=8
 		iframes=10
 	}
 	lockeddir = lastdir
@@ -64,17 +67,14 @@ if stamina>0&&keyboard_check_pressed(vk_space)&&dodgedelay=0{
 	dodgedelay=30
 
 }
+#endregion
 
 
-
-if backsteptime>0{
-	
-spd=cos(((backsteptime-initalbacksteptime)*pi)/(initalbacksteptime*2))*backstepspeed
+if dodgetime>0{
+spd=cos(((dodgetime-initaldodgetime)*pi)/(initaldodgetime*2))*dodgespeed
 lastdir =lockeddir
-
-backsteptime--
-
-if backsteptime=0 {
+dodgetime--
+if dodgetime=0 {
 	spd=0
 	if backstepping=1 {lastdir=lastdir+180;backstepping=0}
 }
@@ -101,9 +101,9 @@ hspeed = round(hspeed)
 vspeed=round(vspeed)
 
 
-// probably not worth fixing right now?
 
 
+#region ROTATE AND COLLISION
 for (var angle = 0;angle<=50; angle += 1){
 				xtarg = x+lengthdir_x(speed,angle+direction)
 				ytarg = y+lengthdir_y(speed,angle+direction)
@@ -127,3 +127,4 @@ for (var angle = 0;angle<=50; angle += 1){
 			}
 			
 CollisionWith(obj_obstacle)
+#endregion

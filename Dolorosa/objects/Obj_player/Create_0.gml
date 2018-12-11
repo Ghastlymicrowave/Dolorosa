@@ -1,4 +1,4 @@
-//Don't change these
+#region don't change
 lastdir=0
 angledif=0
 stamina = 100
@@ -6,6 +6,12 @@ staminaExaust=0
 staminaTimer=0
 sprint=0
 spd = 0
+dodgetime=0
+iframes=0
+dodgedelay=0
+backstepping=0
+#endregion
+
 
 //change these when you want
 room_speed=60
@@ -16,15 +22,7 @@ sprintSpd=12
 
 //right click, special ability (parry, block,)
 //hold left click heavy attack
-//space roll
-//left controll backstep
-
-//
-
-backsteptime = 0
-	backstepspeed=0
-	iframes=0
-	lockeddir=0
+//									space roll 
+//									left controll backstep
 
 
-dodgedelay=0
