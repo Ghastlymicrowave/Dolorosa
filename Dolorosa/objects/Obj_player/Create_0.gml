@@ -15,6 +15,8 @@ atktimeheld=0
 standbytime=0
 delayiframes=0
 drawStamina=0
+healthbarframe=0
+healthbarframetick=0
 #endregion
 
 

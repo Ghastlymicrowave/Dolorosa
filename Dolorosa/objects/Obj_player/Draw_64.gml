@@ -1,9 +1,18 @@
 //draw_healthbar(20,20,520,40,stamina,c_white,c_red,c_green,0,1,1)
 if staminaTimer=0{
 drawStamina+= (stamina-drawStamina)/(maxstamina/10)}
-draw_sprite_stretched(sp_bar,0,20,20,maxstamina*4,30)
-draw_sprite_stretched_ext(sp_bar,0,20,20,drawStamina*4,30,c_red,1)
-draw_sprite_stretched_ext(sp_bar,0,20,20,stamina*4,30,c_yellow,1)
+scalefactor=3
+//draw_sprite_part(sp_bar,0,0,0,20,10,20+drawStamina*4,20)
+//draw_sprite_part_ext(sp_bar,0,0,0,maxstamina*scalefactor,20,stamina*scalefactor+400,20,-scalefactor,1,c_white,1)
+
+healthbarframetick++
+if healthbarframetick >= sprite_get_speed(sp_bar)/room_speed then {healthbarframe++;healthbarframetick=0}
+if healthbarframe==sprite_get_number(sp_bar)then healthbarframe=0
+draw_sprite_part_ext(sp_bar,healthbarframe,0,0,drawStamina*scalefactor,64,drawStamina*scalefactor+20,20,-1,1,c_orange,1)
+draw_sprite_part_ext(sp_bar,healthbarframe,0,0,stamina*scalefactor,64,stamina*scalefactor+20,20,-1,1,c_green,1)
+//draw_sprite_stretched(sp_bar,0,20,20,maxstamina*4+20,30)
+//draw_sprite_stretched_ext(sp_bar,0,20,20,drawStamina*4+20,30,c_red,1)
+//draw_sprite_stretched_ext(sp_bar,0,20,20,stamina*4+20,30,c_yellow,1)
 
 
 
