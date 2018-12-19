@@ -1,4 +1,10 @@
-draw_healthbar(20,20,520,40,stamina,c_white,c_red,c_green,0,1,1)
+//draw_healthbar(20,20,520,40,stamina,c_white,c_red,c_green,0,1,1)
+if staminaTimer=0{
+drawStamina+= (stamina-drawStamina)/(maxstamina/10)}
+draw_sprite_stretched(sp_bar,0,20,20,maxstamina*4,30)
+draw_sprite_stretched_ext(sp_bar,0,20,20,drawStamina*4,30,c_red,1)
+draw_sprite_stretched_ext(sp_bar,0,20,20,stamina*4,30,c_yellow,1)
+
 
 
 draw_text(10,10,"lastdir:" + string(lastdir))
