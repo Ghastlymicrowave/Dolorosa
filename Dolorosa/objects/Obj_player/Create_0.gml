@@ -17,6 +17,7 @@ delayiframes=0
 drawStamina=0
 healthbarframe=0
 healthbarframetick=0
+maxspd=0
 #endregion
 
 

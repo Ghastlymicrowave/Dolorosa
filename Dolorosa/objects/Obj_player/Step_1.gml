@@ -10,11 +10,11 @@ if stamina>=maxstamina {staminaExaust=0;stamina=maxstamina}
 //staminatimer counts down to 0, when it hits 0 begins adding stamina until stamina reaches max
 // also staminaExaust is a bool to determine this check once
 if stamina<=0&&staminaExaust=0 {
+	stamina-=20
 staminaExaust =1
 staminaTimer=40
-stamina=0
 }
-if staminaTimer>0 then staminaTimer-- else if stamina<maxstamina { stamina=stamina+0.25 + stamina/maxstamina} 
+if staminaTimer>0 then staminaTimer-- else if stamina<maxstamina { stamina+=0.5} 
 #endregion
 #region SPRINT
 if stamina>0&&keyboard_check(vk_shift)&&staminaExaust=0&&spd>=walkSpd { sprintheld++}else {sprint=0;sprintheld=0}
@@ -29,7 +29,7 @@ if dodgedelay>0 then dodgedelay--
 #endregion
 
 #region attacks																												need to add combos and warmup frames
-if dodgetime!=0||standbytime>0 then atktimeheld = 0 else if mouse_check_button(mb_left){
+if dodgetime!=0 then atktimeheld = 0 else if mouse_check_button(mb_left){
 atktimeheld++	
 }
 
@@ -45,13 +45,13 @@ if atktimeheld < heavyAtkTimeThreshold{ // Light Attack
 	}
 	if keyboardAiming =1 {
 	lockeddir=direction} else lockeddir= point_direction(camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])/2,camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2,mouse_x,mouse_y)
-	dodgetime=20
-	initaldodgetime=20
+	dodgetime=12
+	initaldodgetime=12
 	dodgespeed=4
 	staminaTimer=40
 	stamina=stamina-15
 	dodgedelay=dodgetime+5
-	standbytime=8
+	standbytime=20
 	
 } else{
 ScreenshakeAmt(4,16,2,4)
@@ -68,14 +68,14 @@ with(atkID){
 	staminaTimer=50
 	stamina=stamina-30
 	dodgedelay=dodgetime+5
-	standbytime=8
+	standbytime=24
 
 }
 }
 #endregion
 
 #region BACKSTEP
-if stamina>0&&keyboard_check_pressed(vk_control)&&dodgedelay=0{
+if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0{
 	
 	if staminaExaust=0{					//backstep
 		dodgetime = 15
@@ -94,14 +94,15 @@ if stamina>0&&keyboard_check_pressed(vk_control)&&dodgedelay=0{
 		initaliframes=7
 	}
 	backstepping=1
-	lockeddir = lastdir+180
+	if keyboardAiming =1 {
+	lockeddir=direction+180} else lockeddir= 180+point_direction(camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])/2,camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2,mouse_x,mouse_y)
 	staminaTimer=40
 	stamina=stamina-15
 	dodgedelay=30
 }
 #endregion
 #region ROLL
-if stamina>0&&keyboard_check_pressed(vk_space)&&dodgedelay=0{
+if stamina>0&&keyboard_check_pressed(vk_space)&&standbytime==0&&dodgetime==0{
 	
 	if staminaExaust=0{					//roll
 		dodgetime = 25
@@ -149,13 +150,40 @@ if (vinput!=0)||(hinput!=0){
 		lastdir -= angledif/5*(spd/walkSpd)} //rotates player direction twords where they want to go
 		else{lastdir-=angledif/5*(spd/maxspd)}
 	}
-	if staminaExaust=1 {maxspd=exaustSpd}else maxspd=walkSpd
+	if staminaExaust==1 {maxspd=exaustSpd} else {maxspd=walkSpd}
 	if sprint==1{ maxspd=sprintSpd}
 	if atktimeheld>0 {maxspd = 3}
 	if spd<maxspd then spd++ else {spd-=(spd-maxspd)/2; spd=round(spd)}
 	
 } else if spd > 0 then spd-= sign(spd)
 } else {
+	
+	#region ROLL
+if stamina>0&&keyboard_check_pressed(vk_space)&&dodgetime==0{
+	
+	if staminaExaust=0{					//roll
+		dodgetime = 25
+		initaldodgetime=25
+		dodgespeed=15
+		standbytime=5
+		delayiframes=3
+		initaliframes=19
+	}else{								//exausted roll
+		dodgetime = 30
+		initaldodgetime=30
+		dodgespeed=12
+		standbytime=5
+		initaliframes=15
+	}
+	lockeddir = lastdir
+	
+	staminaTimer=50
+	stamina=stamina-15
+	dodgedelay=40
+
+}
+#endregion
+
 	
 standbytime--	
 	lastdir=lockeddir
