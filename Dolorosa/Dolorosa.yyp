@@ -311,6 +311,14 @@
             }
         },
         {
+            "Key": "ef39e8b8-f3a2-4aed-a7be-aab977dd25bc",
+            "Value": {
+                "id": "1ecf3380-8a80-475d-9f8a-41e6ebf52e17",
+                "resourcePath": "scripts\\drawParalellogram\\drawParalellogram.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f418569b-3bdd-4706-a0e4-364317f54032",
             "Value": {
                 "id": "7d7f8885-0fc2-4cb7-b26c-36ead6df6bbf",
@@ -337,7 +345,8 @@
     ],
     "script_order": [
         "74b2dee2-530d-44d3-a579-0e37049375c3",
-        "bfdad2b8-31c5-4ff0-9892-c73e1c18eb9f"
+        "bfdad2b8-31c5-4ff0-9892-c73e1c18eb9f",
+        "ef39e8b8-f3a2-4aed-a7be-aab977dd25bc"
     ],
     "tutorial": ""
 }

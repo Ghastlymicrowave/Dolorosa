@@ -15,6 +15,7 @@ atktimeheld=0
 standbytime=0
 delayiframes=0
 drawStamina=0
+drawStaminacurrent=0
 healthbarframe=0
 healthbarframetick=0
 maxspd=0
@@ -26,6 +27,7 @@ healthbarcolor=c_green
 
 //change these when you want
 room_speed=60
+scalefactor=4//pixels in width for the stamina bar and hp bar(not implimented yet)
 AtkAngleThreshhold =40
 maxstamina=100
 exaustSpd=5

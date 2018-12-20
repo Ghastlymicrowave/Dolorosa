@@ -11,10 +11,10 @@ if stamina>=maxstamina {staminaExaust=0;stamina=maxstamina;healthbarcolor=c_gree
 //staminatimer counts down to 0, when it hits 0 begins adding stamina until stamina reaches max
 // also staminaExaust is a bool to determine this check once
 if stamina<=0&&staminaExaust=0 {
-	stamina-=20
+	stamina=0
+	staminaTimer=100
 staminaExaust =1
 healthbarcolor=c_red
-staminaTimer=40
 }
 if staminaTimer>0 then staminaTimer-- else if stamina<maxstamina { stamina+=0.5} 
 #endregion
