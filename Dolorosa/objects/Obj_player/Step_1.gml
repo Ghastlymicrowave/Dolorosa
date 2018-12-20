@@ -32,7 +32,7 @@ if dodgedelay>0 then dodgedelay--
 
 #region attacks																												need to add combos and warmup frames
 #region atktimeheld
-if dodgetime!=0 then atktimeheld = 0 else if mouse_check_button(mb_left){
+if dodgetime!=0||staminaExaust then atktimeheld = 0 else if mouse_check_button(mb_left){
 atktimeheld++	
 }
 #endregion
