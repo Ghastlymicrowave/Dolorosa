@@ -18,11 +18,15 @@ drawStamina=0
 healthbarframe=0
 healthbarframetick=0
 maxspd=0
+atk=0
+atkwarmuptime=0
+healthbarcolor=c_green
 #endregion
 
 
 //change these when you want
 room_speed=60
+AtkAngleThreshhold =40
 maxstamina=100
 exaustSpd=5
 walkSpd=8

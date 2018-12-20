@@ -3,15 +3,17 @@
 #region MOVEMENT INPUT
 vinput = keyboard_check(ord("S")) - keyboard_check(ord("W"))
 hinput = keyboard_check(ord("D")) - keyboard_check(ord("A"))
+if atkwarmuptime>0 { vinput=0;hinput=0;}
 #endregion
 #region STAMINA
-if stamina>=maxstamina {staminaExaust=0;stamina=maxstamina}
+if stamina>=maxstamina {staminaExaust=0;stamina=maxstamina;healthbarcolor=c_green}
 //happens once when stamina = 0
 //staminatimer counts down to 0, when it hits 0 begins adding stamina until stamina reaches max
 // also staminaExaust is a bool to determine this check once
 if stamina<=0&&staminaExaust=0 {
 	stamina-=20
 staminaExaust =1
+healthbarcolor=c_red
 staminaTimer=40
 }
 if staminaTimer>0 then staminaTimer-- else if stamina<maxstamina { stamina+=0.5} 
@@ -29,49 +31,78 @@ if dodgedelay>0 then dodgedelay--
 #endregion
 
 #region attacks																												need to add combos and warmup frames
+#region atktimeheld
 if dodgetime!=0 then atktimeheld = 0 else if mouse_check_button(mb_left){
 atktimeheld++	
 }
+#endregion
+#region atkwarmup
+if atkwarmuptime>0&&atk!=0{
+		atkwarmuptime--
+		show_debug_message("warmup"+string(atkwarmuptime))
+		if atkwarmuptime=0{
+			atkID = instance_create_depth(x,y,-1,obj_PlayerAttack)	
+			
+			if atk=1{// Light Attack
+				ScreenshakeAmt(2,8,2,10)
+				with(atkID){
+					image_angle=direction
+					range=40
+					duration=8
+				}
+				dodgetime=12
+				initaldodgetime=12
+				dodgespeed=4
+				staminaTimer=40
+				stamina=stamina-15
+				dodgedelay=dodgetime+5
+				standbytime=20
+				
+			}else if atk=2{//Heavy Attack
+				ScreenshakeAmt(4,16,2,4)
+				with(atkID){
+					range=40
+					duration=14
+					image_yscale=1.5
+				}
+				dodgetime=16
+				initaldodgetime=16
+				dodgespeed=8
+				staminaTimer=50
+				stamina=stamina-30
+				dodgedelay=dodgetime+5
+				standbytime=24
+			}
+			atk=0
+		}
+	}
+#endregion
 
-if stamina>0&&dodgetime=0&&staminaExaust=0&&atktimeheld>0&&mouse_check_button_released(mb_left){
-	
-atkID = instance_create_depth(x,y,-1,obj_PlayerAttack)	
+#region intial attacks
+if stamina>0&&dodgetime=0&&staminaExaust=0&&atktimeheld>0&&mouse_check_button_released(mb_left)&&atk=0{
+
 if atktimeheld < heavyAtkTimeThreshold{ // Light Attack
-	ScreenshakeAmt(2,8,2,10)
-	with(atkID){
-	image_angle=direction
-	range=40
-	duration=8
-	}
+	atk=1
+	atkwarmuptime=15
 	if keyboardAiming =1 {
 	lockeddir=direction} else lockeddir= point_direction(camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])/2,camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2,mouse_x,mouse_y)
-	dodgetime=12
-	initaldodgetime=12
-	dodgespeed=4
-	staminaTimer=40
-	stamina=stamina-15
-	dodgedelay=dodgetime+5
-	standbytime=20
-	
-} else{
-ScreenshakeAmt(4,16,2,4)
-with(atkID){
-	range=40
-	duration=14
-	image_yscale=1.5
-	}
+	/// this bit can be commented out if it don't work, it just makes it so that you can only attack at a max of 30 degrees from your current direction		I think it's cool tho
+	if spd!=0{
+	if abs(angle_difference(lastdir,lockeddir))>AtkAngleThreshhold {
+		lockeddir =lastdir - AtkAngleThreshhold * sign(angle_difference(lastdir,lockeddir))
+	}}
+} else{ //if atktimeheld>=heavyAtkTimeThreshold{    Heavy Attack
+	atk=2
+	atkwarmuptime=20
 	if keyboardAiming =1 {
 	lockeddir=direction} else lockeddir= point_direction(camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])/2,camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2,mouse_x,mouse_y)
-	dodgetime=16
-	initaldodgetime=16
-	dodgespeed=8
-	staminaTimer=50
-	stamina=stamina-30
-	dodgedelay=dodgetime+5
-	standbytime=24
-
+	if spd!=0{
+	if abs(angle_difference(lastdir,lockeddir))>AtkAngleThreshhold {
+		lockeddir =lastdir - AtkAngleThreshhold * sign(angle_difference(lastdir,lockeddir))
+	}}
 }
 }
+#endregion
 #endregion
 
 #region BACKSTEP
@@ -94,11 +125,21 @@ if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0{
 		initaliframes=7
 	}
 	backstepping=1
+	
+	if atkwarmuptime>0{
+		lockeddir=lockeddir+180
+		stamina-=15
+		dodgespeed=8
+	}else{
 	if keyboardAiming =1 {
 	lockeddir=direction+180} else lockeddir= 180+point_direction(camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])/2,camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2,mouse_x,mouse_y)
+	}
 	staminaTimer=40
-	stamina=stamina-15
+	stamina-=15
 	dodgedelay=30
+	atk=0
+	atkwarmuptime=0
+	atktimeheld=0
 }
 #endregion
 #region ROLL
@@ -130,6 +171,9 @@ if stamina>0&&keyboard_check_pressed(vk_space)&&standbytime==0&&dodgetime==0{
 
 //first while dodgetime is running out, the player is locked in a direction with their speed dictacted by dodgetime, dodgespeed, and initaldodgetime
 //next standbytime counds down, during this the player cannot move
+if atkwarmuptime>0&&atk!=0{
+lastdir=lockeddir
+		direction=lockeddir}
 
 if dodgetime>0{
 spd=cos(((dodgetime-initaldodgetime)*pi)/(initaldodgetime*2))*dodgespeed+dodgespeed/10 //a cos funct to set the speed as a smooth curve over the distance of a initaldodgetime also adding a small portion of the speed to give an extra kick
