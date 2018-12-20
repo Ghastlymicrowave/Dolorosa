@@ -21,14 +21,30 @@ healthbarframetick=0
 maxspd=0
 atk=0
 atkwarmuptime=0
+heldtoolong=0
 healthbarcolor=c_green
+combo=0
+//																Add dash attacks, when setting atk input check for if dashing, low startup and medium everything else
+//																also, attacking after rolling/backstepping??
+/*Combos are as follows:  combo is set after an attack is made 
+read combo value | coresponding attack
+0 | regular heavy(3) or light(1)
+1 |light 2nd attack(2)
+2 |light 3rd attack
+3 |heavy 2nd attack
+
+
+
+
+*/
 #endregion
 
 
 //change these when you want
 room_speed=60
 scalefactor=4//pixels in width for the stamina bar and hp bar(not implimented yet)
-AtkAngleThreshhold =40
+AtkAngleThreshhold =20// frames until a light becomes a heavy
+heavyAtkTimeThresholdHighest=60//longest time you can hold a heavy for
 maxstamina=100
 exaustSpd=5
 walkSpd=8
