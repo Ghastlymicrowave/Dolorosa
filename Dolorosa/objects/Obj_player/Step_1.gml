@@ -10,6 +10,7 @@ staminaFullColor = $ffffff
 staminaEmptyColor = $3300ff
 staminaUseColor = $666666
 
+if staminaTimer<=0&&atkwarmuptime<=0&&atktimeheld<=0 then combo=0
 if stamina>=maxstamina {staminaExaust=0;stamina=maxstamina;healthbarcolor=staminaFullColor}
 //happens once when stamina = 0
 //staminatimer counts down to 0, when it hits 0 begins adding stamina until stamina reaches max
@@ -21,6 +22,7 @@ staminaExaust =1
 healthbarcolor=staminaEmptyColor
 }
 if staminaTimer>0 then staminaTimer-- else if stamina<maxstamina { stamina+=0.5} 
+
 #endregion
 #region SPRINT
 if stamina>0&&keyboard_check(vk_shift)&&staminaExaust=0&&spd>=walkSpd { sprintheld++}else {sprint=0;sprintheld=0}
@@ -50,8 +52,8 @@ if atkwarmuptime>0&&atk!=0{
 		show_debug_message("warmup"+string(atkwarmuptime))
 		if atkwarmuptime=0{
 			atkID = instance_create_depth(x,y,-1,obj_PlayerAttack)	
-			
-			if atk=1{// Light Attack
+			#region light 1
+			if combo=1{// Light Attack
 				ScreenshakeAmt(2,8,2,10)
 				with(atkID){
 					image_angle=direction
@@ -65,8 +67,46 @@ if atkwarmuptime>0&&atk!=0{
 				stamina=stamina-15
 				dodgedelay=dodgetime+5
 				standbytime=20
+			#endregion
+			#region light 2
+			}else if combo=2{
 				
-			}else if atk=2{//Heavy Attack
+				ScreenshakeAmt(2,10,2,9)
+				with(atkID){
+					image_angle=direction
+					range=45
+					duration=10
+				}
+				dodgetime=12
+				initaldodgetime=12
+				dodgespeed=4
+				staminaTimer=40
+				stamina=stamina-15
+				dodgedelay=dodgetime+5
+				standbytime=20
+				
+				#endregion
+				#region light 3
+			}else if combo=3{
+				combo=0
+				ScreenshakeAmt(8,12,6,8)
+				with(atkID){
+					image_angle=direction
+					range=50
+					duration=10
+				}
+				dodgetime=18
+				initaldodgetime=18
+				dodgespeed=6
+				staminaTimer=40
+				stamina=stamina-15
+				dodgedelay=dodgetime+5
+				standbytime=20
+				
+				#endregion
+				#region heavy 1
+			}else if combo=4{
+				
 				ScreenshakeAmt(6,16,4,3)
 				with(atkID){
 					range=40
@@ -80,18 +120,47 @@ if atkwarmuptime>0&&atk!=0{
 				stamina=stamina-30
 				dodgedelay=dodgetime+5
 				standbytime=24
+				
+				#endregion
+				#region heavy 2
+			}else if combo=5{
+				combo=0
+				ScreenshakeAmt(6,16,4,3)
+				with(atkID){
+					range=40
+					duration=18
+					image_yscale=1.75
+				}
+				dodgetime=18
+				initaldodgetime=18
+				dodgespeed=8
+				staminaTimer=50
+				stamina=stamina-30
+				dodgedelay=dodgetime+5
+				standbytime=20
+				
+				#endregion
 			}
 			atk=0
 		}
 	}
-#endregion
 
 #region intial attacks
 if stamina>0&&dodgetime=0&&staminaExaust=0&&atktimeheld>0&&atk=0&&(mouse_check_button_released(mb_left)||atktimeheld>=heavyAtkTimeThresholdHighest){
 if atktimeheld>=heavyAtkTimeThresholdHighest then heldtoolong=1
 if atktimeheld < heavyAtkTimeThreshold{ // Light Attack
+	
+	if combo=2{
+	atkwarmuptime=8
+	combo=3
+	}else if combo=1{
+	atkwarmuptime=10
+	combo=2
+	}else if combo=0||combo>3{
+	atkwarmuptime=10
+	combo=1
+	}
 	atk=1
-	atkwarmuptime=15
 	if keyboardAiming =1 {
 	lockeddir=direction} else lockeddir= point_direction(camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])/2,camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2,mouse_x,mouse_y)
 	/// this bit can be commented out if it don't work, it just makes it so that you can only attack at a max of 30 degrees from your current direction		I think it's cool tho
@@ -100,8 +169,15 @@ if atktimeheld < heavyAtkTimeThreshold{ // Light Attack
 		lockeddir =lastdir - AtkAngleThreshhold * sign(angle_difference(lastdir,lockeddir))
 	}}
 } else{ //if atktimeheld>=heavyAtkTimeThreshold{    Heavy Attack
-	atk=2
-	atkwarmuptime=20
+	if combo=4{
+		atkwarmuptime=15
+		combo=5
+	}else if combo=0||combo<4{
+		atkwarmuptime=20
+		combo=4
+	}
+	atk=1
+	
 	if keyboardAiming =1 {
 	lockeddir=direction} else lockeddir= point_direction(camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])/2,camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2,mouse_x,mouse_y)
 	if spd!=0{
@@ -112,7 +188,7 @@ if atktimeheld < heavyAtkTimeThreshold{ // Light Attack
 }
 #endregion
 #endregion
-
+#endregion
 #region BACKSTEP
 if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0{
 	

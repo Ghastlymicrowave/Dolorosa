@@ -20,10 +20,10 @@ healthbarframe=0
 healthbarframetick=0
 maxspd=0
 atk=0
+combo=0
 atkwarmuptime=0
 heldtoolong=0
 healthbarcolor=c_green
-combo=0
 //																Add dash attacks, when setting atk input check for if dashing, low startup and medium everything else
 //																also, attacking after rolling/backstepping??
 /*Combos are as follows:  combo is set after an attack is made 
@@ -33,7 +33,8 @@ read combo value | coresponding attack
 2 |light 3rd attack
 3 |heavy 2nd attack
 
-
+3 heavy 1
+4 heavy 2
 
 
 */

@@ -39,6 +39,10 @@ draw_text(10,170,"dodgetime:"+string(dodgetime))
 draw_text(10,190,"standby:"+string(standbytime))
 draw_text(10,210,"spd:"+string(spd))
 draw_text(10,230,"maxspd:"+string(maxspd))
+draw_text(10,250,"warmup:"+string(atkwarmuptime))
+draw_text(10,270,"atk:"+string(atk))
+draw_text(10,290,"combo:"+string(combo))
+draw_text(10,310,"atktimeheld:"+string(atktimeheld))
 
 //argument 0 is x
 //argument 1 is y
