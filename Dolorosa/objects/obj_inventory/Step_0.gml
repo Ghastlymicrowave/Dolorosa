@@ -26,8 +26,11 @@ if inventorycreated=0
 	if i > MaxRowsPerPage-1 then break;
 	
 	for (var ii=0; ii<objectsPerRow;ii++){
-	instance_create_depth(ivx+ii*ivw/objectsPerRow+((ii+1)*ivw/objectsPerRow)/ivw,ivy+(i*ivh/MaxRowsPerPage)+((i+1)*ivh/MaxRowsPerPage)/2,-1,obj_inventoryItem)	
+		var xx = ivx+ii*ivw/objectsPerRow+((ii+1)*ivw/objectsPerRow)/ivw+ivw/objectsPerRow
+		var yy = ivy+i*ivh/MaxRowsPerPage+((i+1)*ivh/MaxRowsPerPage)/ivh+ivh/MaxRowsPerPage
+		instance_create_depth(xx,yy,-1,obj_inventoryItem)	
 	}
+	
 	//x = ii*width/objectsPerRow
 	//make annother for loop for each object using ii as the horiz location
 	//draws object in slot (MaxRowsPerPage*(page-1)+ii)
@@ -35,10 +38,12 @@ if inventorycreated=0
 	show_debug_message(string(i)+"full rows")
 	if floor(ivDivided)!=ivDivided{
 		
-		show_debug_message("or here")
+		
 		for (var ii=0; ii<ivSize-floor(ivDivided);ii++){
 			
-			instance_create_depth(ivx+ii*ivw/objectsPerRow,ivy+(i+1)*ivh/MaxRowsPerPage,-1,obj_inventoryItem)
+			var xx = ivx+ii*ivw/objectsPerRow+((ii+1)*ivw/objectsPerRow)/ivw+ivw/objectsPerRow
+			var yy = ivy+i*ivh/MaxRowsPerPage+((i+1)*ivh/MaxRowsPerPage)/ivh+ivh/MaxRowsPerPage
+			instance_create_depth(xx,yy,-1,obj_inventoryItem)	
 			
 			//loops for each object in spare row
 		}show_debug_message(string(ii)+"leftover")
