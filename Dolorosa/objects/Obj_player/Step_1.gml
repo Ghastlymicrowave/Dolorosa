@@ -40,6 +40,8 @@ if (mouse_check_button_released(mb_left)) && heldtoolong=1 then heldtoolong=0
 if (dodgetime!=0||staminaExaust) then atktimeheld = 0 else if mouse_check_button(mb_left)&&heldtoolong=0{
 atktimeheld++	
 ScreenshakeAmt(atktimeheld/8,atktimeheld,0,480/atktimeheld)
+}else if atktimeheld>0&&heldtoolong=1{
+	ScreenshakeAmt(atktimeheld/8,atktimeheld,0,480/atktimeheld)
 }
 #endregion
 #region atkwarmup
