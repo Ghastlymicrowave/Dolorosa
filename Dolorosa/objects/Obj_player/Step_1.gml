@@ -6,7 +6,11 @@ hinput = keyboard_check(ord("D")) - keyboard_check(ord("A"))
 if atkwarmuptime>0 { vinput=0;hinput=0;}
 #endregion
 #region STAMINA
-if stamina>=maxstamina {staminaExaust=0;stamina=maxstamina;healthbarcolor=c_green}
+staminaFullColor = $ffffff
+staminaEmptyColor = $3300ff
+staminaUseColor = $666666
+
+if stamina>=maxstamina {staminaExaust=0;stamina=maxstamina;healthbarcolor=staminaFullColor}
 //happens once when stamina = 0
 //staminatimer counts down to 0, when it hits 0 begins adding stamina until stamina reaches max
 // also staminaExaust is a bool to determine this check once
@@ -14,7 +18,7 @@ if stamina<=0&&staminaExaust=0 {
 	stamina=0
 	staminaTimer=100
 staminaExaust =1
-healthbarcolor=c_red
+healthbarcolor=staminaEmptyColor
 }
 if staminaTimer>0 then staminaTimer-- else if stamina<maxstamina { stamina+=0.5} 
 #endregion

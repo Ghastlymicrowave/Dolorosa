@@ -12,10 +12,10 @@ healthbarframetick++
 if healthbarframetick >= sprite_get_speed(sp_bar1)/room_speed then {healthbarframe++;healthbarframetick=0}
 if healthbarframe==sprite_get_number(sp_bar1)then healthbarframe=0
 */
-drawParalellogram(18,19,maxstamina*scalefactor+2,22,1,c_white)
-drawParalellogram(20,20,maxstamina*scalefactor,20,1,c_black)
-drawParalellogram(20,20,drawStamina*scalefactor,20,1,c_orange)
-drawParalellogram(20,20,drawStaminacurrent*scalefactor,20,1,healthbarcolor)
+drawParalellogram(70,50,maxstamina*scalefactor/2+2,20,-1,c_white)
+drawParalellogram(70,50,maxstamina*scalefactor/2,20,-1,c_black)
+drawParalellogram(70,50,drawStamina*scalefactor/2,20,-1,staminaUseColor)
+drawParalellogram(70,50,drawStaminacurrent*scalefactor/2,20,-1,healthbarcolor)
 
 //draw_sprite_part_ext(sp_bar1,healthbarframe,0,0,maxstamina*scalefactor,64,maxstamina*scalefactor+20,20,-1,1,c_white,1)
 //draw_sprite_part_ext(sp_bar1,healthbarframe,0,0,drawStamina*scalefactor,64,drawStamina*scalefactor+20,20,-1,1,c_orange,1)
