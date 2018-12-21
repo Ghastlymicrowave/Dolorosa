@@ -3,7 +3,7 @@
 
 //create inventory
 global.inventory = ds_list_create()
-objectsPerRow=2
+objectsPerRow=5
 MaxRowsPerPage=2
 inventorycreated=0
 page=1
