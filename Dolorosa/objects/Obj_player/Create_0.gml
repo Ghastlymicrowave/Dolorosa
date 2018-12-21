@@ -24,6 +24,7 @@ combo=0
 atkwarmuptime=0
 heldtoolong=0
 healthbarcolor=c_green
+inventoryopen=0
 //																Add dash attacks, when setting atk input check for if dashing, low startup and medium everything else
 //																also, attacking after rolling/backstepping??
 /*Combos are as follows:  combo is set after an attack is made 

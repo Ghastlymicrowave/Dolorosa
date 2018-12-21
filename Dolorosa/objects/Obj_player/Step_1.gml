@@ -24,6 +24,8 @@ healthbarcolor=staminaEmptyColor
 if staminaTimer>0 then staminaTimer-- else if stamina<maxstamina { stamina+=0.5} 
 
 #endregion
+
+
 #region SPRINT
 if stamina>0&&keyboard_check(vk_shift)&&staminaExaust=0&&spd>=walkSpd { sprintheld++}else {sprint=0;sprintheld=0}
 if sprintheld>=sprintHeldTreshold{sprint=1;stamina-=0.5;staminaTimer=20}
@@ -334,7 +336,7 @@ for (var angle = 0;angle<=70; angle += 1){
 					direction = direction + angle
 					//hspeed=floor(abs(hspeed))*sign(hspeed)
 					//vspeed=floor(abs(vspeed))*sign(vspeed)
-					exit;
+					break;
 				}
 			}
 		
@@ -345,9 +347,15 @@ for (var angle = 0;angle<=70; angle += 1){
 					direction = direction -angle
 					//hspeed=floor(abs(hspeed))*sign(hspeed)
 					//vspeed=floor(abs(vspeed))*sign(vspeed)
-					exit;
+					break;
 				}
 			}
 			
 CollisionWith(obj_obstacle)
 #endregion
+
+
+if atk=0&&atktimeheld=0&&dodgetime=0{
+	if keyboard_check_pressed(ord("I")) && inventoryopen=1 { inventoryopen=0 }
+	else if keyboard_check_pressed(ord("I")) then inventoryopen=1
+}else inventoryopen=0
