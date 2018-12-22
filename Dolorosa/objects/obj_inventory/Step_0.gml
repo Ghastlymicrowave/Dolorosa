@@ -9,8 +9,7 @@ if obj_player.inventoryopen=1{
 	var ivSize=ds_list_size(global.inventory)
 	var ivDivided=ivSize/objectsPerRow
 
-if MaxRowsPerPage*objectsPerRow<ivSize/(page)&&keyboard_check_pressed(ord("O")) {page ++;inventorycreated=0}
-if keyboard_check_pressed(ord("U"))&&page>1 { page --;inventorycreated=0}	
+
 
 
 if inventorycreated=0
@@ -19,8 +18,8 @@ if inventorycreated=0
 
 	inventorycreated=1
 	
-	var pages=(page-1)*objectsPerRow*MaxRowsPerPage
-	for (var i = pages; i<floor(ivDivided);i++){//for each full row
+	
+	for (var i = 0; i<floor(ivDivided);i++){//for each full row
 	//loops for each full row
 	
 	//if i > MaxRowsPerPage-1 then break;
