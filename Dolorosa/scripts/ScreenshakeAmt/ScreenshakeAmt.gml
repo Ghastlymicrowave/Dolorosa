@@ -5,6 +5,7 @@
 // Argument 3 : zoom, a number probably between 1 and 10, 1 being a full zoom and 10 being hardly noticeable at all
 
 obj_camera_follow.screenshake =argument[0]
+obj_camera_follow.initalscreenshake =argument[0]
 obj_camera_follow.time = argument[0]*2
 
 if (random(1)) then mult = 1 else mult = -1

@@ -6,5 +6,6 @@
 if(interacted=1){
 ds_list_add(global.inventory,intID)
 interacted =0
+obj_inventory.inventorycreated=0
 instance_destroy()
 }
