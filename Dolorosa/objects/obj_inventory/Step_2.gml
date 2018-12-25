@@ -13,4 +13,4 @@ y=ivy
 image_xscale=ivw/sprite_get_width(sprite_index)
 image_yscale=ivh/sprite_get_height(sprite_index)
 
-show_debug_message(string(image_xscale))
+//show_debug_message(string(image_xscale))
