@@ -5,7 +5,7 @@
 global.inventory = ds_list_create()
 objectsPerRow=6
 MaxRowsPerPage=5
-inventorycreated=0
+//inventorycreated=0
 
 xoffset=20
 yoffset=20

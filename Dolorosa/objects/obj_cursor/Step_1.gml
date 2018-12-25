@@ -1,0 +1,2 @@
+x=mouse_x+obj_camera_follow.hspeed
+y=mouse_y+obj_camera_follow.vspeed

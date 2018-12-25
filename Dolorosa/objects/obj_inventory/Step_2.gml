@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-draw_rectangle(ivx,ivy,ivx+ivw,ivy+ivh,2)
+//draw_rectangle(ivx,ivy,ivx+ivw,ivy+ivh,2)
 
 ivx=camera_get_view_x(view_camera[0])+xoffset
 ivy=camera_get_view_y(view_camera[0])+yoffset
