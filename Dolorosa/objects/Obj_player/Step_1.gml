@@ -268,6 +268,8 @@ dodgetime--
 
 } else if standbytime<=0{
 	
+	
+	
 //if any input
 if (vinput!=0)||(hinput!=0){
 	//gets input direction and calulates the angle difference between the input and current direction
@@ -283,6 +285,7 @@ if (vinput!=0)||(hinput!=0){
 	if staminaExaust==1 {maxspd=exaustSpd} else {maxspd=walkSpd}
 	if sprint==1{ maxspd=sprintSpd}
 	if atktimeheld>0 {maxspd = 3}
+	if inventoryopen=1 {maxspd=0}
 	if spd<maxspd then spd++ else {spd-=(spd-maxspd)/2; spd=round(spd)}
 	
 } else if spd > 0 then spd-= sign(spd)
@@ -320,6 +323,9 @@ standbytime--
 	spd=0
 	if standbytime=0{if backstepping=1 {lastdir=lastdir+180;backstepping=0}}
 }
+
+if inventoryopen then lastdir=lockeddir
+
 speed = spd
 direction = lastdir
 hspeed = round(hspeed)
@@ -357,5 +363,5 @@ CollisionWith(obj_obstacle)
 
 if atk=0&&atktimeheld=0&&dodgetime=0{
 	if keyboard_check_pressed(ord("I")) && inventoryopen=1 { inventoryopen=0 }
-	else if keyboard_check_pressed(ord("I")) then inventoryopen=1
+	else if keyboard_check_pressed(ord("I")) { inventoryopen=1; lockeddir=lastdir}
 }else inventoryopen=0

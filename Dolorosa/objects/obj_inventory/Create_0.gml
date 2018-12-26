@@ -3,8 +3,8 @@
 
 //create inventory
 global.inventory = ds_list_create()
-objectsPerRow=6
-MaxRowsPerPage=5
+objectsPerRow=3
+MaxRowsPerPage=2
 //inventorycreated=0
 
 xoffset=20
@@ -24,3 +24,6 @@ ivh1=ivh
 
 depth=-5
 image_alpha=0.5
+
+lastslotx=0
+lastsloty=0
