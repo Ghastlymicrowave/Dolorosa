@@ -285,7 +285,7 @@ if (vinput!=0)||(hinput!=0){
 	if staminaExaust==1 {maxspd=exaustSpd} else {maxspd=walkSpd}
 	if sprint==1{ maxspd=sprintSpd}
 	if atktimeheld>0 {maxspd = 3}
-	if inventoryopen=1 {maxspd=0}
+	if inventoryopen=1||gamepaused=1 {maxspd=0}
 	if spd<maxspd then spd++ else {spd-=(spd-maxspd)/2; spd=round(spd)}
 	
 } else if spd > 0 then spd-= sign(spd)
@@ -324,7 +324,7 @@ standbytime--
 	if standbytime=0{if backstepping=1 {lastdir=lastdir+180;backstepping=0}}
 }
 
-if inventoryopen then lastdir=lockeddir
+if inventoryopen||gamepaused then lastdir=lockeddir
 
 speed = spd
 direction = lastdir

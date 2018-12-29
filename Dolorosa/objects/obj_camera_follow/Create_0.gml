@@ -6,3 +6,6 @@ screenScale=1
 
 angle =0
 startingangle=0
+
+x=obj_player.x
+y=obj_player.y
