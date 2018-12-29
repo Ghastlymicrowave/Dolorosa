@@ -4,13 +4,13 @@
 //create inventory
 global.inventory = ds_list_create()
 objectsPerRow=3
-MaxRowsPerPage=2
+MaxRowsPerPage=1
 //inventorycreated=0
 
-xoffset=20
-yoffset=20
-wscale=2.5
-hscale=1.25
+xoffset=150
+yoffset=40
+wscale=1.5
+hscale=1.5
 
 ivx=camera_get_view_x(view_camera[0])+xoffset
 ivy=camera_get_view_y(view_camera[0])+yoffset
@@ -27,3 +27,7 @@ image_alpha=0.5
 
 lastslotx=0
 lastsloty=0
+
+page=0
+pageheight=ivh
+followpageheight=0

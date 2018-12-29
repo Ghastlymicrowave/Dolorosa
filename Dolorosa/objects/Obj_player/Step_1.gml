@@ -363,5 +363,5 @@ CollisionWith(obj_obstacle)
 
 if atk=0&&atktimeheld=0&&dodgetime=0{
 	if keyboard_check_pressed(ord("I")) && inventoryopen=1 { inventoryopen=0 }
-	else if keyboard_check_pressed(ord("I")) { inventoryopen=1; lockeddir=lastdir}
+	else if keyboard_check_pressed(ord("I")) { inventoryopen=1; lockeddir=lastdir;obj_inventory.page=0}
 }else inventoryopen=0

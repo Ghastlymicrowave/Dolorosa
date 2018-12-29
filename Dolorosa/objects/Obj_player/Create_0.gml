@@ -25,6 +25,11 @@ atkwarmuptime=0
 heldtoolong=0
 healthbarcolor=c_green
 inventoryopen=0
+
+keyboard_set_map(vk_up,ord("W"))
+keyboard_set_map(vk_down,ord("S"))
+keyboard_set_map(vk_left,ord("A"))
+keyboard_set_map(vk_right,ord("D"))
 //																Add dash attacks, when setting atk input check for if dashing, low startup and medium everything else
 //																also, attacking after rolling/backstepping??
 /*Combos are as follows:  combo is set after an attack is made 
