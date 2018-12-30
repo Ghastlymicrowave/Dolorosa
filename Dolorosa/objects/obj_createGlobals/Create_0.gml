@@ -1,3 +1,3 @@
 
-global.fadespeed=30
+global.fadespeed=15
 room_goto_next()
