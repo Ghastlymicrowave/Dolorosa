@@ -41,7 +41,7 @@ if dodgedelay>0 then dodgedelay--
 #region attacks																												need to add combos and warmup frames
 #region atktimeheld
 if (mouse_check_button_released(mb_left)) && heldtoolong=1 then heldtoolong=0
-if (dodgetime!=0||staminaExaust) then atktimeheld = 0 else if mouse_check_button(mb_left)&&heldtoolong=0&&inventoryopen=0{
+if (dodgetime!=0||staminaExaust||gamepaused) then atktimeheld = 0 else if mouse_check_button(mb_left)&&heldtoolong=0&&inventoryopen=0{
 atktimeheld++	
 ScreenshakeAmt(atktimeheld/8,atktimeheld,0,480/atktimeheld)
 }else if atktimeheld>0&&heldtoolong=1{
@@ -148,7 +148,7 @@ if atkwarmuptime>0&&atk!=0{
 	}
 
 #region intial attacks
-if stamina>0&&dodgetime=0&&staminaExaust=0&&atktimeheld>0&&atk=0&&(mouse_check_button_released(mb_left)||atktimeheld>=heavyAtkTimeThresholdHighest){
+if stamina>0&&dodgetime=0&&staminaExaust=0&&atktimeheld>0&&atk=0&&(mouse_check_button_released(mb_left)||atktimeheld>=heavyAtkTimeThresholdHighest)&&gamepaused=0{
 if atktimeheld>=heavyAtkTimeThresholdHighest then heldtoolong=1
 if atktimeheld < heavyAtkTimeThreshold{ // Light Attack
 	
@@ -192,7 +192,7 @@ if atktimeheld < heavyAtkTimeThreshold{ // Light Attack
 #endregion
 #endregion
 #region BACKSTEP
-if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0{
+if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0&&gamepaused=0{
 	
 	if staminaExaust=0{					//backstep
 		dodgetime = 15
@@ -229,7 +229,7 @@ if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0{
 }
 #endregion
 #region ROLL
-if stamina>0&&keyboard_check_pressed(vk_space)&&standbytime==0&&dodgetime==0{
+if stamina>0&&keyboard_check_pressed(vk_space)&&standbytime==0&&dodgetime==0&&gamepaused=0{
 	
 	if staminaExaust=0{					//roll
 		dodgetime = 25
@@ -292,7 +292,7 @@ if (vinput!=0)||(hinput!=0){
 } else {
 	
 	#region ROLL
-if stamina>0&&keyboard_check_pressed(vk_space)&&dodgetime==0{
+if stamina>0&&keyboard_check_pressed(vk_space)&&dodgetime==0&&gamepaused=0{
 	
 	if staminaExaust=0{					//roll
 		dodgetime = 25

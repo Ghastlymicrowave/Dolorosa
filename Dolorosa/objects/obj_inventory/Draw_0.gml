@@ -50,11 +50,14 @@ for (var i = 0; i<floor(ivDivided);i++){//for each full row
 			}//else show_debug_message(string(slotx)+string(ii)+string(sloty)+string(i))
 		
 		var spr = sp_placeholderItem
+		
+		if point_in_rectangle(xx,yy,x,y,x+sprite_width,y+sprite_height){
 		draw_sprite(spr,depth-1,xx,yy)
 		draw_rectangle(xx-spr.sprite_width/2,yy-spr.sprite_height/2,xx+spr.sprite_width/2,yy+spr.sprite_height/2,1)
 		if collision_rectangle(xx-spr.sprite_width/2,yy-spr.sprite_height/2,xx+spr.sprite_width/2,yy+spr.sprite_height/2,obj_cursor,1,1)&&mouse_check_button_pressed(mb_left){
 		//idk it's clicked	
 		show_debug_message("clicked item "+ string(ii+i*objectsPerRow)+" object: "+ string(ds_list_find_value(global.inventory,ii+i*objectsPerRow)))
+		}
 		}
 	}
 	
@@ -80,9 +83,12 @@ for (var i = 0; i<floor(ivDivided);i++){//for each full row
 			obj_cursor.keyboardy=yy
 			lastslotx=slotx
 			lastsloty=sloty
+			
 			}//else show_debug_message(string(slotx)+":"+string(iii-floor(i*objectsPerRow))+","+string(sloty)+":"+string(i))
 			
 			var spr = sp_placeholderItem
+			
+			if point_in_rectangle(xx,yy,x,y,x+sprite_width,y+sprite_height){
 			draw_sprite(spr,depth-1,xx,yy)
 			draw_rectangle(xx-spr.sprite_width/2,yy-spr.sprite_height/2,xx+spr.sprite_width/2,yy+spr.sprite_height/2,1)
 			if collision_rectangle(xx-spr.sprite_width/2,yy-spr.sprite_height/2,xx+spr.sprite_width/2,yy+spr.sprite_height/2,obj_cursor,1,1)&&mouse_check_button_pressed(mb_left){
@@ -90,7 +96,7 @@ for (var i = 0; i<floor(ivDivided);i++){//for each full row
 			//idk it's clicked	
 			show_debug_message("clicked item "+ string(iii)+" object: "+ string(ds_list_find_value(global.inventory,iii)))
 			}
-			
+			}
 			
 			//loops for each object in spare row
 		}
