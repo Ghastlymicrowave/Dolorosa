@@ -5,5 +5,5 @@ if(instance_exists(obj_player)){
 obj_player.lockeddir = obj_player.lastdir
 obj_player.gamepaused = 1
 }
-ds_list_add(global.dialogue,"1","2","3","4")
+ds_list_add(global.dialogue,"1gdfgsdfgsdfgsdfgsdfgsdfg","2gdfgdsfgdsfgdsfg","3gdfsgdfsgdsfgs","4fdgsdfgdsfgsdfg")
 i = 0
