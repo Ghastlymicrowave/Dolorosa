@@ -1,2 +1,2 @@
 //draw set font
-font_add_sprite_ext(sp_testAlphabet,"")
+font = font_add_sprite_ext(sp_testAlphabet,"digest my bagels",true,0)
