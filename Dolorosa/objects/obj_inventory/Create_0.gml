@@ -28,6 +28,9 @@ image_alpha=0.5
 lastslotx=0
 lastsloty=0
 
+heldtime =0 
+heldwaittime=0
+
 page=0
 pageheight=ivh
 followpageheight=0

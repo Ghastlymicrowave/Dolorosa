@@ -16,8 +16,23 @@ if obj_player.inventoryopen=1{
 	sloty=lastsloty
 	}
 	page= floor(sloty/MaxRowsPerPage) 
+	
 	var v =keyboard_check_pressed(ord("S")) - keyboard_check_pressed(ord("W"))
 	var h =keyboard_check_pressed(ord("D")) - keyboard_check_pressed(ord("A"))
+	
+	var v1 =keyboard_check(ord("S")) - keyboard_check(ord("W"))
+	var h1 =keyboard_check(ord("D")) - keyboard_check(ord("A"))
+	
+	if (abs(v1)xor(abs(h1))) {if heldtime <20 {heldtime++;heldwaittime=8} }else heldtime=0
+	
+	if heldtime=20{
+		heldwaittime--
+		if heldwaittime=0{
+		v=v1
+		h=h1
+		heldwaittime=8//ads a delay for holding down keys
+		} 
+	}
 	
 	if (h>0 && slotx<objectsPerRow-1)||(h<0&&slotx>0) then slotx+=h
 	if (v>0)||(v<0&&sloty>0) { sloty+=v
