@@ -286,6 +286,7 @@ if (vinput!=0)||(hinput!=0){
 	if sprint==1{ maxspd=sprintSpd}
 	if atktimeheld>0 {maxspd = 3}
 	if inventoryopen=1||gamepaused=1 {maxspd=0}
+	if knockbacktime>=0.1{maxspd =3}
 	if spd<maxspd then spd++ else {spd-=(spd-maxspd)/2; spd=round(spd)}
 	
 } else if spd > 0 then spd-= sign(spd)

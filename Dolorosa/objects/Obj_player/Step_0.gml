@@ -2,8 +2,7 @@
 #region knockback
 if(knockbacktime>=0.1){
 knockbacktime--
-motion_set(direction,speed/2)
-motion_add(knockbackdir,round(knockbacktime*knockbackmult))
+motion_add(knockbackdir,round(knockbackmult * sin((knockbacktime*pi)/2*(1/(initalknockbacktime*2)))))
 }
 #endregion
 #region collide enemy hitboxes
@@ -13,6 +12,7 @@ if(place_meeting(x,y,damageID)){
 //subtract HP here
 knockbacktime = damageID.knockback
 knockbackmult = damageID.knockbackmult
+initalknockbacktime=damageID.initalknockbacktime
 knockbackdir = point_direction(x,y,damageID.x,damageID.y)+180
 }
 }
