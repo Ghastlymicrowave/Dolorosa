@@ -2,6 +2,7 @@
 #region knockback
 if(knockbacktime>=0.1){
 knockbacktime--
+motion_set(direction,speed/2)
 motion_add(knockbackdir,round(knockbacktime*knockbackmult))
 }
 #endregion
