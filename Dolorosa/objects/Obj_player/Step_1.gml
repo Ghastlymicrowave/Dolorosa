@@ -334,31 +334,6 @@ vspeed=round(vspeed)
 
 
 
-#region ROTATE AND COLLISION
-for (var angle = 0;angle<=70; angle += 1){
-				xtarg = x+lengthdir_x(speed,angle+direction)
-				ytarg = y+lengthdir_y(speed,angle+direction)
-				if !place_meeting(xtarg,ytarg,obj_obstacle){
-					direction = direction + angle
-					//hspeed=floor(abs(hspeed))*sign(hspeed)
-					//vspeed=floor(abs(vspeed))*sign(vspeed)
-					break;
-				}
-			}
-		
-		for (var angle = 0;angle<=70; angle += 1){
-				xtarg = x+lengthdir_x(speed,-angle+direction)
-				ytarg = y+lengthdir_y(speed,-angle+direction)
-				if !place_meeting(xtarg,ytarg,obj_obstacle){
-					direction = direction -angle
-					//hspeed=floor(abs(hspeed))*sign(hspeed)
-					//vspeed=floor(abs(vspeed))*sign(vspeed)
-					break;
-				}
-			}
-			
-CollisionWith(obj_obstacle)
-#endregion
 
 
 if atk=0&&atktimeheld=0&&dodgetime=0{

@@ -27,6 +27,7 @@ healthbarcolor=c_green
 inventoryopen=0
 gamepaused=0
 fadeintime=0
+knockbacktime = 0
 
 keyboard_set_map(vk_up,ord("W"))
 keyboard_set_map(vk_down,ord("S"))
