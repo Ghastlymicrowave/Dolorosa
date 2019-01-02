@@ -1,8 +1,8 @@
 //set v and h inputs
 #region knockback
-if(knockbacktime>=1){
-knockbacktime/=1.1
-motion_add(knockbackdir,knockbacktime*knockbackmult)
+if(knockbacktime>=0.1){
+knockbacktime/=1.2
+motion_add(knockbackdir,round(knockbacktime*knockbackmult))
 }
 #endregion
 #region collide enemy hitboxes
