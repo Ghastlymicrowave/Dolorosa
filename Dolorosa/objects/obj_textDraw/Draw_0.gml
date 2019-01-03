@@ -3,5 +3,5 @@
 
 draw_set_font(global.dialougefont)
 draw_set_color(c_white)
-draw_text(x,y,/*IMPORTANT -->*/ds_list_find_value(global.dialogue,i))
+draw_text(x,y,/*IMPORTANT -->*/drawstring)
 draw_set_font(font0)
