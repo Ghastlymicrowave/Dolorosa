@@ -13,7 +13,10 @@ if(place_meeting(x,y,damageID)){
 knockbacktime = damageID.knockback
 knockbackmult = damageID.knockbackmult
 initalknockbacktime=damageID.initalknockbacktime
+hp-=damageID.damage
+if damageID.knockbacktype=1{//radial burst
 knockbackdir = point_direction(x,y,damageID.x,damageID.y)+180
+}
 }
 }
 #endregion

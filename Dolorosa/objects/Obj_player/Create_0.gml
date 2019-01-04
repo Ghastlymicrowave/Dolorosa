@@ -29,6 +29,10 @@ gamepaused=0
 fadeintime=0
 knockbacktime = 0
 
+hp=100
+drawhp=100
+maxhp=100
+
 keyboard_set_map(vk_up,ord("W"))
 keyboard_set_map(vk_down,ord("S"))
 keyboard_set_map(vk_left,ord("A"))
