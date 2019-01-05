@@ -8,14 +8,23 @@ motion_add(knockbackdir,round(knockbackmult * sin((knockbacktime*pi)/2*(1/(inita
 #region collide enemy hitboxes
 if(instance_exists(obj_enemyHitbox)){
 var damageID = instance_nearest(x,y,obj_enemyHitbox)
-if(place_meeting(x,y,damageID)){
+
+
+if(place_meeting(x,y,damageID)&&((iframes<=0)||(damageID.ignoreiframes=1))){
 //subtract HP here
 knockbacktime = damageID.knockback
 knockbackmult = damageID.knockbackmult
 initalknockbacktime=damageID.initalknockbacktime
 hp-=damageID.damage
+iframes=damageID.iframes
 if damageID.knockbacktype=1{//radial burst
-knockbackdir = point_direction(x,y,damageID.x,damageID.y)+180
+	knockbackdir = point_direction(x,y,damageID.x,damageID.y)+180
+}else if damageID.knockbacktype=0{//hitbox's direction
+	knockbackdir = damageID.dir	
+}
+
+if damageID.multihit=0{
+instance_destroy(damageID)
 }
 }
 }

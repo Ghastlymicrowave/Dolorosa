@@ -1,12 +1,12 @@
 //draw_healthbar(20,20,520,40,stamina,c_white,c_red,c_green,0,1,1)
 
 
-
+draw_text(200,50,"hp"+string(hp))
 
 if staminaTimer=0{
 drawStamina+= (stamina-drawStamina)/(maxstamina/10)}
 
-drawhp+= max(abs((hp-drawhp)/(maxhp/10)),1)*sign((hp-drawhp)/(maxhp/10))
+//drawhp+= max(abs((hp-drawhp)/(maxhp/10)),1)*sign((hp-drawhp)/(maxhp/10))
 
 drawStaminacurrent+= (stamina-drawStaminacurrent)/(maxstamina/40)
 //draw_sprite_part(sp_bar,0,0,0,20,10,20+drawStamina*4,20)
