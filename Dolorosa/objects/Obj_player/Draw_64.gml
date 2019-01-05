@@ -1,12 +1,16 @@
 //draw_healthbar(20,20,520,40,stamina,c_white,c_red,c_green,0,1,1)
 
-
-draw_text(200,50,"hp"+string(hp))
+draw_text(500,30,"scrollhp"+string(scrollhp))
+draw_text(500,50,"hp"+string(hp))
 
 if staminaTimer=0{
 drawStamina+= (stamina-drawStamina)/(maxstamina/10)}
 
+
 //drawhp+= max(abs((hp-drawhp)/(maxhp/10)),1)*sign((hp-drawhp)/(maxhp/10))
+
+drawhp+= (hp-drawhp)/(maxhp/10)
+drawscrollhp+= (scrollhp-drawscrollhp)/(maxhp/10)
 
 drawStaminacurrent+= (stamina-drawStaminacurrent)/(maxstamina/40)
 //draw_sprite_part(sp_bar,0,0,0,20,10,20+drawStamina*4,20)
@@ -21,13 +25,14 @@ if healthbarframe==sprite_get_number(sp_bar1)then healthbarframe=0
 
 drawParalellogram(68,50,maxstamina*scalefactor/2+4,20,-1,c_white)
 drawParalellogram(70,50,maxstamina*scalefactor/2,20,-1,c_black)
-drawParalellogram(70,50,max(maxstamina*scalefactor/2,0),20,-1,staminaUseColor)
+drawParalellogram(70,50,max(drawStamina*scalefactor/2,0),20,-1,staminaUseColor)
 drawParalellogram(70,50,max(drawStaminacurrent*scalefactor/2,0),20,-1,healthbarcolor)
 
 drawParalellogram(68,10,maxhp*scalefactor/2+4,20,-1,c_white)
 drawParalellogram(70,10,maxhp*scalefactor/2,20,-1,c_black)
-drawParalellogram(70,10,max(maxhp*scalefactor/2,0),20,-1,staminaUseColor)
-drawParalellogram(70,10,max(hp*scalefactor/2,0),20,-1,healthbarcolor)
+drawParalellogram(70,10,max(drawscrollhp*scalefactor/2,0),20,-1,staminaUseColor)
+drawParalellogram(70,10,max(drawhp*scalefactor/2,0),20,-1,healthbarcolor)
+
 
 
 //draw_sprite_part_ext(sp_bar1,healthbarframe,0,0,maxstamina*scalefactor,64,maxstamina*scalefactor+20,20,-1,1,c_white,1)

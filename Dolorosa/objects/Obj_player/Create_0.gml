@@ -29,8 +29,12 @@ gamepaused=0
 fadeintime=0
 knockbacktime = 0
 
+scrollhptimer=0
+scrollhptimermax=5
 hp=100
 drawhp=100
+drawscrollhp=100
+scrollhp=100
 maxhp=100
 
 keyboard_set_map(vk_up,ord("W"))

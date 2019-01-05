@@ -341,3 +341,9 @@ if atk=0&&atktimeheld=0&&dodgetime=0{
 	if keyboard_check_pressed(ord("I")) && inventoryopen=1 { inventoryopen=0 }
 	else if keyboard_check_pressed(ord("I")) { inventoryopen=1; lockeddir=lastdir;obj_inventory.page=0}
 }else inventoryopen=0
+
+
+if hp!=scrollhp&&scrollhptimer=0{
+scrollhp+=sign(floor(hp-scrollhp))//*max(abs(hp-scrollhp),1)
+scrollhptimer=scrollhptimermax
+}else if scrollhptimer>0 then scrollhptimer--
