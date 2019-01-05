@@ -3,4 +3,5 @@
 stateAI = 0
 baseStateAI = 0
 hp = 0
+tick = 0
 

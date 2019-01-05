@@ -28,7 +28,12 @@ break;
 case 2:
 
 //ATTACKING CODE GOES HERE
-
+tick++
+	switch(tick){
+	case 360:
+	tick = 0
+	break;
+	}
 //ATTACKING CODE GOES HERE
 
 break;
