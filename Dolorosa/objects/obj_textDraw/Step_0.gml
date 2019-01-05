@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 if(mouse_check_button(mb_right)){
-textspeedtickmax=defaulttickmax-3
+textspeedtickmax=defaulttickmax-5
 if textspeedtickmax<0 then textspeedtickmax=0
 } else textspeedtickmax=defaulttickmax
 
