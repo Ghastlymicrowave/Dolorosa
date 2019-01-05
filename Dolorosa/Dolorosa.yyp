@@ -503,6 +503,14 @@
             }
         },
         {
+            "Key": "dd7a8792-8eb4-4d2a-b80a-bc945104363f",
+            "Value": {
+                "id": "1a1ebf16-8621-46d9-b792-dd7a61c274a5",
+                "resourcePath": "objects\\prnt_enemy\\prnt_enemy.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "dde5e1e9-1b0a-4952-9e4a-bd7f37ea1788",
             "Value": {
                 "id": "6a46a8a5-3801-4811-b785-6372030f1de2",
