@@ -24,8 +24,6 @@ healthbarcolor=staminaEmptyColor
 if staminaTimer>0 then staminaTimer-- else if stamina<maxstamina { stamina+=0.5} 
 
 #endregion
-
-
 #region SPRINT
 if stamina>0&&keyboard_check(vk_shift)&&staminaExaust=0&&spd>=walkSpd { sprintheld++}else {sprint=0;sprintheld=0}
 if sprintheld>=sprintHeldTreshold{sprint=1;stamina-=0.5;staminaTimer=20}
@@ -37,7 +35,6 @@ if iframes>0 then iframes--}
 #region DODGEDELAY
 if dodgedelay>0 then dodgedelay--
 #endregion
-
 #region attacks																												need to add combos and warmup frames
 #region atktimeheld
 if (mouse_check_button_released(mb_left)) && heldtoolong=1 then heldtoolong=0

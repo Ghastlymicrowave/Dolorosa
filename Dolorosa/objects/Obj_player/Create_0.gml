@@ -69,7 +69,7 @@ maxstamina=100
 exaustSpd=5
 walkSpd=8
 sprintSpd=12
-heavyAtkTimeThreshold=40//#of frames you need to hold atk before heavy atking
+heavyAtkTimeThreshold=20//#of frames you need to hold atk before heavy atking
 sprintHeldTreshold=20 //#of frames you need to hold sprint button before you go fast
 keyboardAiming=0//wether you aim with mouse(0) or keyboard(1)
 
