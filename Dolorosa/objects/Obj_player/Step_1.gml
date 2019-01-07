@@ -200,7 +200,7 @@ if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0&&gamepaused=0{
 	if staminaExaust=0{					//backstep
 		dodgetime = 15
 		initaldodgetime=15
-		dodgespeed=10
+		dodgespeed=6
 		standbytime=3
 		delayiframes=3
 		initaliframes=9
@@ -208,7 +208,7 @@ if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0&&gamepaused=0{
 	}else{								//exausted backsep
 		dodgetime = 18
 		initaldodgetime=18
-		dodgespeed=8
+		dodgespeed=4
 		standbytime=7
 		delayiframes=4
 		initaliframes=7
@@ -218,7 +218,7 @@ if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0&&gamepaused=0{
 	if atkwarmuptime>0{
 		lockeddir=lockeddir+180
 		stamina-=15
-		dodgespeed=8
+		dodgespeed=6
 	}else{
 	if keyboardAiming =1 {
 	lockeddir=direction+180} else lockeddir= 180+point_direction(camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])/2,camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2,mouse_x,mouse_y)
@@ -237,14 +237,14 @@ if stamina>0&&keyboard_check_pressed(vk_space)&&standbytime==0&&dodgetime==0&&ga
 	if staminaExaust=0{					//roll
 		dodgetime = 25
 		initaldodgetime=25
-		dodgespeed=15
+		dodgespeed=10
 		standbytime=5
 		delayiframes=3
 		initaliframes=19
 	}else{								//exausted roll
 		dodgetime = 30
 		initaldodgetime=30
-		dodgespeed=12
+		dodgespeed=8
 		standbytime=5
 		initaliframes=15
 	}
@@ -265,9 +265,7 @@ lastdir=lockeddir
 		direction=lockeddir}
 
 if dodgetime>0{
-spd=cos(((dodgetime-initaldodgetime)*pi)/(initaldodgetime*2))*dodgespeed+dodgespeed/10 //a cos funct to set the speed as a smooth curve over the distance of a initaldodgetime also adding a small portion of the speed to give an extra kick
-lastdir =lockeddir
-dodgetime--
+
 
 } else if standbytime<=0{
 	
@@ -330,13 +328,26 @@ standbytime--
 
 if inventoryopen||gamepaused then lastdir=lockeddir
 
-speed = spd
+if dodgetime>0{
+//spd=
+//motion_add(lockeddir,cos(((dodgetime-initaldodgetime)*pi)/(initaldodgetime*2))*dodgespeed+dodgespeed/10 )//a cos funct to set the speed as a smooth curve over the distance of a initaldodgetime also adding a small portion of the speed to give an extra kick
+lastdir =lockeddir
+//dodgetime--	
+}
+
+speed = spd 
+if dodgetime>0 then speed/=2
 direction = lastdir
 hspeed = round(hspeed)
 vspeed=round(vspeed)
 
 
-
+if dodgetime>0{
+//spd=
+motion_add(lockeddir,cos(((dodgetime-initaldodgetime)*pi)/(initaldodgetime*2))*dodgespeed+dodgespeed/10 )//a cos funct to set the speed as a smooth curve over the distance of a initaldodgetime also adding a small portion of the speed to give an extra kick
+//lastdir =lockeddir
+dodgetime--	
+}
 
 
 
