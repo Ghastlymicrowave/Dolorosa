@@ -69,6 +69,8 @@ if atkwarmuptime>0&&atk!=0{
 				stamina=stamina-15
 				dodgedelay=dodgetime+5
 				standbytime=20
+				attackingframes = dodgetime
+				sprite_index=sp_badplayeratk
 			#endregion
 			#region light 2
 			}else if combo=2{
@@ -86,7 +88,8 @@ if atkwarmuptime>0&&atk!=0{
 				stamina=stamina-15
 				dodgedelay=dodgetime+5
 				standbytime=20
-				
+				attackingframes =dodgetime
+				sprite_index=sp_badplayeratk
 				#endregion
 				#region light 3
 			}else if combo=3{
@@ -104,7 +107,8 @@ if atkwarmuptime>0&&atk!=0{
 				stamina=stamina-15
 				dodgedelay=dodgetime+5
 				standbytime=20
-				
+				attackingframes = dodgetime
+				sprite_index=sp_badplayeratk
 				#endregion
 				#region heavy 1
 			}else if combo=4{
@@ -122,7 +126,8 @@ if atkwarmuptime>0&&atk!=0{
 				stamina=stamina-30
 				dodgedelay=dodgetime+5
 				standbytime=24
-				
+				attackingframes = dodgetime
+				sprite_index=sp_badplayeratk
 				#endregion
 				#region heavy 2
 			}else if combo=5{
@@ -140,7 +145,8 @@ if atkwarmuptime>0&&atk!=0{
 				stamina=stamina-30
 				dodgedelay=dodgetime+5
 				standbytime=20
-				
+				attackingframes = dodgetime
+				sprite_index=sp_badplayeratk
 				#endregion
 			}
 			atk=0
@@ -347,3 +353,6 @@ if hp!=scrollhp&&scrollhptimer=0{
 scrollhp+=sign(floor(hp-scrollhp))//*max(abs(hp-scrollhp),1)
 scrollhptimer=scrollhptimermax
 }else if scrollhptimer>0 then scrollhptimer--
+
+
+

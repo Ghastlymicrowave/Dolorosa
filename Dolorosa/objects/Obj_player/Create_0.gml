@@ -28,6 +28,7 @@ inventoryopen=0
 gamepaused=0
 fadeintime=0
 knockbacktime = 0
+attackingframes=0
 
 scrollhptimer=0
 scrollhptimermax=5
