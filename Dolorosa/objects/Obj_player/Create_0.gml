@@ -64,12 +64,12 @@ read combo value | coresponding attack
 room_speed=60
 scalefactor=4//pixels in width for the stamina bar and hp bar(not implimented yet)
 AtkAngleThreshhold =20// frames until a light becomes a heavy
-heavyAtkTimeThresholdHighest=60//longest time you can hold a heavy for
+heavyAtkTimeThresholdHighest=40//longest time you can hold a heavy for
 maxstamina=100
 exaustSpd=5
 walkSpd=8
 sprintSpd=12
-heavyAtkTimeThreshold=20//#of frames you need to hold atk before heavy atking
+heavyAtkTimeThreshold=15//#of frames you need to hold atk before heavy atking
 sprintHeldTreshold=20 //#of frames you need to hold sprint button before you go fast
 keyboardAiming=0//wether you aim with mouse(0) or keyboard(1)
 
