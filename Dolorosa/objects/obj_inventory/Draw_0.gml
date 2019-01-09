@@ -68,8 +68,9 @@ for (var i = 0; i<floor(ivDivided);i++){//for each full row
 		
 		if point_in_rectangle(xx,yy,x,y,x+sprite_width,y+sprite_height){
 		draw_sprite(spr,depth-1,xx,yy)
-		draw_rectangle(xx-spr.sprite_width/2,yy-spr.sprite_height/2,xx+spr.sprite_width/2,yy+spr.sprite_height/2,1)
-		if collision_rectangle(xx-spr.sprite_width/2,yy-spr.sprite_height/2,xx+spr.sprite_width/2,yy+spr.sprite_height/2,obj_cursor,1,1)&&mouse_check_button_pressed(mb_left){
+		draw_rectangle(xx-ivw/objectsPerRow/2,yy-ivh/MaxRowsPerPage/2,xx+ivw/objectsPerRow/2,yy+ivh/MaxRowsPerPage/2,5)
+	
+		if collision_rectangle(xx-ivw/objectsPerRow/2,yy-ivh/MaxRowsPerPage/2,xx+ivw/objectsPerRow/2,yy+ivh/MaxRowsPerPage/2,obj_cursor,1,1)&&mouse_check_button_pressed(mb_left){
 		//idk it's clicked	
 		show_debug_message("clicked item "+ string(ii+i*objectsPerRow)+" object: "+ string(ds_list_find_value(global.inventory,ii+i*objectsPerRow)))
 		}
@@ -105,8 +106,9 @@ for (var i = 0; i<floor(ivDivided);i++){//for each full row
 			
 			if point_in_rectangle(xx,yy,x,y,x+sprite_width,y+sprite_height){
 			draw_sprite(spr,depth-1,xx,yy)
-			draw_rectangle(xx-spr.sprite_width/2,yy-spr.sprite_height/2,xx+spr.sprite_width/2,yy+spr.sprite_height/2,1)
-			if collision_rectangle(xx-spr.sprite_width/2,yy-spr.sprite_height/2,xx+spr.sprite_width/2,yy+spr.sprite_height/2,obj_cursor,1,1)&&mouse_check_button_pressed(mb_left){
+			draw_rectangle(xx-ivw/objectsPerRow/2,yy-ivh/MaxRowsPerPage/2,xx+ivw/objectsPerRow/2,yy+ivh/MaxRowsPerPage/2,5)
+		
+			if collision_rectangle(xx-ivw/objectsPerRow/2,yy-ivh/MaxRowsPerPage/2,xx+ivw/objectsPerRow/2,yy+ivh/MaxRowsPerPage/2,obj_cursor,1,1)&&mouse_check_button_pressed(mb_left){
 			
 			//idk it's clicked	
 			show_debug_message("clicked item "+ string(iii)+" object: "+ string(ds_list_find_value(global.inventory,iii)))
