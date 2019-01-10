@@ -88,7 +88,7 @@ for (var i = 0; i<floor(ivDivided);i++){//for each full row
 		for (var iii=floor(i*objectsPerRow); iii<ivSize;iii++){ //iii = 0+floor(i*objectsPerRow)
 			//show_debug_message(string(iii)+"leftover")
 			
-			var xx = ivx+(iii-floor(i*objectsPerRow))*ivw/objectsPerRow+((iii+1)*ivw/objectsPerRow)/ivw+ivw/objectsPerRow/2
+			var xx = ivx+(iii-round(i*objectsPerRow))*ivw/objectsPerRow+(ivw/objectsPerRow)/ivw+ivw/objectsPerRow/2
 			var yy = ivy+i*ivh/MaxRowsPerPage+((i+1)*ivh/MaxRowsPerPage)/ivh+ivh/MaxRowsPerPage/2 -followpageheight
 			//instance_create_depth(xx,yy,-1,obj_inventoryItem)	
 			//show_debug_message(string(iii)+" 3,2 "+string(ii))
