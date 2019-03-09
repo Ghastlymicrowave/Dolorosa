@@ -56,7 +56,7 @@ for (var i = 0; i<floor(ivDivided);i++){//for each full row
 		//instance_create_depth(xx,yy,-5000,obj_inventoryItem)	
 		//			this needs to be reformatted to take the information from a 2d array contaning the object's ID and all the information about it
 		
-			if obj_player.inventoryopen=1 && obj_cursor.keyboardMenus=1&&(sloty=i&&slotx=ii){
+			if obj_player.inventoryopen=1 && (obj_cursor.keyboardMenus=1|| obj_cursor.keyboardMenus=2) && (sloty=i&&slotx=ii){
 			//show_debug_message(string(slotx)+string(ii)+string(sloty)+string(i)+"MOVED")
 			obj_cursor.keyboardx=xx
 			obj_cursor.keyboardy=yy
@@ -92,7 +92,7 @@ for (var i = 0; i<floor(ivDivided);i++){//for each full row
 			var yy = ivy+i*ivh/MaxRowsPerPage+((i+1)*ivh/MaxRowsPerPage)/ivh+ivh/MaxRowsPerPage/2 -followpageheight
 			//instance_create_depth(xx,yy,-1,obj_inventoryItem)	
 			//show_debug_message(string(iii)+" 3,2 "+string(ii))
-			if obj_player.inventoryopen=1 && obj_cursor.keyboardMenus=1&&(sloty=i&&slotx=iii-floor(i*objectsPerRow)){
+			if obj_player.inventoryopen=1 && (obj_cursor.keyboardMenus=1||obj_cursor.keyboardMenus=2)&&(sloty=i&&slotx=iii-floor(i*objectsPerRow)){
 				
 				//show_debug_message(string(slotx)+":"+string(iii-floor(i*objectsPerRow))+","+string(sloty)+":"+string(i))
 			obj_cursor.keyboardx=xx

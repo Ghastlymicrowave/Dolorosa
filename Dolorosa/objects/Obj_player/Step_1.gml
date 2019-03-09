@@ -5,13 +5,13 @@ vinput = keyboard_check(ord("S")) - keyboard_check(ord("W"))
 hinput = keyboard_check(ord("D")) - keyboard_check(ord("A"))
 if atkwarmuptime>0 { vinput=0;hinput=0;}
 #endregion
-#region STAMINA
+#region STAMINA run out change the bar's color
 staminaFullColor = $ffffff
 staminaEmptyColor = $3300ff
 staminaUseColor = $666666
 
 if staminaTimer<=0&&atkwarmuptime<=0&&atktimeheld<=0 then combo=0
-if stamina>=maxstamina {staminaExaust=0;stamina=maxstamina;healthbarcolor=staminaFullColor}
+if stamina>=maxstamina {staminaExaust=0;stamina=maxstamina;staminabarcolor=staminaFullColor}
 //happens once when stamina = 0
 //staminatimer counts down to 0, when it hits 0 begins adding stamina until stamina reaches max
 // also staminaExaust is a bool to determine this check once
@@ -19,7 +19,7 @@ if stamina<=0&&staminaExaust=0 {
 	stamina=0
 	staminaTimer=100
 staminaExaust =1
-healthbarcolor=staminaEmptyColor
+staminabarcolor=staminaEmptyColor
 }
 if staminaTimer>0 then staminaTimer-- else if stamina<maxstamina { stamina+=0.5} 
 
