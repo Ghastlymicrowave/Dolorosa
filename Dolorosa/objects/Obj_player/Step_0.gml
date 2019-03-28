@@ -24,7 +24,7 @@ if damageID.knockbacktype=1{//radial burst
 }
 
 if damageID.multihit=0{
-instance_destroy(damageID)
+//instance_destroy(damageID) multihit doesn't work with current enemy, enemy needs the hitbox to not be destroyed
 }
 }
 }
