@@ -4,7 +4,7 @@ keyboardMenus=2
 keyboardx=0
 keyboardy=0
 wobbletimer=0
-
+acelScale=20
 
 keyboardInUse=0
 lastmousex=mouse_x
