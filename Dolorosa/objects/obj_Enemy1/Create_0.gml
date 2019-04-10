@@ -21,5 +21,6 @@ dir=0
 attack =1
 
 Hitbox = instance_create_depth(x,y,0,obj_enemyHitbox) //PESONALLY ASSIGNED HITBOX
+Hitbox.mask_index=sp_null
 //variables stay at -1 for inactive
 // when they hit 0 they stay 0 until they stop attacking

@@ -108,7 +108,9 @@ if atkwarmuptime!=-1 { //check if an attack is active (counting down, 0, or inac
 			initalatktime=atktime
 			switch(hitbox){
 			case 1:
-			Hitbox.mask_index=sp_circle
+			Hitbox.sprite_index=sp_badCircle
+			Hitbox.mask_index=sp_badCircle
+			
 			}
 		}
 		
@@ -124,19 +126,28 @@ if atkwarmuptime!=-1 { //check if an attack is active (counting down, 0, or inac
 				attack= irandom(2)
 				atkwarmuptime=-1
 				atkcooldown=-1
+				Hitbox.sprite_index=sp_arrow
 				Hitbox.mask_index=sp_null
+				
 			}	
 		}
 	}
 	
 	
 	
+} else{
+Hitbox.sprite_index= sp_null
 }
 
 #endregion
 
 direction=dir
 	speed=spd
+
+Hitbox.x = cos(dir*pi/180)*sprite_width + x
+Hitbox.y = -sin(dir*pi/180)*sprite_height + y
+Hitbox.image_angle = dir
+Hitbox.dir = dir
 
 #region ROTATE AND COLLISION
 for (var angle = 0;angle<=70; angle += 1){
@@ -159,3 +170,4 @@ for (var angle = 0;angle<=70; angle += 1){
 			
 CollisionWith(obj_obstacle)
 #endregion
+
