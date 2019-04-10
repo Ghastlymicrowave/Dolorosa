@@ -5,7 +5,17 @@ stateAI = baseStateAI
 if(/*PLAYER DETECTION CONDITION GOES HERE*/ !collision_line(x,y,obj_player.x,obj_player.y,obj_obstacle,true,true)&&distance_to_object(obj_player)<500){
 baseStateAI = 1
 }
-if(distance_to_object(obj_player)<=/*ATTACK RANGE GOES HERE*/200){
+
+switch (attack){
+case 0:
+atkRange=200
+case 1:
+atkRange =100
+case 2:
+atkRange =100
+break;
+}
+if(distance_to_object(obj_player)<=/*ATTACK RANGE GOES HERE*/atkRange){
 stateAI++
 }
 #endregion
@@ -24,6 +34,7 @@ case 1:
 if atkwarmuptime = -1{
 dir=point_direction(x,y,obj_player.x,obj_player.y)
 spd=10
+if point_distance(x,y,obj_player.x,obj_player.y) < 50 then spd =0
 }
 //PATHFIND CODE GOES HERE
 
@@ -35,9 +46,9 @@ case 2:
 // SELECT ATTACK AND SET BASE ATTACK VARIABLES
 // WHENN WARMUP RUNS OUT DO ATTACK WITH A COOLDOWN
 
-if atkcooldown = -1 {switch (irandom(3)){
+if atkcooldown = -1 {switch (attack){ //irandom(3)
 	
-case 1: //lunge - long warmup but big distance
+case 0: //lunge - long warmup but big distance
 atkwarmuptime = 25;
 atktime = 15;
 initalspd = 20;
@@ -46,16 +57,16 @@ warmupspd=0;
 atkcooldown=30;
 break;
 
-case 2: // heavy aoe - long warmup
+case 1: // heavy aoe - long warmup
 atkwarmuptime=30;
 atktime=20;
-initalspd=2;
+initalspd=4;
 hitbox=1;
 warmupspd=0;
 atkcooldown=30;
 break;
 
-case 3: // slash -  short warmup small hitbox
+case 2: // slash -  short warmup small hitbox
 atkwarmuptime=15;
 atktime=8;
 initalspd=5;
@@ -106,7 +117,11 @@ if atkwarmuptime!=-1 { //check if an attack is active (counting down, 0, or inac
 			
 			if atkcooldown!=0{
 				atkcooldown--
+				if spd>0 then spd--
+				if spd <0 then spd =0
 			}else{// RESET VARIABLE(S) FOR NEXT ATTACK
+				//change random attack
+				attack= irandom(2)
 				atkwarmuptime=-1
 				atkcooldown=-1
 				Hitbox.mask_index=sp_null
