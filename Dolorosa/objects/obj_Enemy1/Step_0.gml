@@ -10,7 +10,7 @@ switch(AIstate){
 	
 	if distance_to_object(obj_player)<=sightRange&&!collision_line(x,y,obj_player.x,obj_player.y,obj_obstacle,1,1){
 		AIstate=1
-		atkRandomizeTime=maxAtkRandomizeTime
+		atkRandomizeTime=0
 		break;
 	}
 	
@@ -21,7 +21,7 @@ switch(AIstate){
 	case 1: 
 	
 	//bad pathfinding right here:
-	direction=point_direction(x,y,obj_player.x,obj_player.y)
+	dir=point_direction(x,y,obj_player.x,obj_player.y)
 	spd=10
 	
 	if collision_line(x,y,obj_player.x,obj_player.y,obj_obstacle,1,1){
@@ -34,6 +34,7 @@ switch(AIstate){
 	
 	
 	if atkRandomizeTime=0{
+		attack=irandom(2)
 		atkRandomizeTime=maxAtkRandomizeTime
 	#region attacks
 	switch (attack){ //irandom(3)
@@ -41,7 +42,7 @@ switch(AIstate){
 case 0: //lunge - long warmup but big distance
 atkwarmuptime = 45;
 atktime = 15;
-initalspd = 22;
+initalspd = walkspd*5;
 hitbox=1
 warmupspd=0;
 atkcooldown=30;
@@ -50,7 +51,7 @@ break;
 case 1: // heavy aoe - long warmup
 atkwarmuptime=40;
 atktime=20;
-initalspd=4;
+initalspd=walkspd*1.25;
 hitbox=1;
 warmupspd=0;
 atkcooldown=30;
@@ -59,7 +60,7 @@ break;
 case 2: // slash -  short warmup small hitbox
 atkwarmuptime=20;
 atktime=8;
-initalspd=10;
+initalspd=walkspd*1.25;
 hitbox=1;
 warmupspd=0;
 atkcooldown=30;
@@ -70,7 +71,7 @@ break;
 	#endregion
 	}else atkRandomizeTime--
 	
-	var expectedRange = 2*atktime*initalspd/pi
+	var expectedRange = 2*initalatktime*initalspd/pi
 	if expectedRange>= distance_to_object(obj_player){
 	AIstate=2	
 	}
@@ -85,15 +86,49 @@ break;
 	
 	if atkwarmuptime>0{
 		atkwarmuptime--
+		if spd>0{spd*=.95} else spd=0
+		dir= point_direction(x,y,obj_player.x,obj_player.y) //make smoother later
 	}else if atktime>0{
-		atktime--
-	}else if atkcooldown>0{
-		atkcooldown--
-		if atkcooldown=0 {
-		AIstate=1	
+		
+		spd=sin((atktime*(pi/2))/initalatktime)*initalspd
+		if !(spd>=0){
+		spd=0	
 		}
+		
+		if Hitbox.mask_index=sp_null && hitbox!=0{
+			initalatktime=atktime
+			switch(hitbox){
+			case 1:
+			Hitbox.sprite_index=sp_badCircle
+			Hitbox.mask_index=sp_badCircle
+			
+			}
+		}
+		
+		
+		atktime--
+		
+		
+		
+		
+	}else if atkcooldown>0{
+		
+				if spd>0 then spd--
+				if spd <0 then spd =0
+		
+		atkcooldown--
+		
+		
 	}
 	
+	if atkcooldown=0 {
+			Hitbox.sprite_index=sp_arrow
+			Hitbox.mask_index=sp_null
+			AIstate=1	
+			atkRandomizeTime=0
+			break;
+		
+		}
 	
 		//warmup
 		//atk
@@ -104,14 +139,17 @@ break;
 		lastknownX=obj_player.x
 		lastknownY=obj_player.y
 	}
+		
 	break;
+	
 	#endregion
 	
 	#region lost line of sight, search for player
 	case 3:  
 	//pathfind to last known x and last known y
-	!collision_line(x,y,obj_player.x,obj_player.y,obj_obstacle,1,1){
+	if !collision_line(x,y,obj_player.x,obj_player.y,obj_obstacle,1,1){
 		AIstate=1
+		atkRandomizeTime=0
 	}
 	break;
 	#endregion
@@ -125,9 +163,14 @@ break;
 }
 
 
+Hitbox.x = cos(dir*pi/180)*min(distance_to_object(obj_player),sprite_width) + x
+		Hitbox.y = -sin(dir*pi/180)*min(distance_to_object(obj_player),sprite_height)+ y
+		Hitbox.image_angle = dir
+		Hitbox.dir = dir
+speed=spd
+direction=dir
 
-
-
+show_debug_message(string(x)+" "+string(y)+" speed and dir:"+string(speed)+string(spd)+" "+string(direction)+string(dir))
 
 #region oldcode
 /*

@@ -61,7 +61,7 @@ if atkwarmuptime>0&&atk!=0{
 				}
 				dodgetime=12
 				initaldodgetime=12
-				dodgespeed=4
+				dodgespeed=basedodgespd/2
 				staminaTimer=40
 				stamina=stamina-15
 				dodgedelay=dodgetime+5
@@ -80,7 +80,7 @@ if atkwarmuptime>0&&atk!=0{
 				}
 				dodgetime=12
 				initaldodgetime=12
-				dodgespeed=4
+				dodgespeed=basedodgespd/2
 				staminaTimer=40
 				stamina=stamina-15
 				dodgedelay=dodgetime+5
@@ -99,7 +99,7 @@ if atkwarmuptime>0&&atk!=0{
 				}
 				dodgetime=18
 				initaldodgetime=18
-				dodgespeed=6
+				dodgespeed=basedodgespd
 				staminaTimer=40
 				stamina=stamina-15
 				dodgedelay=dodgetime+5
@@ -118,7 +118,7 @@ if atkwarmuptime>0&&atk!=0{
 				}
 				dodgetime=16
 				initaldodgetime=16
-				dodgespeed=8
+				dodgespeed=basedodgespd*1.25
 				staminaTimer=50
 				stamina=stamina-30
 				dodgedelay=dodgetime+5
@@ -137,7 +137,7 @@ if atkwarmuptime>0&&atk!=0{
 				}
 				dodgetime=18
 				initaldodgetime=18
-				dodgespeed=8
+				dodgespeed=basedodgespd*1.5
 				staminaTimer=50
 				stamina=stamina-30
 				dodgedelay=dodgetime+5
@@ -200,7 +200,7 @@ if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0&&gamepaused=0{
 	if staminaExaust=0{					//backstep
 		dodgetime = 15
 		initaldodgetime=15
-		dodgespeed=6
+		dodgespeed=basedodgespd
 		standbytime=3
 		delayiframes=3
 		initaliframes=9
@@ -208,7 +208,7 @@ if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0&&gamepaused=0{
 	}else{								//exausted backsep
 		dodgetime = 18
 		initaldodgetime=18
-		dodgespeed=4
+		dodgespeed=basedodgespd*.75
 		standbytime=7
 		delayiframes=4
 		initaliframes=7
@@ -218,7 +218,7 @@ if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0&&gamepaused=0{
 	if atkwarmuptime>0{
 		lockeddir=lockeddir+180
 		stamina-=15
-		dodgespeed=6
+		dodgespeed=basedodgespd
 	}else{
 	if keyboardAiming =1 {
 	lockeddir=direction+180} else lockeddir= 180+point_direction(camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])/2,camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2,mouse_x,mouse_y)
@@ -237,14 +237,14 @@ if stamina>0&&keyboard_check_pressed(vk_space)&&standbytime==0&&dodgetime==0&&ga
 	if staminaExaust=0{					//roll
 		dodgetime = 25
 		initaldodgetime=25
-		dodgespeed=10
+		dodgespeed=basedodgespd*1.5
 		standbytime=5
 		delayiframes=3
 		initaliframes=19
 	}else{								//exausted roll
 		dodgetime = 30
 		initaldodgetime=30
-		dodgespeed=8
+		dodgespeed=basedodgespd
 		standbytime=5
 		initaliframes=15
 	}
@@ -285,7 +285,7 @@ if (vinput!=0)||(hinput!=0){
 	}
 	if staminaExaust==1 {maxspd=exaustSpd} else {maxspd=walkSpd}
 	if sprint==1{ maxspd=sprintSpd}
-	if atktimeheld>0 {maxspd = 3}
+	if atktimeheld>0 {maxspd = basedodgespd/4}
 	if inventoryopen=1||gamepaused=1 {maxspd=0}
 	if knockbacktime>=0.1{maxspd =3}
 	if spd<maxspd then spd++ else {spd-=(spd-maxspd)/2; spd=round(spd)}
@@ -299,14 +299,14 @@ if stamina>0&&keyboard_check_pressed(vk_space)&&dodgetime==0&&gamepaused=0{
 	if staminaExaust=0{					//roll
 		dodgetime = 25
 		initaldodgetime=25
-		dodgespeed=15
+		dodgespeed=basedodgespd
 		standbytime=5
 		delayiframes=3
 		initaliframes=19
 	}else{								//exausted roll
 		dodgetime = 30
 		initaldodgetime=30
-		dodgespeed=12
+		dodgespeed=basedodgespd*.75
 		standbytime=5
 		initaliframes=15
 	}

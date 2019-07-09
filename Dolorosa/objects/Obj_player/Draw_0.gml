@@ -12,3 +12,5 @@ attackingframes--
 
 
 draw_self()
+
+draw_line(x,y,x+lengthdir_x(300,direction),y+lengthdir_y(300,direction))
