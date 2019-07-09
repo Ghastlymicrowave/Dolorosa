@@ -1,3 +1,10 @@
+
+if keyboard_check_pressed(ord("M")){
+	if window_get_fullscreen(){
+window_set_fullscreen(0)} else window_set_fullscreen(1)
+}
+
+
 //set v and h inputs
 #region knockback
 if(knockbacktime>=0.1){
@@ -28,6 +35,7 @@ if enemyCollisionID.knockbacktype=1{//radial burst
 
 if enemyCollisionID.multihit=0{
 //instance_destroy(enemyCollisionID) multihit doesn't work with current enemy, enemy needs the hitbox to not be destroyed
+enemyCollisionID.sprite_index=sp_null
 }
 }
 }

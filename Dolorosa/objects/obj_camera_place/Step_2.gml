@@ -7,7 +7,30 @@ centery=camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])
 direction = point_direction(centerx,centery,mouse_x,mouse_y)
 speed = point_distance(centerx,centery,mouse_x,mouse_y)*distancefactor
 
-if obj_player.inventoryopen=1 then speed=0
+if obj_player.inventoryopen=1 {
+	
+x= obj_player.x-camera_get_view_width(view_camera[0])/3
+y= obj_player.y+camera_get_view_height(view_camera[0])/4
+direction = point_direction(x,y,mouse_x,mouse_y)+180
+speed/=10
+//ScreenshakeAmt(0,20,0,1)
+obj_camera_follow.time=10
+ScreenshakeAmt(10,40,0,1,1)
+
+//obj_camera_follow.screenshake =argument[0]
+//obj_camera_follow.initalscreenshake =argument[0]
+//obj_camera_follow.time = argument[0]*2
+
+//if (random(1)) then mult = 1 else mult = -1
+
+
+//obj_camera_follow.startingangle = (argument[2]) * mult
+//obj_camera_follow.angle=obj_camera_follow.startingangle
+//obj_camera_follow.duration = argument[1]
+//obj_camera_follow.zoom = argument[3]
+
+
+}
 x+=hspeed
 y+=vspeed
 speed=0

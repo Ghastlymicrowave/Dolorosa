@@ -40,9 +40,9 @@ if dodgedelay>0 then dodgedelay--
 if (mouse_check_button_released(mb_left)) && heldtoolong=1 then heldtoolong=0
 if (dodgetime!=0||staminaExaust||gamepaused) then atktimeheld = 0 else if mouse_check_button(mb_left)&&heldtoolong=0&&inventoryopen=0{
 atktimeheld++	
-ScreenshakeAmt(atktimeheld/8,atktimeheld,0,480/atktimeheld)
+ScreenshakeAmt(atktimeheld/8,atktimeheld,0,480/atktimeheld,0)
 }else if atktimeheld>0&&heldtoolong=1{
-	ScreenshakeAmt(atktimeheld/8,atktimeheld,0,480/atktimeheld)
+	ScreenshakeAmt(atktimeheld/8,atktimeheld,0,480/atktimeheld,0)
 }
 #endregion
 #region atkwarmup
@@ -53,7 +53,7 @@ if atkwarmuptime>0&&atk!=0{
 			atkID = instance_create_depth(x,y,-1,obj_PlayerAttack)	
 			#region light 1
 			if combo=1{// Light Attack
-				ScreenshakeAmt(2,8,2,10)
+				ScreenshakeAmt(2,8,2,10,0)
 				with(atkID){
 					image_angle=direction
 					range=40
@@ -72,7 +72,7 @@ if atkwarmuptime>0&&atk!=0{
 			#region light 2
 			}else if combo=2{
 				
-				ScreenshakeAmt(2,10,2,9)
+				ScreenshakeAmt(2,10,2,9,0)
 				with(atkID){
 					image_angle=direction
 					range=45
@@ -91,7 +91,7 @@ if atkwarmuptime>0&&atk!=0{
 				#region light 3
 			}else if combo=3{
 				combo=0
-				ScreenshakeAmt(8,12,6,8)
+				ScreenshakeAmt(8,12,6,8,0)
 				with(atkID){
 					image_angle=direction
 					range=50
@@ -110,7 +110,7 @@ if atkwarmuptime>0&&atk!=0{
 				#region heavy 1
 			}else if combo=4{
 				
-				ScreenshakeAmt(6,16,4,3)
+				ScreenshakeAmt(6,16,4,3,0)
 				with(atkID){
 					range=40
 					duration=14
@@ -129,7 +129,7 @@ if atkwarmuptime>0&&atk!=0{
 				#region heavy 2
 			}else if combo=5{
 				combo=0
-				ScreenshakeAmt(6,16,4,3)
+				ScreenshakeAmt(6,16,4,3,0)
 				with(atkID){
 					range=40
 					duration=18

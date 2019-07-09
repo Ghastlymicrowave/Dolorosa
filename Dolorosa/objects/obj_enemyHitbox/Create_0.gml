@@ -8,7 +8,7 @@ initalknockbacktime=20// needs to = knockback
 
 knockbackmult = 30//knockback's inital speed
 
-iframes=5
+iframes=60
 
 knockbacktype=0 // 1 = radial, 0 = hitbox's direction
 // if 0 then dir needs to be set
