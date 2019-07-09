@@ -23,8 +23,7 @@ attack =0
 
 atkRandomizeTime=0
 Hitbox = instance_create_depth(x,y,0,obj_enemyHitbox) //PESONALLY ASSIGNED WEAPON HITBOX
-Hitbox.mask_index=sp_arrow
-Hitbox.sprite_index=sp_arrow
+Hitbox.mask_index=sp_null
 spd=0
 dir=0
 

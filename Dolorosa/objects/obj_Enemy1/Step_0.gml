@@ -40,16 +40,16 @@ switch(AIstate){
 	switch (attack){ //irandom(3)
 	
 case 0: //lunge - long warmup but big distance
-atkwarmuptime = 45;
+atkwarmuptime = 35;
 atktime = 15;
-initalspd = walkspd*5;
+initalspd = walkspd*6;
 hitbox=1
 warmupspd=0;
 atkcooldown=30;
 break;
 
 case 1: // heavy aoe - long warmup
-atkwarmuptime=40;
+atkwarmuptime=35;
 atktime=20;
 initalspd=walkspd*1.25;
 hitbox=1;
