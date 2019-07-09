@@ -28,11 +28,14 @@ y+=(gotoy-y)/4
 
 gotox=mouse_x+obj_camera_follow.hspeed 
 gotoy=mouse_y+obj_camera_follow.vspeed 
-x+=(gotox-x)/4
-y+=(gotoy-y)/4
+x+=(gotox-x)/acelScale
+y+=(gotoy-y)/acelScale
 
+acelScale -= acelScale/20
+acelScale = max(acelScale,1)
 if abs(x-mouse_x)+abs(y-mouse_y) < 1{
 cursor_sprite=sp_cursor; visible=0;	
+acelScale=20
 }else{
 image_xscale=1
 image_yscale=1

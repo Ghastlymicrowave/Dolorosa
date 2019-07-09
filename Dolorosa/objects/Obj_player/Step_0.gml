@@ -1,3 +1,10 @@
+
+if keyboard_check_pressed(ord("M")){
+	if window_get_fullscreen(){
+window_set_fullscreen(0)} else window_set_fullscreen(1)
+}
+
+
 //set v and h inputs
 #region knockback
 if(knockbacktime>=0.1){
@@ -6,28 +13,34 @@ motion_add(knockbackdir,round(knockbackmult * sin((knockbacktime*pi)/2*(1/(inita
 }
 #endregion
 #region collide enemy hitboxes
-if(instance_exists(obj_enemyHitbox)){
-var damageID = instance_nearest(x,y,obj_enemyHitbox)
+var enemyCollisionID = instance_place(x,y,obj_enemyHitbox)
+if enemyCollisionID!= noone{
+	
+	if enemyCollisionID.mask_index!=sp_null{
 
 
-if(place_meeting(x,y,damageID)&&((iframes<=0)||(damageID.ignoreiframes=1))){
+
+if(place_meeting(x,y,enemyCollisionID)&&((iframes<=0)||(enemyCollisionID.ignoreiframes=1))){
 //subtract HP here
-knockbacktime = damageID.knockback
-knockbackmult = damageID.knockbackmult
-initalknockbacktime=damageID.initalknockbacktime
-hp-=damageID.damage
-iframes=damageID.iframes
-if damageID.knockbacktype=1{//radial burst
-	knockbackdir = point_direction(x,y,damageID.x,damageID.y)+180
-}else if damageID.knockbacktype=0{//hitbox's direction
-	knockbackdir = damageID.dir	
+knockbacktime = enemyCollisionID.knockback
+knockbackmult = enemyCollisionID.knockbackmult
+initalknockbacktime=enemyCollisionID.initalknockbacktime
+hp-=enemyCollisionID.damage
+iframes=enemyCollisionID.iframes
+if enemyCollisionID.knockbacktype=1{//radial burst
+	knockbackdir = point_direction(x,y,enemyCollisionID.x,enemyCollisionID.y)+180
+}else if enemyCollisionID.knockbacktype=0{//hitbox's direction
+	knockbackdir = enemyCollisionID.dir	
 }
 
-if damageID.multihit=0{
-//instance_destroy(damageID) multihit doesn't work with current enemy, enemy needs the hitbox to not be destroyed
+if enemyCollisionID.multihit=0{
+//instance_destroy(enemyCollisionID) multihit doesn't work with current enemy, enemy needs the hitbox to not be destroyed
+enemyCollisionID.sprite_index=sp_null
 }
 }
 }
+}
+
 #endregion
 #region ROTATE AND COLLISION
 for (var angle = 0;angle<=70; angle += 1){

@@ -1,7 +1,7 @@
 
 
 
-
+depth=-500
 
 
 if obj_player.inventoryopen=1{

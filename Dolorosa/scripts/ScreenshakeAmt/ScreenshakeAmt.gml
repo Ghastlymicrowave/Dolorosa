@@ -15,3 +15,6 @@ obj_camera_follow.startingangle = (argument[2]) * mult
 obj_camera_follow.angle=obj_camera_follow.startingangle
 obj_camera_follow.duration = argument[1]
 obj_camera_follow.zoom = argument[3]
+if argument[4]!= 0{
+obj_camera_follow.noshakey=1
+}else obj_camera_follow.noshakey=0
