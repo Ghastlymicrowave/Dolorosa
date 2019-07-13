@@ -8,3 +8,5 @@ y+=vspeed
 speed=0
 duration--
 if duration = 0 then instance_destroy()
+
+dir= direction

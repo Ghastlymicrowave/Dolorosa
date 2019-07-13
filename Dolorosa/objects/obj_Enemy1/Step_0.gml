@@ -40,7 +40,7 @@ switch(AIstate){
 	switch (attack){ //irandom(3)
 	
 case 0: //lunge - long warmup but big distance
-atkwarmuptime = 35;
+atkwarmuptime = 65;
 atktime = 15;
 initalspd = walkspd*6;
 hitbox=1
@@ -49,7 +49,7 @@ atkcooldown=30;
 break;
 
 case 1: // heavy aoe - long warmup
-atkwarmuptime=35;
+atkwarmuptime=45;
 atktime=20;
 initalspd=walkspd*1.25;
 hitbox=1;
@@ -58,7 +58,7 @@ atkcooldown=30;
 break;
 
 case 2: // slash -  short warmup small hitbox
-atkwarmuptime=20;
+atkwarmuptime=30;
 atktime=8;
 initalspd=walkspd*1.25;
 hitbox=1;
@@ -124,8 +124,12 @@ break;
 	if atkcooldown=0 {
 			Hitbox.sprite_index=sp_arrow
 			Hitbox.mask_index=sp_null
-			AIstate=1	
 			atkRandomizeTime=0
+			if (irandom(3)!=3){
+				AIstate=7
+				show_debug_message("YEEET")
+				repositionTime=360
+			} else AIstate=1 //chance to keep attacking or to reposition (7)
 			break;
 		
 		}
@@ -148,7 +152,7 @@ break;
 	case 3:  
 	//pathfind to last known x and last known y
 	if !collision_line(x,y,obj_player.x,obj_player.y,obj_obstacle,1,1){
-		AIstate=1
+		
 		atkRandomizeTime=0
 	}
 	break;
@@ -160,6 +164,44 @@ break;
 	break;
 	#endregion
 	
+	#region Stunned
+	case 5: 
+			if stunnedTime>0{
+				if spd>0{
+					spd--	
+				}
+				stunnedTime--
+				if stunnedTime=0{
+				AIstate=1
+				break;
+				}
+			}
+	break;
+	#endregion
+	
+	#region Staggered
+	case 6: 
+	
+	break;
+	#endregion
+	
+	#region Repositioning
+	case 7: 
+			if repositionTime>0{
+			repositionTime--
+			dir = point_direction(obj_player.x,obj_player.y,x,y)
+			spd=walkspd*1.25
+			if distance_to_object(obj_player)>600 then AIstate=1
+			}else if repositionTime<=0 then AIstate=1
+	break;
+	#endregion
+	
+	#region dead
+	case 8: 
+	spd=0
+	dir=0
+	break;
+	#endregion
 }
 
 
@@ -170,7 +212,56 @@ Hitbox.x = cos(dir*pi/180)*min(distance_to_object(obj_player),sprite_width) + x
 speed=spd
 direction=dir
 
-show_debug_message(string(x)+" "+string(y)+" speed and dir:"+string(speed)+string(spd)+" "+string(direction)+string(dir))
+#region knockback
+if(knockbacktime>=0.1){
+	speed=0
+	initalknockbacktime++
+knockbacktime--
+motion_add(knockbackdir,round(knockbackmult * sin((knockbacktime*pi)/2*(1/(initalknockbacktime*2)))))
+}
+#endregion
+
+//show_debug_message(string(x)+" "+string(y)+" speed and dir:"+string(speed)+string(spd)+" "+string(direction)+string(dir))
+
+if place_meeting(x,y,obj_PlayerAttack)&&iframes<=0{
+	var playerAtkID=instance_place(x,y,obj_PlayerAttack)
+	iframes = playerAtkID.duration+5
+	AIstate=5
+	stunnedTime=60
+	atkwarmuptime=0
+	atktime=0
+	atkcooldown=0
+	hp-=playerAtkID.damage
+	
+
+	knockbacktime = playerAtkID.knockback
+knockbackmult = playerAtkID.knockbackmult
+initalknockbacktime=playerAtkID.initalknockbacktime
+iframes=playerAtkID.iframes
+if playerAtkID.knockbacktype=1{//radial burst
+	knockbackdir = point_direction(x,y,playerAtkID.x,playerAtkID.y)+180
+}else if playerAtkID.knockbacktype=0{//hitbox's direction
+	knockbackdir = playerAtkID.dir	
+}
+	
+	
+		Hitbox.sprite_index=sp_arrow
+		Hitbox.mask_index=sp_null
+		AIstate=5	
+		atkRandomizeTime=0
+		if hp<=0 then AIstate=8														//Make a kill me script to make particles or something
+		if obj_questData.colletingQuests[0]!=0{ // check if this is the first time to fill this out
+			obj_questData.colletingQuests[0]++
+		}else obj_questData.colletingQuests[0]=1
+		
+	show_debug_message(string(hp))
+}
+
+if iframes>0{
+iframes--	
+}
+
+
 
 #region oldcode
 /*

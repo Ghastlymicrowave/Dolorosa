@@ -1,23 +1,14 @@
-/// @description Insert description here
-// You can write your code in this 
-//stateAI = 0
-//baseStateAI = 0
-//hp = 0
-//tick = 0
 
-//atkwarmuptime =-1
-//atkcooldown =-1
+hp = 100
+walkspd=15
+sightRange= 2000
 
-//atktime=-1
+
 initalspd=0
 hitbox=1
-//warmupspd=-1
-//atkcooldown=-1
-//stalltime=20
-initalatktime=0
 
-//spd=0
-//dir=0
+initalatktime=0
+knockbacktime=0
 
 attack =0
 
@@ -33,10 +24,8 @@ atkcooldown=0
 
 maxAtkRandomizeTime=60
 AIstate=0
-sightRange= 2000
 
-walkspd=15
-
-
+stunnedTime=0
+iframes=0
 //variables stay at -1 for inactive
 // when they hit 0 they stay 0 until they stop attacking

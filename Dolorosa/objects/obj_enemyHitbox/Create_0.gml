@@ -13,7 +13,7 @@ iframes=60
 knockbacktype=0 // 1 = radial, 0 = hitbox's direction
 // if 0 then dir needs to be set
 dir = 0//usually set by enemy when creating
-damage=20
+damage=15
 
 multihit=0//will be destroyed after hit unless this is 1
 ignoreiframes=0//will hit regardless of the player's iframes

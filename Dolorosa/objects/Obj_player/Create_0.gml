@@ -68,6 +68,10 @@ basedodgespd=20
 dir=0
 
 //change these when you want
+
+
+baseATK=10
+
 room_speed=60
 scalefactor=5//pixels in width for the stamina bar and hp bar(not implimented yet)
 AtkAngleThreshhold =45// 

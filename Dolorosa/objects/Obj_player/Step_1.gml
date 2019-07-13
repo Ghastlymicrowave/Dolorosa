@@ -58,6 +58,7 @@ if atkwarmuptime>0&&atk!=0{
 					image_angle=direction
 					range=40
 					duration=8
+					damage=obj_player.baseATK
 				}
 				dodgetime=12
 				initaldodgetime=12
@@ -77,6 +78,7 @@ if atkwarmuptime>0&&atk!=0{
 					image_angle=direction
 					range=45
 					duration=10
+					damage=obj_player.baseATK
 				}
 				dodgetime=12
 				initaldodgetime=12
@@ -96,6 +98,7 @@ if atkwarmuptime>0&&atk!=0{
 					image_angle=direction
 					range=50
 					duration=10
+					damage=floor(obj_player.baseATK*1.20)
 				}
 				dodgetime=18
 				initaldodgetime=18
@@ -115,6 +118,7 @@ if atkwarmuptime>0&&atk!=0{
 					range=40
 					duration=14
 					image_yscale=1.5
+					damage=floor(obj_player.baseATK*1.25)
 				}
 				dodgetime=16
 				initaldodgetime=16
@@ -134,6 +138,7 @@ if atkwarmuptime>0&&atk!=0{
 					range=40
 					duration=18
 					image_yscale=1.75
+					damage=floor(obj_player.baseATK*1.30)
 				}
 				dodgetime=18
 				initaldodgetime=18
