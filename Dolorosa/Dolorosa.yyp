@@ -239,6 +239,14 @@
             }
         },
         {
+            "Key": "5d9572e8-f39b-4223-87e3-1d67bc8993ac",
+            "Value": {
+                "id": "49e469cf-fcb3-42ac-817e-72da5c3178d6",
+                "resourcePath": "scripts\\qst_update_add\\qst_update_add.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "5f24a76c-ddb3-4df8-958f-ab34d53e8e1d",
             "Value": {
                 "id": "a720cc72-c74e-40ec-a2d3-103410e06daa",
@@ -399,6 +407,22 @@
             }
         },
         {
+            "Key": "a3cb9e86-0f7b-4609-8f6d-ec78ec4cd336",
+            "Value": {
+                "id": "af61c116-c5a3-4256-a4f2-52b779e93f62",
+                "resourcePath": "scripts\\qst_update_total\\qst_update_total.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a66b43a4-7556-4af3-9cb8-3169408f59b0",
+            "Value": {
+                "id": "95d140b5-901d-45bc-8bcc-e5d4439d0f14",
+                "resourcePath": "scripts\\qst_update\\qst_update.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a7051307-eee0-4ac9-9ac5-7008cfcac6c1",
             "Value": {
                 "id": "fa10c0a9-8bfb-4719-abcb-4f5a31d9ec26",
@@ -507,6 +531,14 @@
             "Value": {
                 "id": "20aa6bec-c0cc-4f5d-8b93-6897d87e8e55",
                 "resourcePath": "scripts\/ScreenshakeAmt\/ScreenshakeAmt.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "c12835d0-c2e3-4ebe-8b61-152b462b0c65",
+            "Value": {
+                "id": "cb0229a8-89ff-4cc3-b181-69cbdc487379",
+                "resourcePath": "scripts\\qst_check\\qst_check.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -695,7 +727,11 @@
         "b18d8909-3725-42f3-bd8d-c17efcadc39f",
         "f2dcd9f2-0920-414b-af9c-58048054d52f",
         "48c40c2f-66b7-4e8c-9683-5aceb4f3eba0",
-        "7d04803c-b2a5-4dcd-b7b6-8cf74a7c8b8e"
+        "7d04803c-b2a5-4dcd-b7b6-8cf74a7c8b8e",
+        "a3cb9e86-0f7b-4609-8f6d-ec78ec4cd336",
+        "a66b43a4-7556-4af3-9cb8-3169408f59b0",
+        "5d9572e8-f39b-4223-87e3-1d67bc8993ac",
+        "c12835d0-c2e3-4ebe-8b61-152b462b0c65"
     ],
     "tutorial": ""
 }

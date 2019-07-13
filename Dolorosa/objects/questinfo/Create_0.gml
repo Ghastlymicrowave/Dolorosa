@@ -10,6 +10,9 @@ questArray[0,0] =  0 // QuestTitle
 questArray[0,1] =  0 // QuestInfo
 questArray[0,2] =  0 // Nextquest, if none = 0
 questArray[0,3] =  0 // Completion status (0 or 1)
+questArray[0,4] =  0 // Progress
+questArray[0,5] =  0 // Misc1
+questArray[0,6] =  0 // Misc2
 	//add all quests
 	
 // array for collecting quest data
