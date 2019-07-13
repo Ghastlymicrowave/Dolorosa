@@ -50,8 +50,8 @@ break;
 
 case 1: // heavy aoe - long warmup
 atkwarmuptime=45;
-atktime=20;
-initalspd=walkspd*1.25;
+atktime=22;
+initalspd=walkspd*1.5;
 hitbox=1;
 warmupspd=0;
 atkcooldown=30;
@@ -59,8 +59,8 @@ break;
 
 case 2: // slash -  short warmup small hitbox
 atkwarmuptime=30;
-atktime=8;
-initalspd=walkspd*1.25;
+atktime=10;
+initalspd=walkspd*3;
 hitbox=1;
 warmupspd=0;
 atkcooldown=30;
@@ -71,7 +71,7 @@ break;
 	#endregion
 	}else atkRandomizeTime--
 	
-	var expectedRange = 2*initalatktime*initalspd/pi
+	var expectedRange = 2*initalatktime*initalspd/pi +(192/2)
 	if expectedRange>= distance_to_object(obj_player){
 	AIstate=2	
 	}
@@ -87,7 +87,10 @@ break;
 	if atkwarmuptime>0{
 		atkwarmuptime--
 		if spd>0{spd*=.95} else spd=0
-		dir= point_direction(x,y,obj_player.x,obj_player.y) //make smoother later
+		
+		dir -= angle_difference(dir,point_direction(x,y,obj_player.x,obj_player.y))/15 //rotates enemy to face player but slowly
+		
+		
 	}else if atktime>0{
 		
 		spd=sin((atktime*(pi/2))/initalatktime)*initalspd
@@ -250,9 +253,9 @@ if playerAtkID.knockbacktype=1{//radial burst
 		AIstate=5	
 		atkRandomizeTime=0
 		if hp<=0 then AIstate=8														//Make a kill me script to make particles or something
-		if obj_questData.colletingQuests[0]!=0{ // check if this is the first time to fill this out
-			obj_questData.colletingQuests[0]++
-		}else obj_questData.colletingQuests[0]=1
+		//if obj_questData.colletingQuests[0]!=0{ // check if this is the first time to fill this out
+		//	obj_questData.colletingQuests[0]++
+		//}else obj_questData.colletingQuests[0]=1
 		
 	show_debug_message(string(hp))
 }
