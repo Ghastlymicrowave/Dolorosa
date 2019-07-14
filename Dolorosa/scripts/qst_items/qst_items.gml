@@ -4,7 +4,7 @@
 ///@arg amt amount needed to kill
 
 #region update items
-qst_update(argument[0],"progress",ds_list_count(obj_inventory.inventory,argument[1]))
+qst_update(argument[0],"progress",ds_list_count(global.inventory,argument[1]))
 #endregion
 
 #region check 
