@@ -21,7 +21,7 @@ if enemyCollisionID!= noone{
 
 
 if(place_meeting(x,y,enemyCollisionID)&&((iframes<=0)||(enemyCollisionID.ignoreiframes=1))){
-//subtract HP here
+inventoryopen=0
 knockbacktime = enemyCollisionID.knockback
 knockbackmult = enemyCollisionID.knockbackmult
 initalknockbacktime=enemyCollisionID.initalknockbacktime

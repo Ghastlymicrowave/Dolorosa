@@ -3,6 +3,8 @@
 
 //create inventory
 global.inventory = ds_list_create()
+
+
 objectsPerRow=5
 MaxRowsPerPage=4
 //inventorycreated=0
@@ -34,3 +36,10 @@ heldwaittime=0
 page=0
 pageheight=ivh
 followpageheight=0
+
+var objectsPerPage=objectsPerRow*MaxRowsPerPage
+var sizedivided = floor(ds_list_size(global.inventory)/objectsPerPage)
+while ds_list_size(global.inventory)!=sizedivided*objectsPerPage||ds_list_size(global.inventory)=0{
+	ds_list_add(global.inventory,0) // fill with blank values until page fills
+	sizedivided = floor(ds_list_size(global.inventory)/objectsPerPage)
+}

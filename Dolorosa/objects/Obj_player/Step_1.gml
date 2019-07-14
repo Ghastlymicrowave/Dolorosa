@@ -62,7 +62,7 @@ if atkwarmuptime>0&&atk!=0{
 				}
 				dodgetime=12
 				initaldodgetime=12
-				dodgespeed=basedodgespd/2
+				dodgespeed=basedodgespd
 				staminaTimer=40
 				stamina=stamina-15
 				dodgedelay=dodgetime+5
@@ -82,7 +82,7 @@ if atkwarmuptime>0&&atk!=0{
 				}
 				dodgetime=12
 				initaldodgetime=12
-				dodgespeed=basedodgespd/2
+				dodgespeed=basedodgespd
 				staminaTimer=40
 				stamina=stamina-15
 				dodgedelay=dodgetime+5
@@ -102,7 +102,7 @@ if atkwarmuptime>0&&atk!=0{
 				}
 				dodgetime=18
 				initaldodgetime=18
-				dodgespeed=basedodgespd
+				dodgespeed=basedodgespd*1.25
 				staminaTimer=40
 				stamina=stamina-15
 				dodgedelay=dodgetime+5
