@@ -5,7 +5,7 @@ y=obj_player.y
 //centery=camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2
 
 direction = obj_player.lastdir
-speed = 40
+speed = 120
 x+=hspeed
 y+=vspeed
 speed=0

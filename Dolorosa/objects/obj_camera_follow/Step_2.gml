@@ -47,4 +47,4 @@ if keyboard_check_pressed(ord("G")) then ScreenshakeAmt(50,50,random(90)+15,4,0)
 if keyboard_check_pressed(ord("H")) then ScreenshakeAmt(200,5,random(20)+20,1.5,0)
 if keyboard_check_pressed(ord("J")) then ScreenshakeAmt(2000,40,random(360),1,0)
 if keyboard_check_pressed(ord("K")) then ScreenshakeAmt(1,40,0,1,1)
-
+if keyboard_check_pressed(ord("L")) then ScreenshakeAmt(random(1000)+1,random(1000),random(1000),random(1000),0)

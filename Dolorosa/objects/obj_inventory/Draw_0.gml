@@ -19,9 +19,14 @@ if obj_player.inventoryopen=1{
 	
 	var v =keyboard_check_pressed(ord("S")) - keyboard_check_pressed(ord("W"))
 	var h =keyboard_check_pressed(ord("D")) - keyboard_check_pressed(ord("A"))
-	
+	var switchToOther = keyboard_check_pressed(ord("R"))
 	var v1 =keyboard_check(ord("S")) - keyboard_check(ord("W"))
 	var h1 =keyboard_check(ord("D")) - keyboard_check(ord("A"))
+	
+	if switchToOther=1{
+	side=!side	
+	}
+	
 	
 	if (abs(v1)xor(abs(h1))) {if heldtime <20 {heldtime++;heldwaittime=8} }else heldtime=0
 	
@@ -33,6 +38,13 @@ if obj_player.inventoryopen=1{
 		heldwaittime=8//ads a delay for holding down keys
 		} 
 	}
+	
+	if side=0{
+	
+	xoffset=100
+	yoffset=100
+	wscale=1.5
+	hscale=1.2
 	
 	if (h>0 && slotx<objectsPerRow-1)||(h<0&&slotx>0) then slotx+=h
 	if (v>0)||(v<0&&sloty>0) { sloty+=v
@@ -119,5 +131,11 @@ for (var i = 0; i<floor(ivDivided);i++){//for each full row
 		}
 	}//else {show_debug_message("none leftover")}
 
+}else if side=1{
+xoffset=500
+yoffset=100
+wscale=1.5
+hscale=1.2	
+	
+}
 }else {slotx=-1;sloty=-1}
-

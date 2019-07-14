@@ -13,6 +13,8 @@ xoffset=100
 yoffset=100
 wscale=1.5
 hscale=1.2
+side=0
+
 
 ivx=camera_get_view_x(view_camera[0])+xoffset
 ivy=camera_get_view_y(view_camera[0])+yoffset

@@ -8,9 +8,13 @@ direction = point_direction(centerx,centery,mouse_x,mouse_y)
 speed = point_distance(centerx,centery,mouse_x,mouse_y)*distancefactor
 
 if obj_player.inventoryopen=1 {
-	
+	if obj_inventory.side=0{
 x= obj_player.x-camera_get_view_width(view_camera[0])/3
 y= obj_player.y+camera_get_view_height(view_camera[0])/4
+	}else if obj_inventory.side=1{
+x= obj_player.x-camera_get_view_width(view_camera[0])/-3
+y= obj_player.y+camera_get_view_height(view_camera[0])/4		
+	}
 direction = point_direction(x,y,mouse_x,mouse_y)+180
 speed/=10
 //ScreenshakeAmt(0,20,0,1)
