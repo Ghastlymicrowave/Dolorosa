@@ -13,7 +13,7 @@
         "c12835d0-c2e3-4ebe-8b61-152b462b0c65"
     ],
     "filterType": "GMScript",
-    "folderName": "quest templates",
+    "folderName": "quest scripts",
     "isDefaultView": false,
     "localisedFolderName": ""
 }
