@@ -55,7 +55,7 @@ if atkwarmuptime>0&&atk!=0{
 			if combo=1{// Light Attack
 				ScreenshakeAmt(2,8,2,10,0)
 				with(atkID){
-					image_angle=lastdir
+					image_angle=obj_player.lastdir
 					range=40
 					duration=8
 					damage=obj_player.baseATK
@@ -75,7 +75,7 @@ if atkwarmuptime>0&&atk!=0{
 				
 				ScreenshakeAmt(2,10,2,9,0)
 				with(atkID){
-					image_angle=lastdir
+					image_angle=obj_player.lastdir
 					range=45
 					duration=10
 					damage=obj_player.baseATK
@@ -95,7 +95,7 @@ if atkwarmuptime>0&&atk!=0{
 				combo=0
 				ScreenshakeAmt(8,12,6,8,0)
 				with(atkID){
-					image_angle=lastdir
+					image_angle=obj_player.lastdir
 					range=50
 					duration=10
 					damage=floor(obj_player.baseATK*1.20)

@@ -252,7 +252,9 @@ if playerAtkID.knockbacktype=1{//radial burst
 		Hitbox.mask_index=sp_null
 		AIstate=5	
 		atkRandomizeTime=0
-		if hp<=0 then AIstate=8														//Make a kill me script to make particles or something
+		if hp<=0 { AIstate=8	//DIES
+		ds_list_add(enemyinfo.deaths,"obj_Enemy1")	
+		}//Make a kill me script to make particles or something
 		//if obj_questData.colletingQuests[0]!=0{ // check if this is the first time to fill this out
 		//	obj_questData.colletingQuests[0]++
 		//}else obj_questData.colletingQuests[0]=1

@@ -1,0 +1,1 @@
+playerinfodata[100]=0

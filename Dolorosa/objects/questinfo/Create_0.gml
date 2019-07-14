@@ -15,10 +15,6 @@ questArray[0,5] =  0 // Misc1
 questArray[0,6] =  0 // Misc2
 	//add all quests
 	
-// array for collecting quest data
-colletingQuests[100]=noone
-// [x,0] is the condition ID
-// [x,1] is the number recived
 	#region quest data
 	
 	#endregion
