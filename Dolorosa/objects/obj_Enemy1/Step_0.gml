@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-
+if obj_player.gamepaused=0{
 
 
 switch(AIstate){
@@ -264,6 +264,11 @@ if playerAtkID.knockbacktype=1{//radial burst
 
 if iframes>0{
 iframes--	
+}
+
+} else {
+speed=0
+
 }
 
 
