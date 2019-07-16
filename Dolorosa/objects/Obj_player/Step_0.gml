@@ -42,7 +42,20 @@ enemyCollisionID.sprite_index=sp_null
 }
 
 #endregion
+#region ENEMY PUSH BACK
+
+if(instance_exists(prnt_enemy)){
+if(place_meeting(x,y,prnt_enemy)){
+	var enID = instance_place(x,y,prnt_enemy)
+	speed/=2
+	speed+=prnt_enemy.speed/2
+	direction=point_direction(prnt_enemy.x,prnt_enemy.y,x,y)
+	}
+}
+
+#endregion
 #region ROTATE AND COLLISION
+
 for (var angle = 0;angle<=70; angle += 1){
 				xtarg = x+lengthdir_x(speed,angle+direction)
 				ytarg = y+lengthdir_y(speed,angle+direction)

@@ -271,7 +271,11 @@ speed=0
 
 }
 
-
+if(place_meeting(x,y,obj_player)){
+	obj_player.speed/=2
+	speed=obj_player.speed
+	direction=point_direction(obj_player.x,obj_player.y,x,y)
+	}
 
 #region oldcode
 /*
@@ -479,7 +483,8 @@ for (var angle = 0;angle<=70; angle += 1){
 				}
 			}
 			
-CollisionWith(obj_obstacle)
+
 #endregion
 */
 #endregion
+CollisionWith(obj_obstacle)
