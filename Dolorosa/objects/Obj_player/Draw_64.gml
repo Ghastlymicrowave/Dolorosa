@@ -48,23 +48,23 @@ drawParalellogram(70,50,max(drawStaminacurrent*scalefactor/2,0),20,-1,staminabar
 
 
 
-draw_text(10,10,"lastdir:" + string(lastdir))
-draw_text(10,30,"hinput:" + string(hinput))
-draw_text(10,50,"vinput:" + string(vinput))
-draw_text(10,70,"angledif:" + string(angledif))
-draw_text(10,90,"speed:" + string(speed))
-draw_text(10,110,"stamina:"+string(stamina))
-draw_text(10,130,"staminaTime:"+string(staminaTimer))
-draw_text(10,150,"staminaExaust:"+string(staminaExaust))
-draw_text(10,170,"dodgetime:"+string(dodgetime))
-draw_text(10,190,"standby:"+string(standbytime))
-draw_text(10,210,"spd:"+string(spd))
-draw_text(10,230,"maxspd:"+string(maxspd))
-draw_text(10,250,"warmup:"+string(atkwarmuptime))
-draw_text(10,270,"atk:"+string(atk))
-draw_text(10,290,"combo:"+string(combo))
-draw_text(10,310,"atktimeheld:"+string(atktimeheld))
-
+draw_text(300,10,"lastdir:" + string(lastdir))
+draw_text(300,30,"hinput:" + string(hinput))
+draw_text(300,50,"vinput:" + string(vinput))
+draw_text(300,70,"angledif:" + string(angledif))
+draw_text(300,90,"speed:" + string(speed))
+draw_text(300,110,"stamina:"+string(stamina))
+draw_text(300,130,"staminaTime:"+string(staminaTimer))
+draw_text(300,150,"staminaExaust:"+string(staminaExaust))
+draw_text(300,170,"dodgetime:"+string(dodgetime))
+draw_text(300,190,"standby:"+string(standbytime))
+draw_text(300,210,"spd:"+string(spd))
+draw_text(300,230,"maxspd:"+string(maxspd))
+draw_text(300,250,"warmup:"+string(atkwarmuptime))
+draw_text(300,270,"atk:"+string(atk))
+draw_text(300,290,"combo:"+string(combo))
+draw_text(300,310,"atktimeheld:"+string(atktimeheld))
+draw_text(300,330,"iframes:"+string(iframes))
 //argument 0 is x
 //argument 1 is y
 //argument 2 is width 

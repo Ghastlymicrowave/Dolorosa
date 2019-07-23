@@ -13,6 +13,13 @@ repeat(ds_list_size(activeQuests)){
 	var questID = ds_list_find_value(activeQuests,i)
 	switch(questID){
 		case 0:
+	//	show_debug_message("fat")
+		qst_kills(0,"obj_Enemy1",1)
+	//	show_debug_message(questinfo.questArray[0,3])
+		
+		
+		
+		/*
 		var listindex =0
 		repeat(ds_list_size(enemyinfo.deaths)){
 			if ds_list_find_value(enemyinfo.deaths,listindex)="obj_Enemy1"{
@@ -25,7 +32,8 @@ repeat(ds_list_size(activeQuests)){
 				}
 				
 			} else listindex++
-		}
+		*/
+		
 		
 		break;
 		case 1:

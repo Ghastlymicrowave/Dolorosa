@@ -21,6 +21,11 @@ if enemyCollisionID!= noone{
 
 
 if(place_meeting(x,y,enemyCollisionID)&&((iframes<=0)||(enemyCollisionID.ignoreiframes=1))){
+	dodgetime=0
+	atk=0
+	combo=0
+	atkwarmuptime=0
+	atktimeheld=-1
 inventoryopen=0
 knockbacktime = enemyCollisionID.knockback
 knockbackmult = enemyCollisionID.knockbackmult

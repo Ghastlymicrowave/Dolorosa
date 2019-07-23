@@ -38,12 +38,16 @@ if dodgedelay>0 then dodgedelay--
 #region attacks																												need to add combos and warmup frames
 #region atktimeheld
 if (mouse_check_button_released(mb_left)) && heldtoolong=1 then heldtoolong=0
-if (dodgetime!=0||staminaExaust||gamepaused) then atktimeheld = 0 else if mouse_check_button(mb_left)&&heldtoolong=0&&inventoryopen=0{
+if (dodgetime!=0||staminaExaust||gamepaused)&&atktimeheld!=-1 then atktimeheld = 0 else if mouse_check_button(mb_left)&&heldtoolong=0&&inventoryopen=0&&atktimeheld!=-1{
 atktimeheld++	
 ScreenshakeAmt(atktimeheld/8,atktimeheld,0,480/atktimeheld,0)
 }else if atktimeheld>0&&heldtoolong=1{
 	ScreenshakeAmt(atktimeheld/8,atktimeheld,0,480/atktimeheld,0)
 }
+if atktimeheld=-1{
+if !mouse_check_button(mb_left) then atktimeheld=0	
+}
+
 #endregion
 #region atkwarmup
 if atkwarmuptime>0&&atk!=0{

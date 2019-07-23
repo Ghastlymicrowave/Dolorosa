@@ -2,6 +2,10 @@
 hp = 100
 walkspd=15
 sightRange= 2000
+stagger=0
+staggertimer=0
+
+staggerthresh=30
 
 
 initalspd=0

@@ -4,6 +4,7 @@
 if obj_player.gamepaused=0{
 
 
+
 switch(AIstate){
 	#region Wander
 	case 0: 
@@ -130,7 +131,7 @@ break;
 			atkRandomizeTime=0
 			if (irandom(3)!=3){
 				AIstate=7
-				show_debug_message("YEEET")
+			//	show_debug_message("YEEET")
 				repositionTime=360
 			} else AIstate=1 //chance to keep attacking or to reposition (7)
 			break;
@@ -169,7 +170,13 @@ break;
 	
 	#region Stunned
 	case 5: 
-			if stunnedTime>0{
+			
+	break;
+	#endregion
+	
+	#region Staggered
+	case 6: 
+		if stunnedTime>0{
 				if spd>0{
 					spd--	
 				}
@@ -179,12 +186,6 @@ break;
 				break;
 				}
 			}
-	break;
-	#endregion
-	
-	#region Staggered
-	case 6: 
-	
 	break;
 	#endregion
 	
@@ -229,13 +230,19 @@ motion_add(knockbackdir,round(knockbackmult * sin((knockbacktime*pi)/2*(1/(inita
 if place_meeting(x,y,obj_PlayerAttack)&&iframes<=0{
 	var playerAtkID=instance_place(x,y,obj_PlayerAttack)
 	iframes = playerAtkID.duration+5
-	AIstate=5
-	stunnedTime=60
-	atkwarmuptime=0
-	atktime=0
-	atkcooldown=0
-	hp-=playerAtkID.damage
 	
+	//AIstate=5
+	//stunnedTime=10
+	//atkwarmuptime=0
+	//atktime=0
+	//atkcooldown=0
+	hp-=playerAtkID.damage
+	stagger+=floor(playerAtkID.damage/2)
+	staggertimer=40
+	if stagger>staggerthresh{
+	AIstate=6	
+	stunnedTime=60
+	}
 
 	knockbacktime = playerAtkID.knockback
 knockbackmult = playerAtkID.knockbackmult
@@ -250,21 +257,36 @@ if playerAtkID.knockbacktype=1{//radial burst
 	
 		Hitbox.sprite_index=sp_arrow
 		Hitbox.mask_index=sp_null
-		AIstate=5	
+			
 		atkRandomizeTime=0
-		if hp<=0 { AIstate=8	//DIES
+		if hp<=0&&AIstate!=8 { AIstate=8	//DIES
 		ds_list_add(enemyinfo.deaths,"obj_Enemy1")	
+		show_debug_message("FAT")
 		}//Make a kill me script to make particles or something
 		//if obj_questData.colletingQuests[0]!=0{ // check if this is the first time to fill this out
 		//	obj_questData.colletingQuests[0]++
 		//}else obj_questData.colletingQuests[0]=1
 		
-	show_debug_message(string(hp))
+	//show_debug_message(string(hp))
 }
 
 if iframes>0{
 iframes--	
 }
+
+
+if stagger!=0{
+
+if staggertimer!=0{
+staggertimer--	
+}else{
+	
+stagger--	
+}
+
+}
+
+
 
 } else {
 speed=0
@@ -273,7 +295,7 @@ speed=0
 
 if(place_meeting(x,y,obj_player)){
 	obj_player.speed/=2
-	speed=obj_player.speed
+	speed+=obj_player.speed
 	direction=point_direction(obj_player.x,obj_player.y,x,y)
 	}
 
