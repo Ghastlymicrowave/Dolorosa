@@ -294,9 +294,11 @@ speed=0
 }
 
 if(place_meeting(x,y,obj_player)){
+	
+	//speed+=obj_player.speed
+	motion_add(point_direction(obj_player.x,obj_player.y,x,y),obj_player.speed)
 	obj_player.speed/=2
-	speed+=obj_player.speed
-	direction=point_direction(obj_player.x,obj_player.y,x,y)
+	//direction=point_direction(obj_player.x,obj_player.y,x,y)
 	}
 
 #region oldcode

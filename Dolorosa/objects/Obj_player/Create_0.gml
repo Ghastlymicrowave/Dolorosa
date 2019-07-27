@@ -19,6 +19,12 @@ drawStaminacurrent=0
 healthbarframe=0
 healthbarframetick=0
 
+aimtime=200//time it takes to fully aim
+aimspread=60// degrees of a shot if fired with no aiming
+
+wielding=0 //melee, 1 is gun
+
+staggerthresh=50
 
 maxspd=0
 atk=0

@@ -4,7 +4,7 @@ range=20
 duration=10
 dir = direction
 
-knockback = 15
+knockback = 5
 initalknockbacktime=10// needs to = knockback
 
 knockbackmult = 60//knockback's inital speed

@@ -5,9 +5,14 @@
 hspd= obj_camera_place.x-x
 vspd= obj_camera_place.y-y
 
-x+= hspd/10
-y+= vspd/10
 
+if obj_player.wielding=1{
+x+= hspd/5 
+y+= vspd/5
+} else{
+x+= hspd/10
+y+= vspd/10	
+}
 
 
 if screenshake>0{

@@ -52,9 +52,11 @@ enemyCollisionID.sprite_index=sp_null
 if(instance_exists(prnt_enemy)){
 if(place_meeting(x,y,prnt_enemy)){
 	var enID = instance_place(x,y,prnt_enemy)
-	speed/=2
-	speed+=prnt_enemy.speed/2
-	direction=point_direction(prnt_enemy.x,prnt_enemy.y,x,y)
+	motion_add(point_direction(prnt_enemy.x,prnt_enemy.y,x,y),enID.speed)
+	//enID.speed/=2
+	
+	//speed+=prnt_enemy.speed/2
+	//direction=point_direction(prnt_enemy.x,prnt_enemy.y,x,y)
 	}
 }
 

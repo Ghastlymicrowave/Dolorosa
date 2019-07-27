@@ -1,16 +1,19 @@
 // Get input, vinput and hinput will either be 1,0, or -1 because bools in gamemaker return a 1 or 0 insted of a actuall bool
 
-#region MOVEMENT INPUT
+#region INPUT
 vinput = keyboard_check(ord("S")) - keyboard_check(ord("W"))
 hinput = keyboard_check(ord("D")) - keyboard_check(ord("A"))
 if atkwarmuptime>0 { vinput=0;hinput=0;}
+if keyboard_check_pressed(ord("F"))&&atk=0&&atktimeheld=0&&standbytime=0{
+wielding=!wielding	
+}
 #endregion
 #region STAMINA run out change the bar's color
 staminaFullColor = $ffffff
 staminaEmptyColor = $3300ff
 staminaUseColor = $666666
 
-if staminaTimer<=0&&atkwarmuptime<=0&&atktimeheld<=0 then combo=0
+if staminaTimer<=0&&atkwarmuptime<=0&&atktimeheld<=0&&wielding=0 then combo=0
 if stamina>=maxstamina {staminaExaust=0;stamina=maxstamina;staminabarcolor=staminaFullColor}
 //happens once when stamina = 0
 //staminatimer counts down to 0, when it hits 0 begins adding stamina until stamina reaches max
@@ -35,7 +38,9 @@ if iframes>0 then iframes--}
 #region DODGEDELAY
 if dodgedelay>0 then dodgedelay--
 #endregion
-#region attacks																												need to add combos and warmup frames
+switch (wielding){
+	case 0:
+#region melee attacks																												need to add combos and warmup frames
 #region atktimeheld
 if (mouse_check_button_released(mb_left)) && heldtoolong=1 then heldtoolong=0
 if (dodgetime!=0||staminaExaust||gamepaused)&&atktimeheld!=-1 then atktimeheld = 0 else if mouse_check_button(mb_left)&&heldtoolong=0&&inventoryopen=0&&atktimeheld!=-1{
@@ -160,7 +165,7 @@ if atkwarmuptime>0&&atk!=0{
 	}
 
 #region intial attacks
-if stamina>0&&dodgetime=0&&staminaExaust=0&&atktimeheld>0&&atk=0&&(mouse_check_button_released(mb_left)||atktimeheld>=heavyAtkTimeThresholdHighest)&&gamepaused=0{
+if stamina>0&&dodgetime=0&&staminaExaust=0&&atktimeheld>0&&atk=0&&(!mouse_check_button(mb_left)||atktimeheld>=heavyAtkTimeThresholdHighest)&&gamepaused=0{
 if atktimeheld>=heavyAtkTimeThresholdHighest then heldtoolong=1
 if atktimeheld < heavyAtkTimeThreshold{ // Light Attack
 	
@@ -203,6 +208,25 @@ if atktimeheld < heavyAtkTimeThreshold{ // Light Attack
 #endregion
 #endregion
 #endregion
+	break;
+	
+	case 1:
+#region gun attacks
+
+if mouse_check_button(mb_right){
+	if atktimeheld<aimtime { 
+	 atktimeheld+=floor((aimtime-atktimeheld)/4)	
+	}
+}else if atktimeheld>0 {
+atktimeheld=floor(atktimeheld/2)	
+}
+
+aimdir=obj_camera_place.direction
+
+#endregion
+break;
+}
+
 #region BACKSTEP
 if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0&&gamepaused=0{
 	
@@ -275,7 +299,12 @@ lastdir=lockeddir
 
 if dodgetime>0{
 
-
+if standbytime>0{// allows player to initiate attack while in standby
+if mouse_check_button(mb_left)&&wielding=0{
+{if backstepping=1 {lastdir=lastdir+180;backstepping=0}}
+atktimeheld=10
+}
+}
 } else if standbytime<=0{
 	
 	
@@ -373,3 +402,24 @@ scrollhptimer=scrollhptimermax
 
 
 
+
+#region Saving
+
+//Manual Autosave
+
+	//save HP, inventory, any upgrades/tools
+	ini_open("save.data")
+	ini_write_real("general","hp",hp)
+	ini_write_real("general","xPos",x)
+	ini_write_real("general","yPos",y)
+	ini_write_string("general","inventory",ds_list_write(global.inventory))
+	ini_close()
+
+//Manual Checkpoint Save
+
+	// inventory, any upgrades/tools
+	ini_open("save.data")
+	ini_write_string("general","inventory",ds_list_write(global.inventory))
+	ini_close()
+	
+#endregion
