@@ -20,18 +20,22 @@ draw_line(x,y,x+lengthdir_x(300,lastdir),y+lengthdir_y(300,lastdir))
 if wielding=1{
 if atktimeheld=0{ var aimpercentage = 1} else var aimpercentage = (aimtime-atktimeheld)/aimtime
 
+show_debug_message(string(aimdir))
+smoothAimDir+=angle_difference(aimdir,smoothAimDir)/2
+
+aimrange+= ((((aimspread+max(spd,0)/2)/2) * aimpercentage+((baseaimspread+max(spd,0))/2))- aimrange)/2
+
+var high= smoothAimDir+aimrange
+var low= smoothAimDir-aimrange
 
 
-var higher= aimdir+(floor((aimspread+speed)/2) * aimpercentage+floor((baseaimspread)/2))
-var lower= aimdir-(floor((aimspread+speed)/2) * aimpercentage+floor((baseaimspread)/2))
+draw_line(x,y,x+lengthdir_x(1000,high),y+lengthdir_y(1000,high))
+draw_line(x,y,x+lengthdir_x(1000,low),y+lengthdir_y(1000,low))
 
-draw_line(x,y,x+lengthdir_x(1000,higher),y+lengthdir_y(1000,higher))
-draw_line(x,y,x+lengthdir_x(1000,lower),y+lengthdir_y(1000,lower))
-
-var anglerange = abs(angle_difference(lower,higher))
+var anglerange = abs(angle_difference(low,high))
 while anglerange>0{
 	draw_set_color(c_blue)
-draw_line(x,y,x+lengthdir_x(1000,lower+anglerange),y+lengthdir_y(1000,lower+anglerange))
+draw_line(x,y,x+lengthdir_x(1000,low+anglerange),y+lengthdir_y(1000,low+anglerange))
 
 anglerange-=0.05
 }

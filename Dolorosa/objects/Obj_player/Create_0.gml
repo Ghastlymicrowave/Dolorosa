@@ -48,6 +48,10 @@ drawhp=100
 drawscrollhp=100
 scrollhp=100
 maxhp=100
+aimrange=0
+smoothAimDir=0
+
+firerateTimer=0
 
 keyboard_set_map(vk_up,ord("W"))
 keyboard_set_map(vk_down,ord("S"))

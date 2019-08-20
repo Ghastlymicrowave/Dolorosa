@@ -207,11 +207,17 @@ if atktimeheld < heavyAtkTimeThreshold{ // Light Attack
 }
 #endregion
 #endregion
+
 #endregion
 	break;
 	
 	case 1:
 #region gun attacks
+
+if wielding=1{
+	if firerateTimer!=0 then firerateTimer--
+if firerateTimer<0.1 then firerateTimer=0 	
+}
 
 if mouse_check_button(mb_right){
 	if atktimeheld<aimtime { 
@@ -221,6 +227,32 @@ if mouse_check_button(mb_right){
 }else if atktimeheld>0 {
 atktimeheld=floor(atktimeheld/2)	
 }
+//gun attack
+if mouse_check_button_pressed(mb_left)&&wielding=1&&!(dodgetime!=0||staminaExaust||gamepaused||firerateTimer>0){
+atkID = instance_create_depth(x,y,-1,obj_PlayerProjectile)	
+
+			if atktimeheld=0{ var aimperc = 1} else var aimperc= (aimtime-atktimeheld)/aimtime
+
+atkID.image_angle=obj_player.aimdir+(random((floor((aimspread+speed)/2) * aimperc+floor((baseaimspread+speed)/2)))-1 )*choose(-1,1)
+firerateTimer=10
+				ScreenshakeAmt(2,8,2,10,0)
+				with(atkID){
+					spd=150
+					duration=500
+					damage=obj_player.baseATK
+				}
+				
+				//staminaTimer=20
+				stamina=stamina-15
+				//dodgedelay=dodgetime+5
+				//standbytime=5
+				lockeddir=dir
+				atktimeheld-=atktimeheld/2
+				sprite_index=sp_badplayeratk
+			
+			
+}
+
 
 aimdir=obj_camera_place.direction
 
@@ -326,7 +358,7 @@ if (vinput!=0)||(hinput!=0){
 	if sprint==1{ maxspd=sprintSpd}
 	if atktimeheld>0&&wielding=0 {maxspd = basedodgespd/4}
 	else if atktimeheld>0&&wielding=1 {
-		maxspd= clamp(basedodgespd*(aimtime-atktimeheld)/aimtime,basedodgespd/4,basedodgespd)	}
+		maxspd= clamp(basedodgespd*(aimtime-atktimeheld)/aimtime,basedodgespd/4,floor(walkSpd*.75))	}
 	if inventoryopen=1||gamepaused=1 {maxspd=0}
 	if knockbacktime>=0.1{maxspd =min(knockbacktime,basedodgespd/2)}
 	if spd<maxspd then spd++ else {spd-=(spd-maxspd)/2; spd=round(spd)}

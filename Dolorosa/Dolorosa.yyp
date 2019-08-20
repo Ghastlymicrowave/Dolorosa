@@ -663,6 +663,14 @@
             }
         },
         {
+            "Key": "e1525e48-fdc1-465a-b60c-6682adc3b3ee",
+            "Value": {
+                "id": "c002a7b5-f62d-436f-9516-cf2a3b6f568b",
+                "resourcePath": "objects\\obj_PlayerProjectile\\obj_PlayerProjectile.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "e229fb0b-abd9-4036-b660-890ea4025232",
             "Value": {
                 "id": "de3b8654-c0a2-4189-ae83-7687b531cd13",
