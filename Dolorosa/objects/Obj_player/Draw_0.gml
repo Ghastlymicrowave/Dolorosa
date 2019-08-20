@@ -22,8 +22,8 @@ if atktimeheld=0{ var aimpercentage = 1} else var aimpercentage = (aimtime-atkti
 
 
 
-var higher= aimdir+(floor(aimspread/2) * aimpercentage+floor((baseaimspread+speed)/2))
-var lower= aimdir-(floor(aimspread/2) * aimpercentage+floor((baseaimspread+speed)/2))
+var higher= aimdir+(floor((aimspread+speed)/2) * aimpercentage+floor((baseaimspread)/2))
+var lower= aimdir-(floor((aimspread+speed)/2) * aimpercentage+floor((baseaimspread)/2))
 
 draw_line(x,y,x+lengthdir_x(1000,higher),y+lengthdir_y(1000,higher))
 draw_line(x,y,x+lengthdir_x(1000,lower),y+lengthdir_y(1000,lower))

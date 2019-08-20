@@ -324,9 +324,11 @@ if (vinput!=0)||(hinput!=0){
 	}
 	if staminaExaust==1 {maxspd=exaustSpd} else {maxspd=walkSpd}
 	if sprint==1{ maxspd=sprintSpd}
-	if atktimeheld>0 {maxspd = basedodgespd/4}
+	if atktimeheld>0&&wielding=0 {maxspd = basedodgespd/4}
+	else if atktimeheld>0&&wielding=1 {
+		maxspd= clamp(basedodgespd*(aimtime-atktimeheld)/aimtime,basedodgespd/4,basedodgespd)	}
 	if inventoryopen=1||gamepaused=1 {maxspd=0}
-	if knockbacktime>=0.1{maxspd =3}
+	if knockbacktime>=0.1{maxspd =min(knockbacktime,basedodgespd/2)}
 	if spd<maxspd then spd++ else {spd-=(spd-maxspd)/2; spd=round(spd)}
 	
 } else if spd > 0 then spd-= sign(spd)
@@ -408,19 +410,46 @@ scrollhptimer=scrollhptimermax
 
 //Manual Autosave
 
+if keyboard_check_pressed(ord("T")){
+
 	//save HP, inventory, any upgrades/tools
 	ini_open("save.data")
 	ini_write_real("general","hp",hp)
 	ini_write_real("general","xPos",x)
 	ini_write_real("general","yPos",y)
+	ini_write_real("general","room",room)
 	ini_write_string("general","inventory",ds_list_write(global.inventory))
 	ini_close()
-
+}
 //Manual Checkpoint Save
-
+if keyboard_check_pressed(ord("O")){
 	// inventory, any upgrades/tools
 	ini_open("save.data")
 	ini_write_string("general","inventory",ds_list_write(global.inventory))
 	ini_close()
-	
+} 
+
+// Manual load checkpoint
+if keyboard_check_pressed(ord("P")){
+ini_open("save.data")
+x= ini_read_real("general","xPos",0)
+y = ini_read_real("general","yPos",0)
+room = ini_read_real("general","room",room)
+obj_camera_follow.x=x
+obj_camera_follow.y=y
+ini_close()
+}
+
+//Manual load game
+if keyboard_check_pressed(ord("Y")){
+ini_open("save.data")
+x= ini_read_real("general","xPos",0)
+y = ini_read_real("general","yPos",0)
+room = ini_read_real("general","room",room)
+obj_camera_follow.x=x
+obj_camera_follow.y=y
+ds_list_read(global.inventory,ini_read_string("general","inventory",""))
+ini_close()
+}
+
 #endregion

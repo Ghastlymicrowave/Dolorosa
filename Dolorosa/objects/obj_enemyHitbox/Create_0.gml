@@ -3,10 +3,11 @@
 
 
 
-knockback = 20
-initalknockbacktime=20// needs to = knockback
 
-knockbackmult = 30//knockback's inital speed
+initalknockbacktime=20// needs to = knockback
+knockback=initalknockbacktime
+
+knockbackmult = 60//knockback's inital speed
 
 iframes=60
 
