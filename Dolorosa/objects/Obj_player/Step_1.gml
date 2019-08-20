@@ -215,7 +215,8 @@ if atktimeheld < heavyAtkTimeThreshold{ // Light Attack
 
 if mouse_check_button(mb_right){
 	if atktimeheld<aimtime { 
-	 atktimeheld+=floor((aimtime-atktimeheld)/4)	
+	 atktimeheld+=floor((aimtime-atktimeheld)/50)+1
+	 if atktimeheld>aimtime then atktimeheld=aimtime
 	}
 }else if atktimeheld>0 {
 atktimeheld=floor(atktimeheld/2)	

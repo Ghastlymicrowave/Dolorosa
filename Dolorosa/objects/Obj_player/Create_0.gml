@@ -19,8 +19,9 @@ drawStaminacurrent=0
 healthbarframe=0
 healthbarframetick=0
 
-aimtime=200//time it takes to fully aim
-aimspread=60// degrees of a shot if fired with no aiming
+aimtime=100//time it takes to fully aim
+aimspread=20// degrees of a shot if fired with no aiming
+baseaimspread=10
 
 wielding=0 //melee, 1 is gun
 
