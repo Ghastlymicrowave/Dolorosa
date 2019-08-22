@@ -71,7 +71,7 @@ read combo value | coresponding attack
 
 
 */
-staminaUnexaustThresh=0.5 //a percent of stamina to unexaust at
+staminaUnexaustThresh=0.75 //a percent of stamina to unexaust at
 
 #endregion
 
