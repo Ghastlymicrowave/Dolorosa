@@ -14,7 +14,8 @@ staminaEmptyColor = $3300ff
 staminaUseColor = $666666
 
 if staminaTimer<=0&&atkwarmuptime<=0&&atktimeheld<=0&&wielding=0 then combo=0
-if stamina>=maxstamina {staminaExaust=0;stamina=maxstamina;staminabarcolor=staminaFullColor}
+if stamina/maxstamina>=staminaUnexaustThresh {staminaExaust=0;staminabarcolor=staminaFullColor}
+if stamina>=maxstamina {stamina=maxstamina}
 //happens once when stamina = 0
 //staminatimer counts down to 0, when it hits 0 begins adding stamina until stamina reaches max
 // also staminaExaust is a bool to determine this check once
