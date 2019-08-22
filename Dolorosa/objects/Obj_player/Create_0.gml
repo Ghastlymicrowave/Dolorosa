@@ -82,8 +82,12 @@ dir=0
 
 
 baseATK=10
-readyRoll=0
-readyBackstep=0
+
+
+readyAction=0
+//1 is roll
+//2 is backstep
+
 room_speed=60
 scalefactor=5//pixels in width for the stamina bar and hp bar(not implimented yet)
 AtkAngleThreshhold =45// 

@@ -263,12 +263,12 @@ break;
 }
 
 if keyboard_check_pressed(vk_control)&&stamina>0&&gamepaused=0{
-	readyBackstep=1
+	readyAction=2
 }
 
 #region BACKSTEP
-if stamina>0&&readyBackstep==1&&dodgetime==0&&gamepaused=0{
-	readyBackstep=0
+if stamina>0&&readyAction==2&&dodgetime==0&&gamepaused=0{
+	readyAction=0
 	if staminaExaust=0{					//backstep
 		dodgetime = 20
 		initaldodgetime=20
@@ -305,11 +305,12 @@ if stamina>0&&readyBackstep==1&&dodgetime==0&&gamepaused=0{
 #endregion
 #region ROLL
 if keyboard_check_pressed(vk_space)&&stamina>0&&gamepaused==0{
-readyRoll=1	
+
+readyAction=1
 }
 
-if stamina>0&&readyRoll==1&&dodgetime==0&&gamepaused==0&&atkwarmuptime=0{
-	readyRoll=0
+if stamina>0&&readyAction==1&&dodgetime==0&&gamepaused==0&&atkwarmuptime=0{
+	readyAction=0
 	if staminaExaust=0{					//roll
 		dodgetime = 25
 		initaldodgetime=25
