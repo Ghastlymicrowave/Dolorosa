@@ -322,7 +322,9 @@ if stamina>0&&keyboard_check_pressed(vk_space)&&standbytime==0&&dodgetime==0&&ga
 
 }
 #endregion
-
+#region SPIKES
+if(place_meeting(x,y,obj_spikes)){}
+#endregion
 
 //first while dodgetime is running out, the player is locked in a direction with their speed dictacted by dodgetime, dodgespeed, and initaldodgetime
 //next standbytime counds down, during this the player cannot move
