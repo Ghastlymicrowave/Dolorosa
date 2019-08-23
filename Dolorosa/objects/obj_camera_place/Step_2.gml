@@ -1,6 +1,10 @@
 x=obj_player.x
 y=obj_player.y
-
+if obj_player.wielding=1{
+distancefactor=.5 + (obj_player.atktimeheld/100)/2
+}else{
+	distancefactor=.5	
+}
 centerx= window_get_width()/2 //camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])/2
 centery= window_get_height()/2//camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2
 
