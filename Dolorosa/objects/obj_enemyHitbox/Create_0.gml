@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 
-
+active=1
 
 initalknockbacktime=20// needs to = knockback
 knockback=initalknockbacktime

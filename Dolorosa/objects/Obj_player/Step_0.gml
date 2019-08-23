@@ -16,7 +16,7 @@ motion_add(knockbackdir,round(knockbackmult * sin((knockbacktime*pi)/2*(1/(inita
 var enemyCollisionID = instance_place(x,y,obj_enemyHitbox)
 if enemyCollisionID!= noone{
 	
-	if enemyCollisionID.mask_index!=sp_null{
+	if enemyCollisionID.active!=0{
 
 
 
@@ -39,8 +39,9 @@ if enemyCollisionID.knockbacktype=1{//radial burst
 }
 
 if enemyCollisionID.multihit=0{
+	enemyCollisionID.active=0
 //instance_destroy(enemyCollisionID) multihit doesn't work with current enemy, enemy needs the hitbox to not be destroyed
-enemyCollisionID.sprite_index=sp_null
+//enemyCollisionID.sprite_index=sp_null
 }
 }
 }

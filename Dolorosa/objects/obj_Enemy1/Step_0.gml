@@ -99,13 +99,13 @@ break;
 		spd=0	
 		}
 		
-		if Hitbox.mask_index=sp_null && hitbox!=0{
+		if Hitbox.active=0 && hitbox!=0{
 			initalatktime=atktime
 			switch(hitbox){
 			case 1:
 			Hitbox.sprite_index=sp_badCircle
 			Hitbox.mask_index=sp_badCircle
-			
+			Hitbox.active=1
 			}
 		}
 		
@@ -127,7 +127,7 @@ break;
 	
 	if atkcooldown=0 {
 			Hitbox.sprite_index=sp_arrow
-			Hitbox.mask_index=sp_null
+			Hitbox.active=0
 			atkRandomizeTime=0
 			if (irandom(3)!=3){
 				AIstate=7
@@ -256,7 +256,7 @@ if playerAtkID.knockbacktype=1{//radial burst
 	
 	
 		Hitbox.sprite_index=sp_arrow
-		Hitbox.mask_index=sp_null
+		Hitbox.active=0
 			
 		atkRandomizeTime=0
 		if hp<=0&&AIstate!=8 { AIstate=8	//DIES
