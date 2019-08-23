@@ -14,8 +14,7 @@ staminaEmptyColor = $3300ff
 staminaUseColor = $666666
 
 if staminaTimer<=0&&atkwarmuptime<=0&&atktimeheld<=0&&wielding=0 then combo=0
-if stamina/maxstamina>=staminaUnexaustThresh {staminaExaust=0;staminabarcolor=staminaFullColor}
-if stamina>=maxstamina {stamina=maxstamina}
+if stamina>=maxstamina {staminaExaust=0;stamina=maxstamina;staminabarcolor=staminaFullColor}
 //happens once when stamina = 0
 //staminatimer counts down to 0, when it hits 0 begins adding stamina until stamina reaches max
 // also staminaExaust is a bool to determine this check once
@@ -43,21 +42,20 @@ switch (wielding){
 	case 0:
 #region melee attacks																												need to add combos and warmup frames
 #region atktimeheld
-if (!mouse_check_button(mb_left)) && heldtoolong=1 then heldtoolong=0
-if (/*dodgetime!=0||*/staminaExaust||gamepaused)&&atktimeheld!=-1 then atktimeheld = 0 else if mouse_check_button(mb_left)&&heldtoolong=0&&inventoryopen=0&&atktimeheld!=-1{
+if (mouse_check_button_released(mb_left)) && heldtoolong=1 then heldtoolong=0
+if (dodgetime!=0||staminaExaust||gamepaused)&&atktimeheld!=-1 then atktimeheld = 0 else if mouse_check_button(mb_left)&&heldtoolong=0&&inventoryopen=0&&atktimeheld!=-1{
 atktimeheld++	
 ScreenshakeAmt(atktimeheld/8,atktimeheld,0,480/atktimeheld,0)
 }else if atktimeheld>0&&heldtoolong=1{
 	ScreenshakeAmt(atktimeheld/8,atktimeheld,0,480/atktimeheld,0)
 }
 if atktimeheld=-1{
-if !mouse_check_button(mb_left)&&(wielding=0&&standbytime=0&&dodgetime=0) then atktimeheld=0	
+if !mouse_check_button(mb_left) then atktimeheld=0	
 }
 
 #endregion
 #region atkwarmup
 if atkwarmuptime>0&&atk!=0{
-	atktimeheld=0
 		atkwarmuptime--
 		//show_debug_message("warmup"+string(atkwarmuptime))
 		if atkwarmuptime=0{
@@ -262,25 +260,21 @@ aimdir=obj_camera_place.direction
 break;
 }
 
-if keyboard_check_pressed(vk_control)&&stamina>0&&gamepaused=0{
-	readyAction=2
-}
-
 #region BACKSTEP
-if stamina>0&&readyAction==2&&dodgetime==0&&gamepaused=0{
-	readyAction=0
+if stamina>0&&keyboard_check_pressed(vk_control)&&dodgetime==0&&gamepaused=0{
+	
 	if staminaExaust=0{					//backstep
-		dodgetime = 20
-		initaldodgetime=20
-		dodgespeed=basedodgespd*1.5
+		dodgetime = 15
+		initaldodgetime=15
+		dodgespeed=basedodgespd
 		standbytime=3
 		delayiframes=3
 		initaliframes=9
 		
 	}else{								//exausted backsep
-		dodgetime = 23
-		initaldodgetime=23
-		dodgespeed=basedodgespd
+		dodgetime = 18
+		initaldodgetime=18
+		dodgespeed=basedodgespd*.75
 		standbytime=7
 		delayiframes=4
 		initaliframes=7
@@ -304,24 +298,19 @@ if stamina>0&&readyAction==2&&dodgetime==0&&gamepaused=0{
 }
 #endregion
 #region ROLL
-if keyboard_check_pressed(vk_space)&&stamina>0&&gamepaused==0{
-
-readyAction=1
-}
-
-if stamina>0&&readyAction==1&&dodgetime==0&&gamepaused==0&&atkwarmuptime=0{
-	readyAction=0
+if stamina>0&&keyboard_check_pressed(vk_space)&&standbytime==0&&dodgetime==0&&gamepaused=0{
+	
 	if staminaExaust=0{					//roll
 		dodgetime = 25
 		initaldodgetime=25
-		dodgespeed=basedodgespd*1.75
+		dodgespeed=basedodgespd*1.5
 		standbytime=5
 		delayiframes=3
 		initaliframes=19
 	}else{								//exausted roll
 		dodgetime = 30
 		initaldodgetime=30
-		dodgespeed=basedodgespd*1.5
+		dodgespeed=basedodgespd
 		standbytime=5
 		initaliframes=15
 	}
@@ -333,9 +322,7 @@ if stamina>0&&readyAction==1&&dodgetime==0&&gamepaused==0&&atkwarmuptime=0{
 
 }
 #endregion
-#region SPIKES
-if(place_meeting(x,y,obj_spikes)){}
-#endregion
+
 
 //first while dodgetime is running out, the player is locked in a direction with their speed dictacted by dodgetime, dodgespeed, and initaldodgetime
 //next standbytime counds down, during this the player cannot move
@@ -343,19 +330,14 @@ if atkwarmuptime>0&&atk!=0{
 lastdir=lockeddir
 		direction=lockeddir}
 
+if dodgetime>0{
 
-//if stamina>0&&dodgetime=0&&staminaExaust=0&&atktimeheld>0&&atk=0&&(!mouse_check_button(mb_left)||atktimeheld>=heavyAtkTimeThresholdHighest)&&gamepaused=0{
-
-
-if standbytime>0||dodgetime>0{// allows player to initiate attack while in standby
-if mouse_check_button_pressed(mb_left)&&wielding=0{
+if standbytime>0{// allows player to initiate attack while in standby
+if mouse_check_button(mb_left)&&wielding=0{
 {if backstepping=1 {lastdir=lastdir+180;backstepping=0}}
 atktimeheld=10
-
 }
 }
-
-if dodgetime>0{
 } else if standbytime<=0{
 	
 	
@@ -384,7 +366,31 @@ if (vinput!=0)||(hinput!=0){
 } else if spd > 0 then spd-= sign(spd)
 } else {
 	
+	#region ROLL
+if stamina>0&&keyboard_check_pressed(vk_space)&&dodgetime==0&&gamepaused=0{
+	
+	if staminaExaust=0{					//roll
+		dodgetime = 25
+		initaldodgetime=25
+		dodgespeed=basedodgespd
+		standbytime=5
+		delayiframes=3
+		initaliframes=19
+	}else{								//exausted roll
+		dodgetime = 30
+		initaldodgetime=30
+		dodgespeed=basedodgespd*.75
+		standbytime=5
+		initaliframes=15
+	}
+	lockeddir = lastdir
+	
+	staminaTimer=50
+	stamina=stamina-15
+	dodgedelay=40
 
+}
+#endregion
 
 	
 standbytime--	
