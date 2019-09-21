@@ -599,6 +599,14 @@
             }
         },
         {
+            "Key": "c273ecf7-d2e0-4155-8dc4-da647b1c2150",
+            "Value": {
+                "id": "b598f55c-7d8b-4085-91d2-30ea91386fe7",
+                "resourcePath": "sprites\\sp_idle\\sp_idle.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "c28113f0-9fbd-4c7e-84bb-2fbb6ccaa5aa",
             "Value": {
                 "id": "729b3a94-bc42-4c81-99c4-14ef89762335",
