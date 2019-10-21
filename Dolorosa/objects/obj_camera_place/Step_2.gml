@@ -39,6 +39,10 @@ ScreenshakeAmt(10,40,0,1,1)
 //obj_camera_follow.zoom = argument[3]
 
 
+}else if instance_exists(obj_textDraw){
+	y= obj_player.y+camera_get_view_height(view_camera[0])/4	
+	direction = point_direction(x,y,mouse_x,mouse_y)+180
+	speed/=10
 }
 x+=hspeed
 y+=vspeed

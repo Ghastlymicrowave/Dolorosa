@@ -1,4 +1,10 @@
-
+///@func ScreenshakeAmt(Amount ,Duration ,MaxRandAngle ,DoubleZoomPercentage ,NoScreenshake )
+///@desc does a zoom and a screenshake
+///@arg amount
+///@arg duration
+///@arg maxRandomAngle
+///@arg DoubleZoomPercentage
+///@arg NoScreenshake
 // Argument 0 : screenshake amount
 // Argument 1 : duration in frames
 // Argument 2 : maximum random angle (as random positive num funciton)
