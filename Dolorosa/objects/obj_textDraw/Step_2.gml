@@ -1,8 +1,21 @@
+
+
 if screen=1{
 x=obj_camera_follow.x
 y=obj_camera_follow.y
 
-ScreenshakeAmt(2,4,0,1,1)
+if screenScaleAmt>1{
+	
+	if screenScaleAmt<5{
+		screenScaleAmt2+= 2/(screenScaleAmt-1)
+	}
+	screenScaleAmt-= screenScaleAmt/screenScaleAmt2
+	
+
+if screenScaleAmt<1 then screenScaleAmt=1
+}
+ScreenshakeAmt(1,40,0,screenScaleAmt,1)
+
 // Argument 0 : screenshake amount
 // Argument 1 : duration in frames
 // Argument 2 : maximum random angle (as random positive num funciton)
@@ -37,7 +50,11 @@ if(mouse_check_button_pressed(mb_left)){
 	
 if(i>=ds_list_size(dialogue)){
 	destroytime--
-	if destroytime=0 then instance_destroy()
+	if destroytime=0 
+	{
+		destroyMe =1
+	obj_player.gamepaused = 0
+	}
 	exit;
 	}
 

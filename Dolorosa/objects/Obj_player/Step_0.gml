@@ -3,7 +3,17 @@ if keyboard_check_pressed(ord("M")){
 	if window_get_fullscreen(){
 window_set_fullscreen(0)} else window_set_fullscreen(1)
 }
+if keyboard_check_pressed(ord("Q")){
+	var textList = ds_list_create()
+	ds_list_add(textList,"fatfafdsf sdfasdfsdfasdf dasfasdf asdfasfasdfsadfasd fsdafafsdfsd afvvvvvv czzzbbbcxz")
+	ds_list_add(textList,"fat fadssdfasdfsy f f f f f f f f f f f f f f f gggggggggggggg aaaaaaaaaaa vvvvvvvvvvvvv cccccccccccc wsw  wr weeeeeeeeee eeeeeeef f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f")
+	ds_list_add(textList,"faty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat fatty fat")
+	ds_list_add(textList,"bitch")
 
+
+CreateDialouge(textList)
+
+}
 
 //set v and h inputs
 #region knockback

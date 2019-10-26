@@ -1,3 +1,10 @@
+///@function drawParalellogram( x, y, width, height, slope, color)
+///@description do thing
+///@arg x xcord
+///@arg y ycord 
+///@arg width full width
+///@arg slope the angle
+///@arg color the color
 //argument 0 is x
 //argument 1 is y
 //argument 2 is width 

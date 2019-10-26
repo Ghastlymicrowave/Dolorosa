@@ -22,18 +22,19 @@ healthbarframetick++
 if healthbarframetick >= sprite_get_speed(sp_bar1)/room_speed then {healthbarframe++;healthbarframetick=0}
 if healthbarframe==sprite_get_number(sp_bar1)then healthbarframe=0
 */
+var FullScale=3
 #region healthbar
-drawParalellogram(68,10,maxhp*scalefactor/2+4,20,-1,c_white)
-drawParalellogram(70,10,maxhp*scalefactor/2,20,-1,c_black)
-drawParalellogram(70,10,max(drawscrollhp*scalefactor/2,0),20,-1,staminaUseColor)
-drawParalellogram(70,10,max(drawhp*scalefactor/2,0),20,-1,healthbarcolor)
+drawParalellogram(68*FullScale,10*FullScale,(maxhp*scalefactor/2+4)*FullScale,20*FullScale,-1,c_white)
+drawParalellogram(70*FullScale,10*FullScale,maxhp*scalefactor/2*FullScale,20*FullScale,-1,c_black)
+drawParalellogram(70*FullScale,10*FullScale,max(drawscrollhp*scalefactor/2,0)*FullScale,20*FullScale,-1,staminaUseColor)
+drawParalellogram(70*FullScale,10*FullScale,max(drawhp*scalefactor/2,0)*FullScale,20*FullScale,-1,healthbarcolor)
 #endregion
 
 #region stamina bar
-drawParalellogram(68,50,maxstamina*scalefactor/2+4,20,-1,c_white)
-drawParalellogram(70,50,maxstamina*scalefactor/2,20,-1,c_black)
-drawParalellogram(70,50,max(drawStamina*scalefactor/2,0),20,-1,staminaUseColor) //the color of the moving bar
-drawParalellogram(70,50,max(drawStaminacurrent*scalefactor/2,0),20,-1,staminabarcolor) // color of the slowly moving bar
+drawParalellogram(68*FullScale,50*FullScale,(maxstamina*scalefactor/2+4)*FullScale,20*FullScale,-1,c_white)
+drawParalellogram(70*FullScale,50*FullScale,maxstamina*scalefactor/2*FullScale,20*FullScale,-1,c_black)
+drawParalellogram(70*FullScale,50*FullScale,max(drawStamina*scalefactor/2,0)*FullScale,20*FullScale,-1,staminaUseColor) //the color of the moving bar
+drawParalellogram(70*FullScale,50*FullScale,max(drawStaminacurrent*scalefactor/2,0)*FullScale,20*FullScale,-1,staminabarcolor) // color of the slowly moving bar
 #endregion
 
 

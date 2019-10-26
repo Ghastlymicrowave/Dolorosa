@@ -10,10 +10,13 @@ i = 0
 
 drawstring=""
 drawchr=1
-textspeedtick=5
+textspeedtick=1
 
-defaulttickmax=5
+defaulttickmax=1
 textspeedtickmax=defaulttickmax
 screen=1
 
 destroytime=10
+destroyMe=0
+screenScaleAmt=80
+screenScaleAmt2=10

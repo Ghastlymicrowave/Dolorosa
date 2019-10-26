@@ -1,4 +1,6 @@
 #region don't change
+
+display_set_gui_size(3840,2160)
 lastdir=0
 angledif=0
 stamina = 100
@@ -18,6 +20,7 @@ drawStamina=0
 drawStaminacurrent=0
 healthbarframe=0
 healthbarframetick=0
+newroom=0
 
 aimtime=100//time it takes to fully aim
 aimspread=20// degrees of a shot if fired with no aiming
