@@ -52,9 +52,11 @@ if obj_player.inventoryopen=1{
 		
 		
 		} //&&sloty<MaxRowsPerPage-1
-	gotopageheight=pageheight*page
+	gotopageheight=(page*sprite_height+page)
 	followpageheight+= (gotopageheight-followpageheight)/2
-
+	//show_debug_message(
+	show_debug_message(followpageheight)
+	//show_debug_message(yoffset)
 
 var ii=0//don't delete this line
 for (var i = 0; i<floor(ivDivided);i++){//for each full row

@@ -36,7 +36,8 @@ heldtime =0
 heldwaittime=0
 
 page=0
-pageheight=ivh
+pageheight=ivh/2  
+
 followpageheight=0
 
 var objectsPerPage=objectsPerRow*MaxRowsPerPage
@@ -46,7 +47,8 @@ ds_list_read(global.inventory,ini_read_string("general","inventory",ds_list_crea
 ini_close()
 
 var sizedivided = floor(ds_list_size(global.inventory)/objectsPerPage)
-while ds_list_size(global.inventory)!=sizedivided*objectsPerPage||ds_list_size(global.inventory)=0{
+while ds_list_size(global.inventory)<sizedivided*objectsPerPage||ds_list_size(global.inventory)=0{
 	ds_list_add(global.inventory,0) // fill with blank values until page fills
 	sizedivided = floor(ds_list_size(global.inventory)/objectsPerPage)
 }
+

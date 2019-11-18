@@ -1,6 +1,7 @@
 x=obj_player.x
 y=obj_player.y
-direction=obj_player.lastdir
+direction=round(obj_player.lastdir/45)*45
+
 image_angle=direction
 speed=range
 x+=hspeed

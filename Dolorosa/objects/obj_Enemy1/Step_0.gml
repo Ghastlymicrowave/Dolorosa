@@ -237,7 +237,7 @@ if place_meeting(x,y,obj_PlayerAttack)&&iframes<=0{
 	//atktime=0
 	//atkcooldown=0
 	hp-=playerAtkID.damage
-	stagger+=floor(playerAtkID.damage/2)
+	stagger+=floor(playerAtkID.staggerDamage)
 	staggertimer=40
 	if stagger>staggerthresh{
 	AIstate=6	

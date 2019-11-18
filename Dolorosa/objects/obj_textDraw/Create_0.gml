@@ -20,3 +20,7 @@ destroytime=10
 destroyMe=0
 screenScaleAmt=80
 screenScaleAmt2=10
+
+smoothLineHeight=0
+
+drawstringShown=""

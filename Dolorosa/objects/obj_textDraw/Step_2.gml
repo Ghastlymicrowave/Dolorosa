@@ -37,6 +37,8 @@ if(mouse_check_button_pressed(mb_left)){
 	drawchr=1
 	textspeedtick=textspeedtickmax
 	drawstring=""
+	drawstringShown=""
+	
 	}else drawstring=ds_list_find_value(dialogue,i)
 }else if(mouse_check_button(mb_right))&&i+1!=ds_list_size(dialogue){
 	if string_length(drawstring)==string_length(ds_list_find_value(dialogue,i))
@@ -45,6 +47,7 @@ if(mouse_check_button_pressed(mb_left)){
 		//if i > ds_list_size(global.dialogue) then i = ds_list_size(global.dialogue)-1
 		drawchr=1
 		drawstring=""
+		drawstringShown=""
 		}else textspeedtickmax=1
 	} else textspeedtickmax=defaulttickmax
 	
@@ -54,6 +57,7 @@ if(i>=ds_list_size(dialogue)){
 	{
 		destroyMe =1
 	obj_player.gamepaused = 0
+	instance_destroy()
 	}
 	exit;
 	}
@@ -65,3 +69,11 @@ drawstring+=string_char_at(ds_list_find_value(dialogue,i),drawchr)
 drawchr++
 textspeedtick=textspeedtickmax
 }else if textspeedtick >0 {textspeedtick--}
+
+if ds_list_find_value(dialogue,i)!=drawstring{
+	drawstringShown=drawstring
+	drawstringShown = string_delete(drawstringShown,max(string_length(drawstringShown)-4,1),5)
+	
+	show_debug_message(drawstringShown)
+	show_debug_message(drawstring)
+}else{ drawstringShown=drawstring}

@@ -28,7 +28,7 @@ baseaimspread=10
 
 wielding=0 //melee, 1 is gun
 
-staggerthresh=50
+staggerthresh=20
 
 maxspd=0
 atk=0
@@ -99,7 +99,7 @@ maxstamina=100
 exaustSpd=12
 walkSpd=15
 sprintSpd=20
-heavyAtkTimeThreshold=15//#of frames you need to hold atk before heavy atking
+heavyAtkTimeThreshold=30//#of frames you need to hold atk before heavy atking
 sprintHeldTreshold=20 //#of frames you need to hold sprint button before you go fast
 keyboardAiming=0//wether you aim with mouse(0) or keyboard(1)
 

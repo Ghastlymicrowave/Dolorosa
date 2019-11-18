@@ -11,5 +11,5 @@ initalknockbacktime=10// needs to = knockback
 knockbackmult = 60//knockback's inital speed
 
 iframes=20
-
+staggerDamage=20
 knockbacktype=0

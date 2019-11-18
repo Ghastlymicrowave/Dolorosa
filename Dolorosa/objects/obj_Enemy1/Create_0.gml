@@ -5,7 +5,7 @@ sightRange= 2000
 stagger=0
 staggertimer=0
 
-staggerthresh=30
+staggerthresh=10
 
 
 initalspd=0
