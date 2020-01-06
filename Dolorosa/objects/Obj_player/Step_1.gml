@@ -46,9 +46,15 @@ switch (wielding){
 if (!mouse_check_button(mb_left)) && heldtoolong=1 then heldtoolong=0
 if (/*dodgetime!=0||*/staminaExaust||gamepaused)&&atktimeheld!=-1 then atktimeheld = 0 else if mouse_check_button(mb_left)&&heldtoolong=0&&inventoryopen=0&&atktimeheld!=-1{
 atktimeheld++	
-ScreenshakeAmt(atktimeheld/8,atktimeheld,0,480/atktimeheld,0)
+show_debug_message(atktimeheld)
+ScreenShake(20,clamp(atktimeheld/2,1,heavyAtkTimeThresholdHighest/2),1)
+ScreenZoom(80,0.25*(atktimeheld/heavyAtkTimeThresholdHighest)+1,3)
+
 }else if atktimeheld>0&&heldtoolong=1{
-	ScreenshakeAmt(atktimeheld/8,atktimeheld,0,480/atktimeheld,0)
+	
+//ScreenShake(10,clamp(atktimeheld,1,20),1)
+//ScreenZoom(5,1.5,3)
+
 }
 if atktimeheld=-1{
 if !mouse_check_button(mb_left)&&(wielding=0&&standbytime=0&&dodgetime=0) then atktimeheld=0	
@@ -64,30 +70,40 @@ if atkwarmuptime>0&&atk!=0{
 			atkID = instance_create_depth(x,y,-1,obj_PlayerAttack)	
 			#region light 1
 			if combo=1{// Light Attack
-				ScreenshakeAmt(2,8,2,10,0)
+				ScreenShake(10,2,3)
+				ScreenZoom(10,2,3)
+				ScreenRotate(5,5,0,3)
 				PlayerAttack(40,8,obj_player.baseATK,12,basedodgespd,40,15,20,sp_badplayeratk)		
 			#endregion
 			#region light 2
 			}else if combo=2{
-				ScreenshakeAmt(2,10,2,9,0)
+				ScreenShake(10,2,3)
+				ScreenZoom(10,1.5,3)
+				ScreenRotate(5,5,0,3)
 				PlayerAttack(45,10,obj_player.baseATK,12,basedodgespd,40,15,20,sp_badplayeratk)		
 				#endregion
 				#region light 3
 			}else if combo=3{
 				combo=0
-				ScreenshakeAmt(8,12,6,8,0)
+				ScreenShake(10,2,3)
+				ScreenZoom(10,1.5,3)
+				ScreenRotate(5,5,0,3)
 				PlayerAttack(50,10,floor(obj_player.baseATK*1.20),18,basedodgespd*1.25,40,15,20,sp_badplayeratk)		
 				#endregion
 				#region heavy 1
 			}else if combo=4{
-				ScreenshakeAmt(6,16,4,3,0)
+				ScreenShake(10,2,3)
+				ScreenZoom(10,1.5,3)
+				ScreenRotate(5,5,0,3)
 				PlayerAttack(40,14,floor(obj_player.baseATK*1.25),16,basedodgespd*1.25,50,30,24,sp_badplayeratk)		
 					damage=floor(obj_player.baseATK*1.25)
 				#endregion
 				#region heavy 2
 			}else if combo=5{
 				combo=0
-				ScreenshakeAmt(6,16,4,3,0)
+				ScreenShake(10,2,3)
+				ScreenZoom(10,1.5,3)
+				ScreenRotate(5,5,0,3)
 				PlayerAttack(40,18,floor(obj_player.baseATK*1.30),18,basedodgespd*1.5,50,30,20,sp_badplayeratk)		
 				sprite_index=sp_badplayeratk
 				#endregion
@@ -167,7 +183,9 @@ atkID = instance_create_depth(x,y,-1,obj_PlayerProjectile)
 
 atkID.image_angle=obj_player.aimdir+(random((floor((aimspread+speed)/2) * aimperc+floor((baseaimspread+speed)/2)))-1 )*choose(-1,1)
 firerateTimer=10
-				ScreenshakeAmt(2,8,2,10,0)
+				ScreenShake(10,2,3)
+				ScreenZoom(10,1.5,3)
+				ScreenRotate(5,5,0,3)
 				with(atkID){
 					spd=150
 					duration=500

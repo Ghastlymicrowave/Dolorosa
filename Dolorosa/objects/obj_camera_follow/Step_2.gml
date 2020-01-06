@@ -15,41 +15,92 @@ y+= vspd/10
 }
 
 
-if screenshake>0{
-	
-	screenshake= screenshake- initalscreenshake/duration
-	
-	percent = screenshake/time
-	angle = startingangle*percent
-	
-	if screenshake=0{ screenshake=0;angle=0}
-	
-	camera_set_view_angle(view_camera[0],angle)
-	//960 x 540
-	//screenScale = screenshake/15
-	screenScaleInput= 1 - screenshake/time/zoom
-	screenScale += (screenScaleInput-screenScale)/1.5
-	
-	//if screenScale<1 then screenScale=1
-	camera_set_view_size(view_camera[0],viewh*(screenScale),viewv*(screenScale))
-	camera_set_view_pos(view_camera[0],x-camera_get_view_width(view_camera[0])/2,y-camera_get_view_height(view_camera[0])/2)
-	
-	camera_set_view_pos(view_camera[0],camera_get_view_x(view_camera[0])+ (1-2*(random(1))) * random(screenshake+1),camera_get_view_y(view_camera[0])+(1-2*(random(1))) * random(screenshake+1))
-	if noshakey=1{
-		camera_set_view_pos(view_camera[0],x-camera_get_view_width(view_camera[0])/2,y-camera_get_view_height(view_camera[0])/2)
-	
-	
+/*screenZoomTime=0
+ screenRotateTime=0
+ screenshakeTime=0*/
+ 
+ 
+ //case 0, linear
+ //     1, cosine, fastest at end
+ //     2, cosine, slow at beginning and end
+ //     3, cosine, slow at end
+#region Zoom
+if screenZoomTime>0{
+screenZoomTime--;
+if screenZoomTime = 0 {screenScaleInput=1}else{
+var zoomPercent = 0
+	switch(zoomCurve){
+	case 0: zoomPercent = screenZoomTime/iniScreenZoomTime
+	break;
+	case 1: zoomPercent = CosineCurveDec(screenZoomTime,iniScreenZoomTime)
+	break;
+	case 2: zoomPercent = CosineCurveDec2(screenZoomTime,iniScreenZoomTime)
+	break;
+	case 3: zoomPercent = CosineCurveDec3(screenZoomTime,iniScreenZoomTime)
+	break;
 	}
-	//x+= (1-2*(random(1))) * random(screenshake+1)
-	//y+= (1-2*(random(1))) * random(screenshake+1)
-	
-	
-} else camera_set_view_pos(view_camera[0],x-camera_get_view_width(view_camera[0])/2,y-camera_get_view_height(view_camera[0])/2)
+screenScaleInput= zoomPercent*((Zoom/(Zoom*Zoom))-1)+1
+}
+screenScale += (screenScaleInput-screenScale)/1.5
+camera_set_view_size(view_camera[0],viewh*(screenScale),viewv*(screenScale))
+}
+#endregion
 
 
+#region Rotate
+if screenRotateTime>0{
+screenRotateTime--;
+if screenRotateTime=0{angle=0}
+	switch(rotateCurve){
+	case 0: angleInput = angle*(screenRotateTime/iniScreenRotateTime)
+	break;
+	case 1: angleInput = angle*CosineCurveDec(screenRotateTime,iniScreenRotateTime)
+	break;
+	case 2: angleInput = angle*CosineCurveDec2(screenRotateTime,iniScreenRotateTime)
+	break;
+	case 3: angleInput = angle*CosineCurveDec3(screenRotateTime,iniScreenRotateTime)
+	break;
+	}
+realAngle = (angleInput - realAngle)/1.5
+camera_set_view_angle(view_camera[0],realAngle)
+}
+#endregion
+
+
+camera_set_view_pos(view_camera[0],x-camera_get_view_width(view_camera[0])/2,y-camera_get_view_height(view_camera[0])/2)
+
+
+#region Shake
+if screenshakeTime>0{
+screenshakeTime--;	
+if screenshakeTime = 0 {var shakePwr=0}else{
+	var shakePwr=0
+	switch(shakeCurve){
+	case 0: shakePwr = screenshakeTime/iniScreenshakeTime*screenshakePower
+	break;
+	case 1: shakePwr = CosineCurveDec(screenshakeTime,iniScreenshakeTime)*screenshakePower
+	break;
+	case 2: shakePwr = CosineCurveDec2(screenshakeTime,iniScreenshakeTime)*screenshakePower
+	break;
+	case 3: shakePwr = CosineCurveDec3(screenshakeTime,iniScreenshakeTime)*screenshakePower
+	break;
+	}
+}
+
+	camera_set_view_pos(view_camera[0],camera_get_view_x(view_camera[0])+ (1-2*(random(1))) * random(shakePwr+1),camera_get_view_y(view_camera[0])+(1-2*(random(1))) * random(shakePwr+1))
+}
+#endregion
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////
+/*
 
 if keyboard_check_pressed(ord("G")) then ScreenshakeAmt(50,50,random(90)+15,4,0)
 if keyboard_check_pressed(ord("H")) then ScreenshakeAmt(200,5,random(20)+20,1.5,0)
 if keyboard_check_pressed(ord("J")) then ScreenshakeAmt(2000,40,random(360),1,0)
 if keyboard_check_pressed(ord("K")) then ScreenshakeAmt(1,40,0,1,1)
 if keyboard_check_pressed(ord("L")) then ScreenshakeAmt(random(1000)+1,random(1000),random(1000),random(1000),0)
+*/

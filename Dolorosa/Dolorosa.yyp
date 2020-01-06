@@ -191,6 +191,14 @@
             }
         },
         {
+            "Key": "3f1424dd-0449-4ddf-ad6d-af8aa1e9e91b",
+            "Value": {
+                "id": "eab86c8d-f889-45f9-8cc3-db59527ef4be",
+                "resourcePath": "scripts\\CosineCurveDec3\\CosineCurveDec3.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3f728b77-9817-4496-83e0-306ec87ce3fc",
             "Value": {
                 "id": "825c03ca-c91a-4e42-8828-8f06df3a432e",
@@ -244,6 +252,14 @@
                 "id": "de51387e-ff53-49db-a71b-33c71960da73",
                 "resourcePath": "objects\/obj_cursor\/obj_cursor.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "59fb6cf5-3cc5-48ea-a932-8093fad9df23",
+            "Value": {
+                "id": "c2d304b5-102e-4dbb-a0ff-136aff24b1c8",
+                "resourcePath": "scripts\\ScreenRotate\\ScreenRotate.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -303,6 +319,14 @@
             }
         },
         {
+            "Key": "6f30bf30-1fda-4518-ae34-e4000b8f08d5",
+            "Value": {
+                "id": "47fb817d-7636-4b04-b2e6-96d2d38ccd6c",
+                "resourcePath": "scripts\\ScreenShake\\ScreenShake.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "70e6881e-352c-4cea-b017-8ae2be8da1b4",
             "Value": {
                 "id": "5ef73bc4-666b-4dfd-8ad5-a87b83692b2d",
@@ -316,6 +340,14 @@
                 "id": "19984895-bf73-4b96-842e-34a27578dfb3",
                 "resourcePath": "objects\/prnt_interactable\/prnt_interactable.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "739f4343-33a4-4392-9d4d-870f67d05feb",
+            "Value": {
+                "id": "ec25b894-723d-4870-a906-34a96dea0ffc",
+                "resourcePath": "scripts\\ScreenZoom\\ScreenZoom.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -711,6 +743,14 @@
             }
         },
         {
+            "Key": "dff112a6-d9ff-41bd-ba26-4ec88615c1f2",
+            "Value": {
+                "id": "41fe62c9-eba6-4b38-8b1a-dd4aa7e3ff80",
+                "resourcePath": "scripts\\CosineCurveDec2\\CosineCurveDec2.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e1525e48-fdc1-465a-b60c-6682adc3b3ee",
             "Value": {
                 "id": "c002a7b5-f62d-436f-9516-cf2a3b6f568b",
@@ -775,6 +815,14 @@
             }
         },
         {
+            "Key": "f64dce9e-dc7c-4b21-825f-fc8482d79c19",
+            "Value": {
+                "id": "0ebcaace-c505-422e-9937-dc311db824e4",
+                "resourcePath": "scripts\\CosineCurveDec\\CosineCurveDec.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fa9bbade-a1c8-48d3-86df-c6f9adbaa6ba",
             "Value": {
                 "id": "2c411fda-2f54-4642-833a-afab4a0043f2",
@@ -805,7 +853,13 @@
         "5d9572e8-f39b-4223-87e3-1d67bc8993ac",
         "c12835d0-c2e3-4ebe-8b61-152b462b0c65",
         "889b7b37-edfb-4f9b-82ab-c93dd0988b7c",
-        "6d1be49f-ff22-40cf-8845-3a5dac7e32c9"
+        "6d1be49f-ff22-40cf-8845-3a5dac7e32c9",
+        "739f4343-33a4-4392-9d4d-870f67d05feb",
+        "59fb6cf5-3cc5-48ea-a932-8093fad9df23",
+        "6f30bf30-1fda-4518-ae34-e4000b8f08d5",
+        "f64dce9e-dc7c-4b21-825f-fc8482d79c19",
+        "dff112a6-d9ff-41bd-ba26-4ec88615c1f2",
+        "3f1424dd-0449-4ddf-ad6d-af8aa1e9e91b"
     ],
     "tutorial": ""
 }
