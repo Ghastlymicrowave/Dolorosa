@@ -295,6 +295,14 @@
             }
         },
         {
+            "Key": "6d1be49f-ff22-40cf-8845-3a5dac7e32c9",
+            "Value": {
+                "id": "9cb24934-d6db-4f87-887e-28b481f43c23",
+                "resourcePath": "scripts\\PlayerAttack\\PlayerAttack.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "70e6881e-352c-4cea-b017-8ae2be8da1b4",
             "Value": {
                 "id": "5ef73bc4-666b-4dfd-8ad5-a87b83692b2d",
@@ -796,7 +804,8 @@
         "a66b43a4-7556-4af3-9cb8-3169408f59b0",
         "5d9572e8-f39b-4223-87e3-1d67bc8993ac",
         "c12835d0-c2e3-4ebe-8b61-152b462b0c65",
-        "889b7b37-edfb-4f9b-82ab-c93dd0988b7c"
+        "889b7b37-edfb-4f9b-82ab-c93dd0988b7c",
+        "6d1be49f-ff22-40cf-8845-3a5dac7e32c9"
     ],
     "tutorial": ""
 }

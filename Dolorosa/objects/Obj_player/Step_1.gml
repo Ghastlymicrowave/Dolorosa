@@ -5,7 +5,7 @@ vinput = keyboard_check(ord("S")) - keyboard_check(ord("W"))
 hinput = keyboard_check(ord("D")) - keyboard_check(ord("A"))
 if atkwarmuptime>0 { vinput=0;hinput=0;}
 if keyboard_check_pressed(ord("F"))&&atk=0&&atktimeheld=0&&standbytime=0{
-wielding=!wielding	
+wielding=!wielding	//wielding is the weapon you are using, currently only gun or sword
 }
 #endregion
 #region STAMINA run out change the bar's color
@@ -65,100 +65,30 @@ if atkwarmuptime>0&&atk!=0{
 			#region light 1
 			if combo=1{// Light Attack
 				ScreenshakeAmt(2,8,2,10,0)
-				with(atkID){
-					image_angle=obj_player.lastdir
-					range=40
-					duration=8
-					damage=obj_player.baseATK
-				}
-				dodgetime=12
-				initaldodgetime=12
-				dodgespeed=basedodgespd
-				staminaTimer=40
-				stamina=stamina-15
-				dodgedelay=dodgetime+5
-				standbytime=20
-				attackingframes = dodgetime
-				sprite_index=sp_badplayeratk
+				PlayerAttack(40,8,obj_player.baseATK,12,basedodgespd,40,15,20,sp_badplayeratk)		
 			#endregion
 			#region light 2
 			}else if combo=2{
-				
 				ScreenshakeAmt(2,10,2,9,0)
-				with(atkID){
-					image_angle=obj_player.lastdir
-					range=45
-					duration=10
-					damage=obj_player.baseATK
-				}
-				dodgetime=12
-				initaldodgetime=12
-				dodgespeed=basedodgespd
-				staminaTimer=40
-				stamina=stamina-15
-				dodgedelay=dodgetime+5
-				standbytime=20
-				attackingframes =dodgetime
-				sprite_index=sp_badplayeratk
+				PlayerAttack(45,10,obj_player.baseATK,12,basedodgespd,40,15,20,sp_badplayeratk)		
 				#endregion
 				#region light 3
 			}else if combo=3{
 				combo=0
 				ScreenshakeAmt(8,12,6,8,0)
-				with(atkID){
-					image_angle=obj_player.lastdir
-					range=50
-					duration=10
-					damage=floor(obj_player.baseATK*1.20)
-				}
-				dodgetime=18
-				initaldodgetime=18
-				dodgespeed=basedodgespd*1.25
-				staminaTimer=40
-				stamina=stamina-15
-				dodgedelay=dodgetime+5
-				standbytime=20
-				attackingframes = dodgetime
-				sprite_index=sp_badplayeratk
+				PlayerAttack(50,10,floor(obj_player.baseATK*1.20),18,basedodgespd*1.25,40,15,20,sp_badplayeratk)		
 				#endregion
 				#region heavy 1
 			}else if combo=4{
-				
 				ScreenshakeAmt(6,16,4,3,0)
-				with(atkID){
-					range=40
-					duration=14
-					image_yscale=1.5
+				PlayerAttack(40,14,floor(obj_player.baseATK*1.25),16,basedodgespd*1.25,50,30,24,sp_badplayeratk)		
 					damage=floor(obj_player.baseATK*1.25)
-				}
-				dodgetime=16
-				initaldodgetime=16
-				dodgespeed=basedodgespd*1.25
-				staminaTimer=50
-				stamina=stamina-30
-				dodgedelay=dodgetime+5
-				standbytime=24
-				attackingframes = dodgetime
-				sprite_index=sp_badplayeratk
 				#endregion
 				#region heavy 2
 			}else if combo=5{
 				combo=0
 				ScreenshakeAmt(6,16,4,3,0)
-				with(atkID){
-					range=40
-					duration=18
-					image_yscale=1.75
-					damage=floor(obj_player.baseATK*1.30)
-				}
-				dodgetime=18
-				initaldodgetime=18
-				dodgespeed=basedodgespd*1.5
-				staminaTimer=50
-				stamina=stamina-30
-				dodgedelay=dodgetime+5
-				standbytime=20
-				attackingframes = dodgetime
+				PlayerAttack(40,18,floor(obj_player.baseATK*1.30),18,basedodgespd*1.5,50,30,20,sp_badplayeratk)		
 				sprite_index=sp_badplayeratk
 				#endregion
 			}
