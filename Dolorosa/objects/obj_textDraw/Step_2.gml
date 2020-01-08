@@ -1,4 +1,17 @@
-
+if destroyMe=1{
+	
+	destroytime--
+	if destroytime=0 
+	{
+		if (!_continue){obj_player.gamepaused = 0}
+		
+		obj_player.dodgetime=0
+		obj_player.dodgespeed=0
+		obj_player.dodgedelay=0
+		instance_destroy()
+	return;
+	}
+}
 
 if screen=1{
 x=obj_camera_follow.x
@@ -51,16 +64,16 @@ if(mouse_check_button_pressed(mb_left)){
 		}else textspeedtickmax=1
 	} else textspeedtickmax=defaulttickmax
 	
-if(i>=ds_list_size(dialogue)){
-	destroytime--
-	if destroytime=0 
-	{
-		destroyMe =1
-	obj_player.gamepaused = 0
-	instance_destroy()
-	}
-	exit;
-	}
+if(i>=ds_list_size(dialogue))&&destroyMe==0{
+	destroyMe=1
+	if (_continue){prntSpeaker.interacted=1}
+	
+	ds_list_add(dialogue,ds_list_find_value(dialogue,i-1))
+	
+	//instance_destroy()
+}
+	
+if destroyMe==0{
 
 if textspeedtick=0 && ds_list_find_value(dialogue,i)!= drawstring {
 
@@ -77,3 +90,4 @@ if ds_list_find_value(dialogue,i)!=drawstring{
 	show_debug_message(drawstringShown)
 	show_debug_message(drawstring)
 }else{ drawstringShown=drawstring}
+}

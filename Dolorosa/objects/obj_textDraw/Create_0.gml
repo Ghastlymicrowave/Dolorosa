@@ -16,7 +16,7 @@ defaulttickmax=1
 textspeedtickmax=defaulttickmax
 screen=1
 
-destroytime=10
+destroytime=1
 destroyMe=0
 screenScaleAmt=80
 screenScaleAmt2=10
@@ -24,3 +24,6 @@ screenScaleAmt2=10
 smoothLineHeight=0
 
 drawstringShown=""
+
+_continue=0
+show_debug_message("actually made")
