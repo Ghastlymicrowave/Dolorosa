@@ -1,13 +1,14 @@
 ///@func qst_update_add(id,destination,value)
+///@desc updates a specific value of a quest
 ///@arg id
 ///@arg destination
 ///@arg value
 switch(argument[1]){
 case "title":
-questinfo.questArray[argument[0],0] += argument[2]
+questinfo.questArray[argument[0],0] = argument[2]
 break;
 case "info":
-questinfo.questArray[argument[0],1] += argument[2]
+questinfo.questArray[argument[0],1] = argument[2]
 break;
 case "next":
 questinfo.questArray[argument[0],2] += argument[2]

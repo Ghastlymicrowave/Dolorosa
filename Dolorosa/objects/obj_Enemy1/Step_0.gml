@@ -23,7 +23,7 @@ switch(AIstate){
 	
 	//bad pathfinding right here:
 	dir=point_direction(x,y,obj_player.x,obj_player.y)
-	spd=10
+	EnemyAccelerateTo(walkspd,4)
 	
 	if collision_line(x,y,obj_player.x,obj_player.y,obj_obstacle,1,1){
 		AIstate=3
@@ -73,7 +73,7 @@ break;
 	}else atkRandomizeTime--
 	
 	var expectedRange = 2*initalatktime*initalspd/pi +(192/2)
-	if expectedRange>= distance_to_object(obj_player){
+	if expectedRange>= distance_to_object(obj_player)+obj_player.speed*initalatktime{
 	AIstate=2	
 	}
 	
@@ -194,8 +194,8 @@ break;
 			if repositionTime>0{
 			repositionTime--
 			dir = point_direction(obj_player.x,obj_player.y,x,y)
-			spd=walkspd*1.25
-			if distance_to_object(obj_player)>600 then AIstate=1
+			EnemyAccelerateTo(walkspd*1.25,2)
+			if distance_to_object(obj_player)>800 then AIstate=1
 			}else if repositionTime<=0 then AIstate=1
 	break;
 	#endregion
@@ -204,6 +204,11 @@ break;
 	case 8: 
 	spd=0
 	dir=0
+	var corpse = instance_create_depth(x,y,2,obj_corpse)
+	corpse.sprite_index=sp_badplayeratk
+	instance_destroy(Hitbox)
+	instance_destroy()
+	exit;
 	break;
 	#endregion
 }

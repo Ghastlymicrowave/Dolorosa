@@ -33,5 +33,7 @@ AIstate=0
 
 stunnedTime=0
 iframes=0
+/*
+mp_potential_step_object()*/
 //variables stay at -1 for inactive
 // when they hit 0 they stay 0 until they stop attacking

@@ -43,13 +43,15 @@ switch (wielding){
 	case 0:
 #region melee attacks																												need to add combos and warmup frames
 #region atktimeheld
-show_debug_message(string(standbytime))
-if mouse_check_button_pressed(mb_left)&&!staminaExaust&&!gamepaused&&atktimeheld=-1&&standbytime=0&&atkwarmuptime=0&&dodgetime=0{atktimeheld=0}//first click
+//show_debug_message(string(standbytime))
+//show_debug_message(atktimeheld)
+
+if mouse_check_button_pressed(mb_left)&&!staminaExaust&&!gamepaused&&atktimeheld<1&&atkwarmuptime=0&&dodgetime=0{atktimeheld=1; show_debug_message("FART")}//first click
 if (!mouse_check_button(mb_left)) && heldtoolong=1 then heldtoolong=0
 //if (/*dodgetime!=0||*/staminaExaust||gamepaused)&&atktimeheld!=-1 then atktimeheld = 0 else
-if mouse_check_button(mb_left)&&heldtoolong=0&&inventoryopen=0&&atktimeheld!=-1&&!staminaExaust&&!gamepaused{
+if mouse_check_button(mb_left)&&heldtoolong=0&&inventoryopen=0&&atktimeheld>0&&!staminaExaust&&!gamepaused{
 atktimeheld++	
-show_debug_message(atktimeheld)
+//show_debug_message(atktimeheld)
 ScreenShake(20,clamp(atktimeheld/2,1,heavyAtkTimeThresholdHighest/2),1)
 ScreenZoom(80,0.15*(atktimeheld/heavyAtkTimeThresholdHighest)+1,3)
 
@@ -59,9 +61,9 @@ ScreenShake(20,heavyAtkTimeThresholdHighest/2,1)
 ScreenZoom(80,1.20,3)
 
 }
-if atktimeheld=-1{
-if !mouse_check_button(mb_left)&&(wielding=0&&standbytime=0&&dodgetime=0) then atktimeheld=0	
-}
+//if atktimeheld=-1{
+//if !mouse_check_button(mb_left)&&(wielding=0&&standbytime=0&&dodgetime=0) then atktimeheld=0	
+//}
 
 #endregion
 #region atkwarmup
@@ -382,7 +384,7 @@ scrollhptimer=scrollhptimermax
 
 
 
-
+/*
 #region Saving
 
 //Manual Autosave
@@ -430,3 +432,4 @@ ini_close()
 }
 
 #endregion
+*/

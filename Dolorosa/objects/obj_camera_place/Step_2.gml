@@ -24,7 +24,7 @@ direction = point_direction(x,y,mouse_x,mouse_y)+180
 speed/=10
 //ScreenshakeAmt(0,20,0,1)
 obj_camera_follow.time=10
-ScreenshakeAmt(10,40,0,1,1)
+ScreenZoom(20,2,3)
 
 //obj_camera_follow.screenshake =argument[0]
 //obj_camera_follow.initalscreenshake =argument[0]
