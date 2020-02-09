@@ -46,7 +46,7 @@ switch (wielding){
 //show_debug_message(string(standbytime))
 //show_debug_message(atktimeheld)
 
-if mouse_check_button_pressed(mb_left)&&!staminaExaust&&!gamepaused&&atktimeheld<1&&atkwarmuptime=0&&dodgetime=0&&inventoryopen=0{atktimeheld=1; show_debug_message("FART")}//first click
+if mouse_check_button_pressed(mb_left)&&!staminaExaust&&!gamepaused&&atktimeheld<1&&atkwarmuptime=0&&dodgetime=0{atktimeheld=1; show_debug_message("FART")}//first click
 if (!mouse_check_button(mb_left)) && heldtoolong=1 then heldtoolong=0
 //if (/*dodgetime!=0||*/staminaExaust||gamepaused)&&atktimeheld!=-1 then atktimeheld = 0 else
 if mouse_check_button(mb_left)&&heldtoolong=0&&inventoryopen=0&&atktimeheld>0&&!staminaExaust&&!gamepaused{
@@ -257,7 +257,7 @@ if stamina>0&&readyAction==2&&dodgetime==0&&gamepaused=0{
 }
 #endregion
 #region ROLL
-if keyboard_check_pressed(vk_space)&&stamina>0&&gamepaused==0&&inventoryopen=0{
+if keyboard_check_pressed(vk_space)&&stamina>0&&gamepaused==0{
 
 readyAction=1
 }
