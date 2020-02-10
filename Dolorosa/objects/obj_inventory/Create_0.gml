@@ -5,26 +5,48 @@
 global.inventory = ds_list_create()
 
 
-objectsPerRow=5
-MaxRowsPerPage=4
+maxEquips=4
+
+currentEquips=ds_list_create()
+ds_list_add(currentEquips,0)
+ds_list_add(currentEquips,0)
+ds_list_add(currentEquips,0)
+ds_list_add(currentEquips,0)
+objectsPerRow=3
+MaxRowsPerPage=8
 //inventorycreated=0
 
-xoffset=100
-yoffset=100
-wscale=1.5
-hscale=1.2
+
+uiPresets[4,4]=0
+/*
+xoffset
+yoffset
+widthcale
+heightscale (percents of screen)
+*/
+//	x cord is panel, 
+//0 Item inventory
+//1 Equips window
+
+
+uiPresets[0,0]=0.05
+uiPresets[0,1]=0.1
+uiPresets[0,2]=0.40
+uiPresets[0,3]=0.8
+
+uiPresets[1,0]=0.5
+uiPresets[1,1]=0.3
+uiPresets[1,2]=0.45
+uiPresets[1,3]=0.5
+
 side=0
 
 
-ivx=camera_get_view_x(view_camera[0])+xoffset
-ivy=camera_get_view_y(view_camera[0])+yoffset
-ivw=camera_get_view_width(view_camera[0])/wscale
-ivh=camera_get_view_height(view_camera[0])/hscale
-
+/*
 ivx1=xoffset/camera_get_view_width(view_camera[0])
 ivy1=yoffset/camera_get_view_height(view_camera[0])
 ivw1=ivw
-ivh1=ivh
+ivh1=ivh*/
 
 depth=-5
 image_alpha=0.5
@@ -36,7 +58,7 @@ heldtime =0
 heldwaittime=0
 
 page=0
-pageheight=ivh/2  
+//pageheight=ivh/2  
 
 followpageheight=0
 

@@ -447,6 +447,14 @@
             }
         },
         {
+            "Key": "90a6bdd9-4c2e-44f9-92d9-fbdaab4035d3",
+            "Value": {
+                "id": "d06a9de5-a272-4d8b-ada1-495577a985a7",
+                "resourcePath": "scripts\\ConvertGUItoReal\\ConvertGUItoReal.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9516d68e-86f2-4d55-bb46-8c814e2b965d",
             "Value": {
                 "id": "2f48bed9-41e2-4aec-9fee-1c773f58fe63",
@@ -727,6 +735,14 @@
             }
         },
         {
+            "Key": "cb3768f9-a733-45c7-b332-74e9321e0fa7",
+            "Value": {
+                "id": "27fc606a-9b61-4867-93ea-15a86be12b23",
+                "resourcePath": "scripts\\ConvertRealtoGUI\\ConvertRealtoGUI.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cc98d028-7bdd-4680-85f3-c87a7baa481e",
             "Value": {
                 "id": "e355a39b-65ad-4bc1-877e-85ef41f9a56c",
@@ -901,7 +917,9 @@
         "f64dce9e-dc7c-4b21-825f-fc8482d79c19",
         "dff112a6-d9ff-41bd-ba26-4ec88615c1f2",
         "3f1424dd-0449-4ddf-ad6d-af8aa1e9e91b",
-        "423c2e7a-44fa-4ccf-b07b-f4e54c55dc35"
+        "423c2e7a-44fa-4ccf-b07b-f4e54c55dc35",
+        "90a6bdd9-4c2e-44f9-92d9-fbdaab4035d3",
+        "cb3768f9-a733-45c7-b332-74e9321e0fa7"
     ],
     "tutorial": ""
 }

@@ -1,0 +1,1 @@
+draw_sprite_ext(sprite_index,0,ConvertRealtoGUI(x,0),ConvertRealtoGUI(y,1),image_xscale*3,image_yscale*3,0,c_white,image_alpha)
