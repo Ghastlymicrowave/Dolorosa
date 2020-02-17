@@ -96,7 +96,7 @@ switch side {
 var ii=0//don't delete this line
 for (var i = 0; i<floor(ivDivided);i++){//for each full row
 	//loops for each full row
-	
+	show_debug_message("its doin a")
 	//if i > MaxRowsPerPage-1 then break;
 	
 	for (var ii=0; ii<objectsPerRow;ii++){
@@ -125,15 +125,12 @@ for (var i = 0; i<floor(ivDivided);i++){//for each full row
 		}
 		//}
 	}
-	
-	//x = ii*width/objectsPerRow
-	//make annother for loop for each object using ii as the horiz location
-	//draws object in slot (MaxRowsPerPage*(page-1)+ii)
+
 	}
 	//show_debug_message(string(i)+"full rows")
 	if floor(ivDivided)!=ivDivided{
 		
-		
+		show_debug_message("its doin b")
 		for (var iii=floor(i*objectsPerRow); iii<ivSize;iii++){ //iii = 0+floor(i*objectsPerRow)
 			//show_debug_message(string(iii)+"leftover")
 			
@@ -160,6 +157,10 @@ for (var i = 0; i<floor(ivDivided);i++){//for each full row
 			if collision_rectangle(xx-panelW/objectsPerRow/2,yy-panelH/MaxRowsPerPage/2,xx+panelW/objectsPerRow/2,yy+panelH/MaxRowsPerPage/2,obj_cursor,1,1)&&mouse_check_button_pressed(mb_left)&&side=0{
 			
 			show_debug_message("clicked item "+ string(iii)+" object: "+ string(ds_list_find_value(global.inventory,iii)))
+			
+			if ds_list_find_index(global.currentEquips,ds_list_find_value(global.inventory,iii)){
+				ds_list_add(global.currentEquips,ds_list_find_value(global.inventory,iii))
+			}
 			}
 			//}
 			
@@ -177,17 +178,40 @@ for (var i = 0; i<floor(ivDivided);i++){//for each full row
 	var panelH=display_get_gui_height()*uiPresets[1,3]//	/hscale
 
 
-for (var i = 0; i<ds_list_size(currentEquips);i++){
+for (var i = 0; i<maxEquips;i++){
+	var xx = (i+1)*panelW/(maxEquips+1)+ivx
+	var yy = ivy+panelH/2
 	
 	//look into the array of items based on the item in the list
 	
-	var spr = sp_placeholderItem
+	if i < ds_list_size(global.currentEquips){
+		
+		//switch based on the item's info
+		var spr = sp_placeholderItem
+		
+	draw_rectangle(xx-sprite_get_width(spr)/2,yy-sprite_get_height(spr)/2,xx+sprite_get_width(spr)/2,yy+sprite_get_height(spr)/2,5)	
+		
+		var x1 = ConvertGUItoReal( xx-sprite_get_width(spr)/2,0)
+		var x2 = ConvertGUItoReal( xx+sprite_get_width(spr)/2,0)
+		var y1 = ConvertGUItoReal( yy-sprite_get_height(spr)/2,1)
+		var y2 = ConvertGUItoReal( yy+sprite_get_height(spr)/2,1)
+		
+		if collision_rectangle(x1,y1,x2,y2,obj_cursor,1,1)&&mouse_check_button_pressed(mb_left)&&side=0{
+			
+			show_debug_message("clicked item "+ string(i)+" object: "+ string(ds_list_find_value(global.currentEquips,i)))
+			ds_list_delete(global.currentEquips,i)
+			}
+		
+	}else{
 	
-	draw_sprite(spr,0,(i+1)*panelW/(maxEquips+1)+ivx,ivy+panelH/2)
+	var spr = sp_thing
+	
+	
 
+	}
 	
 	
-	
+	draw_sprite(spr,0,xx,yy)
 }
 
 

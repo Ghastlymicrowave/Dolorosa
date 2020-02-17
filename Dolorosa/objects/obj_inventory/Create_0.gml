@@ -7,11 +7,10 @@ global.inventory = ds_list_create()
 
 maxEquips=4
 
-currentEquips=ds_list_create()
-ds_list_add(currentEquips,0)
-ds_list_add(currentEquips,0)
-ds_list_add(currentEquips,0)
-ds_list_add(currentEquips,0)
+global.currentEquips=ds_list_create()
+ds_list_add(global.currentEquips,1)
+ds_list_add(global.currentEquips,1)
+
 objectsPerRow=3
 MaxRowsPerPage=8
 //inventorycreated=0
