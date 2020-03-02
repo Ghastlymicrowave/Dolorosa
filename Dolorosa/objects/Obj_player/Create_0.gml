@@ -12,15 +12,11 @@ dodgetime=0
 iframes=0
 dodgedelay=0
 backstepping=0
-attacking=0
 atktimeheld=0
 standbytime=0
 delayiframes=0
 drawStamina=0
 drawStaminacurrent=0
-healthbarframe=0
-healthbarframetick=0
-newroom=0
 
 aimtime=100//time it takes to fully aim
 aimspread=20// degrees of a shot if fired with no aiming
@@ -35,7 +31,6 @@ atk=0
 
 combo=0
 atkwarmuptime=0
-heldtoolong=0
 healthbarcolor=c_white
 staminabarcolor=c_white
 inventoryopen=0
@@ -54,7 +49,6 @@ maxhp=100
 aimrange=0
 smoothAimDir=0
 
-firerateTimer=0
 
 keyboard_set_map(vk_up,ord("W"))
 keyboard_set_map(vk_down,ord("S"))
@@ -77,24 +71,24 @@ read combo value | coresponding attack
 staminaUnexaustThresh=0.75 //a percent of stamina to unexaust at
 
 #endregion
+#region attack overhaul
 
+attackKit[10,10]=noone
+combo=0
+combotime=0
+attackWarm=-1
+attackTick=0
+
+#endregion
 basedodgespd=20
 dir=0
 
 //change these when you want
-
-
-baseATK=10
-
-
 readyAction=0
 //1 is roll
 //2 is backstep
-
 room_speed=60
 scalefactor=5//pixels in width for the stamina bar and hp bar(not implimented yet)
-AtkAngleThreshhold =45// 
-heavyAtkTimeThresholdHighest=40//longest time you can hold a heavy for
 maxstamina=100
 exaustSpd=12
 walkSpd=15
@@ -102,12 +96,10 @@ sprintSpd=20
 heavyAtkTimeThreshold=30//#of frames you need to hold atk before heavy atking
 sprintHeldTreshold=20 //#of frames you need to hold sprint button before you go fast
 keyboardAiming=0//wether you aim with mouse(0) or keyboard(1)
-
-
 //right click, special ability (parry, block,)
 //hold left click heavy attack
-//									space roll 
-//									left controll backstep
+//space roll 
+//left controll backstep
 
 
 //key inputs:

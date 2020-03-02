@@ -13,7 +13,6 @@ staminaFullColor = $ffffff
 staminaEmptyColor = $3300ff
 staminaUseColor = $666666
 
-if staminaTimer<=0&&atkwarmuptime<=0&&atktimeheld<=0&&wielding=0 then combo=0
 if stamina/maxstamina>=staminaUnexaustThresh {staminaExaust=0;staminabarcolor=staminaFullColor}
 if stamina>=maxstamina {stamina=maxstamina}
 //happens once when stamina = 0
@@ -39,8 +38,18 @@ if iframes>0 then iframes--}
 #region DODGEDELAY
 if dodgedelay>0 then dodgedelay--
 #endregion
+#region ATTACKS
+
+if(mouse_check_button_pressed(mb_left)){
+	attackTick=1
+	attackWarm=attackKit[combo,5]
+}
+if(mouse_check_button_released(mb_left)){
+	if(attackWarm>0){}else{}
+}
 
 
+#endregion
 #region BACKSTEP
 if stamina>0&&readyAction==2&&dodgetime==0&&gamepaused=0{
 	readyAction=0
