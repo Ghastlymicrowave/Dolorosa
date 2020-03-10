@@ -36,6 +36,7 @@ ScreenshakeAmt(1,40,0,screenScaleAmt,1)
 
 }
 
+if textEnded = 1 {return;}
 
 if(mouse_check_button(mb_right)){
 textspeedtickmax=defaulttickmax-5
@@ -64,16 +65,18 @@ if(mouse_check_button_pressed(mb_left)){
 		}else textspeedtickmax=1
 	} else textspeedtickmax=defaulttickmax
 	
-if(i>=ds_list_size(dialogue))&&destroyMe==0{
-	destroyMe=1
-	if (_continue){prntSpeaker.interacted=1}
+if(i>=ds_list_size(dialogue))&&textEnded==0{
+	textEnded=1
+	//if (_continue){prntSpeaker.interacted=1}
 	
 	ds_list_add(dialogue,ds_list_find_value(dialogue,i-1))
-	
+	drawstringShown=ds_list_find_value(dialogue,i-1)
+	drawstring=drawstringShown
+	show_debug_message("ee")
 	//instance_destroy()
 }
 	
-if destroyMe==0{
+if textEnded==0{//<== probably a redundent line
 
 if textspeedtick=0 && ds_list_find_value(dialogue,i)!= drawstring {
 
@@ -87,7 +90,7 @@ if ds_list_find_value(dialogue,i)!=drawstring{
 	drawstringShown=drawstring
 	drawstringShown = string_delete(drawstringShown,max(string_length(drawstringShown)-4,1),5)
 	
-	show_debug_message(drawstringShown)
-	show_debug_message(drawstring)
+	//show_debug_message(drawstringShown)
+	//show_debug_message(drawstring)
 }else{ drawstringShown=drawstring}
 }

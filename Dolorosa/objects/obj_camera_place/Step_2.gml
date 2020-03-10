@@ -12,7 +12,13 @@ centery= window_get_height()/2//camera_get_view_y(view_camera[0])+camera_get_vie
 direction = point_direction(centerx,centery,window_mouse_get_x(),window_mouse_get_y())
 speed = point_distance(centerx,centery,window_mouse_get_x(),window_mouse_get_y())*distancefactor
 
-if obj_player.inventoryopen=1 {
+if obj_player.interactState=1 {
+	var cX = obj_cursor.x - camera_get_view_x(view_camera[0])/camera_get_view_width(view_camera[0]) * window_get_width()
+	var cY = obj_cursor.y - camera_get_view_y(view_camera[0])/camera_get_view_height(view_camera[0]) * window_get_height()
+	
+direction = point_direction(centerx,centery,cX,cY)
+speed = point_distance(centerx,centery,cX,cY)*distancefactor	
+
 	if obj_inventory.side=0{
 x= obj_player.x-camera_get_view_width(view_camera[0])/3
 y= obj_player.y+camera_get_view_height(view_camera[0])/4

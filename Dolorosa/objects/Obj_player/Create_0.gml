@@ -18,6 +18,8 @@ delayiframes=0
 drawStamina=0
 drawStaminacurrent=0
 
+aimdir=0
+
 aimtime=100//time it takes to fully aim
 aimspread=20// degrees of a shot if fired with no aiming
 baseaimspread=10
@@ -33,8 +35,12 @@ combo=0
 atkwarmuptime=0
 healthbarcolor=c_white
 staminabarcolor=c_white
-inventoryopen=0
-gamepaused=0
+interactState=0
+//interact state 0 is unpaused
+//interact state 1 is opened menu
+//interact state 2 is interacing with choice menu
+//interact state 3 is paused otherwise
+
 fadeintime=0
 knockbacktime = 0
 attackingframes=0
@@ -48,7 +54,6 @@ scrollhp=100
 maxhp=100
 aimrange=0
 smoothAimDir=0
-
 
 keyboard_set_map(vk_up,ord("W"))
 keyboard_set_map(vk_down,ord("S"))

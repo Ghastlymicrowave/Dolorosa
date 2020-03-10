@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if obj_player.gamepaused=0{
+if obj_player.interactState=0{
 
 
 
@@ -266,7 +266,7 @@ if playerAtkID.knockbacktype=1{//radial burst
 		atkRandomizeTime=0
 		if hp<=0&&AIstate!=8 { AIstate=8	//DIES
 		ds_list_add(enemyinfo.deaths,"obj_Enemy1")	
-		show_debug_message("FAT")
+		//show_debug_message("FAT")
 		}//Make a kill me script to make particles or something
 		//if obj_questData.colletingQuests[0]!=0{ // check if this is the first time to fill this out
 		//	obj_questData.colletingQuests[0]++

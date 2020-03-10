@@ -20,7 +20,7 @@ draw_line(x,y,x+lengthdir_x(300,lastdir),y+lengthdir_y(300,lastdir))
 if wielding=1{
 if atktimeheld=0{ var aimpercentage = 1} else var aimpercentage = (aimtime-atktimeheld)/aimtime
 
-show_debug_message(string(aimdir))
+//show_debug_message(string(aimdir))
 smoothAimDir+=angle_difference(aimdir,smoothAimDir)/2
 
 aimrange+= ((((aimspread+max(spd,0)/2)/2) * aimpercentage+((baseaimspread+max(spd,0))/2))- aimrange)/2

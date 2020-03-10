@@ -41,17 +41,17 @@ if dodgedelay>0 then dodgedelay--
 #region ATTACKS
 
 if(mouse_check_button_pressed(mb_left)){
-	attackTick=1
-	attackWarm=attackKit[combo,5]
+	//attackTick=1
+	//attackWarm=attackKit[combo,5]
 }
 if(mouse_check_button_released(mb_left)){
-	if(attackWarm>0){}else{}
+	//if(attackWarm>0){}else{}
 }
 
 
 #endregion
 #region BACKSTEP
-if stamina>0&&readyAction==2&&dodgetime==0&&gamepaused=0{
+if stamina>0&&readyAction==2&&dodgetime==0&&interactState=0{
 	readyAction=0
 	if staminaExaust=0{					//backstep
 		dodgetime = 20
@@ -88,12 +88,12 @@ if stamina>0&&readyAction==2&&dodgetime==0&&gamepaused=0{
 }
 #endregion
 #region ROLL
-if keyboard_check_pressed(vk_space)&&stamina>0&&gamepaused==0{
+if keyboard_check_pressed(vk_space)&&stamina>0&&interactState=0{
 
 readyAction=1
 }
 
-if stamina>0&&readyAction==1&&dodgetime==0&&gamepaused==0&&atkwarmuptime=0{
+if stamina>0&&readyAction==1&&dodgetime==0&&interactState=0&&atkwarmuptime=0{
 	readyAction=0
 	if staminaExaust=0{					//roll
 		dodgetime = 25
@@ -161,7 +161,7 @@ if (vinput!=0)||(hinput!=0){
 	if atktimeheld>0&&wielding=0 {maxspd = basedodgespd/4}
 	else if atktimeheld>0&&wielding=1 {
 		maxspd= clamp(basedodgespd*(aimtime-atktimeheld)/aimtime,basedodgespd/4,floor(walkSpd*.75))	}
-	if inventoryopen=1||gamepaused=1 {maxspd=0}
+	if interactState!=0 {maxspd=0}
 	if knockbacktime>=0.1{maxspd =min(knockbacktime,basedodgespd/2)}
 	if spd<maxspd then spd++ else {spd-=(spd-maxspd)/2; spd=round(spd)}
 	
@@ -177,7 +177,7 @@ standbytime--
 	if standbytime=0{if backstepping=1 {lastdir=lastdir+180;backstepping=0}}
 }
 
-if inventoryopen||gamepaused then lastdir=lockeddir
+if interactState!=0 then lastdir=lockeddir
 
 if dodgetime>0{
 //spd=
@@ -203,9 +203,9 @@ dodgetime--
 
 
 if atk=0&&atktimeheld=0&&dodgetime=0{
-	if keyboard_check_pressed(ord("I")) && inventoryopen=1 { inventoryopen=0 }
-	else if keyboard_check_pressed(ord("I")) { inventoryopen=1; lockeddir=lastdir;obj_inventory.page=0}
-}else inventoryopen=0
+	if keyboard_check_pressed(ord("I")) && interactState=1 { interactState=0 }
+	else if keyboard_check_pressed(ord("I")) { interactState=1; lockeddir=lastdir;obj_inventory.page=0}
+}else interactState=0
 
 
 if hp!=scrollhp&&scrollhptimer=0{
