@@ -40,15 +40,45 @@ if dodgedelay>0 then dodgedelay--
 #endregion
 #region ATTACKS
 
-if(mouse_check_button_pressed(mb_left)){
-	//attackTick=1
-	//attackWarm=attackKit[combo,5]
+//Initiate attack
+if(mouse_check_button_pressed(mb_left)&&attackPhase=0){
+	attackTick=1
+	attackTimer=0
+	attackPhase=1
 }
-if(mouse_check_button_released(mb_left)){
-	//if(attackWarm>0){}else{}
+//Attack Tick
+attackTimer+=attackTick
+/*attackPhase
+0-Not attacking
+1-warmup
+2-active
+3-"stunned" cooldown
+4-moving cooldown
+*/
+//Hold Timer
+if(mouse_check_button(mb_left)){
+attackTimer=min(attackKit[combo,5],attackTimer)
 }
+//Release timer
+if(!mouse_check_button(mb_left)){
+	switch(attackTimer){
+		case attackKit[combo,5]:
+			attackPhase=2
+		break;
+		case attackKit[combo,6]+attackKit[combo,5]:
+			attackPhase=3
+		break;
+		case attackKit[combo,7]+attackKit[combo,6]+attackKit[combo,5]:
+			attackPhase=4
+		break;
+		case attackKit[combo,8]+attackKit[combo,7]+attackKit[combo,6]+attackKit[combo,5]:
+			attackPhase=0
+			attackTick=0
+			attackTimer=0
+		break;
+	}
 
-
+}
 #endregion
 #region BACKSTEP
 if stamina>0&&readyAction==2&&dodgetime==0&&interactState=0{

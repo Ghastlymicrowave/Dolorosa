@@ -78,11 +78,12 @@ staminaUnexaustThresh=0.75 //a percent of stamina to unexaust at
 #endregion
 #region attack overhaul
 
-attackKit[10,10]=noone
+attackKit[32,11]=noone
 combo=0
-combotime=0
-attackWarm=-1
+comboTimer=0
+attackTimer=-1
 attackTick=0
+attackPhase=0
 
 #endregion
 basedodgespd=20
