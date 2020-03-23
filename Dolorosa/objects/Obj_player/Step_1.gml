@@ -64,6 +64,7 @@ if(!mouse_check_button(mb_left)){
 	switch(attackTimer){
 		case attackKit[combo,5]:
 			attackPhase=2
+			//spawn the hitbox
 		break;
 		case attackKit[combo,6]+attackKit[combo,5]:
 			attackPhase=3
