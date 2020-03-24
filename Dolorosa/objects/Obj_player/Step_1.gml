@@ -60,6 +60,7 @@ if(mouse_check_button(mb_left)){
 attackTimer=min(attackKit[combo,5],attackTimer)
 }
 //Release timer
+show_message(combo)
 var relA = attackKit[combo,5]
 var relB = attackKit[combo,6]+relA
 var relC = attackKit[combo,7]+relB
@@ -250,7 +251,7 @@ dodgetime--
 
 if atk=0&&atktimeheld=0&&dodgetime=0{
 	if keyboard_check_pressed(ord("I")) && interactState=1 { interactState=0 }
-	else if keyboard_check_pressed(ord("I")) { interactState=1; lockeddir=lastdir;obj_inventory.page=0}
+	else if interactState==0&&keyboard_check_pressed(ord("I")) { interactState=1; lockeddir=lastdir;obj_inventory.page=0}
 }else interactState=0
 
 

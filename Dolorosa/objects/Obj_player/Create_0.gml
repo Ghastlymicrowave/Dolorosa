@@ -75,6 +75,8 @@ read combo value | coresponding attack
 */
 staminaUnexaustThresh=0.75 //a percent of stamina to unexaust at
 
+instance_create_depth(0,0,0,obj_inventoryControl)
+
 #endregion
 #region attack overhaul
 
