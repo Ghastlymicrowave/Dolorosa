@@ -80,7 +80,13 @@ instance_create_depth(0,0,0,obj_inventoryControl)
 #endregion
 #region attack overhaul
 
-attackKit[32,12]=noone
+for (var i1=0; i1<=32; i1++){
+	for (var i2=0; i2<=12; i2++){
+		attackKit[i1,i2]=0
+	}
+}
+
+//attackKit[32,12]=noone
 combo=0
 comboTimer=0
 attackTimer=-1

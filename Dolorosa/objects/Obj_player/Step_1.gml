@@ -60,7 +60,7 @@ if(mouse_check_button(mb_left)){
 attackTimer=min(attackKit[combo,5],attackTimer)
 }
 //Release timer
-show_message(combo)
+
 var relA = attackKit[combo,5]
 var relB = attackKit[combo,6]+relA
 var relC = attackKit[combo,7]+relB
