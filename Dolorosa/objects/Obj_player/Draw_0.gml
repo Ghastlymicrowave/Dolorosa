@@ -1,3 +1,7 @@
+//REMOVE THIS
+draw_text(x+50,y,combo)
+draw_text(x+50,y+20,comboTimer)
+
 
 if attackingframes =0{
 sprite_index=sp_badplayer//default

@@ -39,16 +39,62 @@ if iframes>0 then iframes--}
 if dodgedelay>0 then dodgedelay--
 #endregion
 #region ATTACKS
-
-if(mouse_check_button_pressed(mb_left)){
-	//attackTick=1
-	//attackWarm=attackKit[combo,5]
+	#region ATTACK ITSELF
+//Initiate attack
+if(mouse_check_button_pressed(mb_left)&&attackPhase=0){
+	attackTick=1
+	attackTimer=0
+	attackPhase=1
 }
-if(mouse_check_button_released(mb_left)){
-	//if(attackWarm>0){}else{}
+//Attack Tick
+attackTimer+=attackTick
+/*attackPhase
+0-Not attacking
+1-warmup
+2-active
+3-"stunned" cooldown
+4-moving cooldown
+*/
+//Hold Timer
+if(mouse_check_button(mb_left)){
+attackTimer=min(attackKit[combo,5],attackTimer)
 }
+//Release timer
+var relA = attackKit[combo,5]
+var relB = attackKit[combo,6]+relA
+var relC = attackKit[combo,7]+relB
+var relD = attackKit[combo,8]+relC
+if(!mouse_check_button(mb_left)){
+	switch(attackTimer){
+		case relA:
+			attackPhase=2
+			//spawn the hitbox
+		break;
+		case relB:
+			attackPhase=3
+		break;
+		case relC:
+			attackPhase=4
+		break;
+		case relD:
+			if(attackPhase != 0){
+				attackPhase=0
+				attackTick=0
+				attackTimer=0
+				combo++
+				comboTimer=30
+			}
+		break;
+	}
 
-
+}
+	#endregion
+	#region COMBO TRACKING
+	if(attackPhase=0){
+		if(comboTimer>0){comboTimer--
+		}else{combo=0}
+	}
+	#endregion
 #endregion
 #region BACKSTEP
 if stamina>0&&readyAction==2&&dodgetime==0&&interactState=0{
