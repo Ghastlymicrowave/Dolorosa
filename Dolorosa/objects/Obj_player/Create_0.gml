@@ -78,7 +78,7 @@ staminaUnexaustThresh=0.75 //a percent of stamina to unexaust at
 #endregion
 #region attack overhaul
 
-attackKit[32,11]=noone
+attackKit[32,12]=noone
 combo=0
 comboTimer=0
 attackTimer=-1
