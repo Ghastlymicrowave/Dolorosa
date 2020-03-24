@@ -116,6 +116,10 @@ keyboardAiming=0//wether you aim with mouse(0) or keyboard(1)
 //left controll backstep
 
 
+currentHitbox=0
+
+
+
 //key inputs:
 
 

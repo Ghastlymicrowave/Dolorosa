@@ -56,7 +56,7 @@ if movetime == 0{
 }
 
 
-if obj_player.interactState==0&&keyboardInUse==1{
+if obj_player.interactState==0&&keyboardInUse==1||obj_player.interactState==3{
 visible=0	
 }
 

@@ -31,6 +31,11 @@ if enemyCollisionID!= noone{
 
 
 if(place_meeting(x,y,enemyCollisionID)&&((iframes<=0)||(enemyCollisionID.ignoreiframes=1))){
+	if instance_exists(currentHitbox)
+	{
+		instance_destroy(currentHitbox)
+	}
+	
 	dodgetime=0
 	atk=0
 	combo=0

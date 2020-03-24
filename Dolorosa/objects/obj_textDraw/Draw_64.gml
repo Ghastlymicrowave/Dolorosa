@@ -6,7 +6,8 @@ var lineSep=150
 var edgeHeight=100
 
 draw_set_font(global.dialougefont)
-
+draw_set_halign(fa_left)
+draw_set_valign(fa_top)
 if smoothLineHeight=0{
 smoothLineHeight=(string_height_ext(ds_list_find_value(dialogue,i),lineSep,(display_get_gui_width()-fromSides*2)))	
 }

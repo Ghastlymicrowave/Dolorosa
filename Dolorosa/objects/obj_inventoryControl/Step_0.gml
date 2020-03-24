@@ -45,7 +45,9 @@
 	
 	switch side {
 	case -1://options
+	if instance_exists(obj_textChoices){
 		slotx = clamp(slotx+h,0,ds_list_size(obj_textChoices.options)-1)
+	}
 	break;
 	
 	case 0:

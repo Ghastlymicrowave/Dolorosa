@@ -69,6 +69,7 @@ if(!mouse_check_button(mb_left)){
 	switch(attackTimer){
 		case relA:
 			attackPhase=2
+			currentHitbox = instance_create_depth(x,y,0,attackKit[combo,0])
 			//spawn the hitbox
 		break;
 		case relB:
@@ -76,6 +77,8 @@ if(!mouse_check_button(mb_left)){
 		break;
 		case relC:
 			attackPhase=4
+			if instance_exists(currentHitbox){
+			instance_destroy(currentHitbox)}
 		break;
 		case relD:
 			if(attackPhase != 0){
@@ -240,6 +243,18 @@ hspeed = round(hspeed)
 vspeed=round(vspeed)
 
 
+
+#region attack movement
+if attackPhase>=2&&attackPhase<4{
+//a cos funct to set the speed as a smooth curve over the distance of a initaldodgetime also adding a small portion of the speed to give an extra kick
+var atkMoveDuration = attackKit[combo,6] + attackKit[combo,7]
+var atkMoveSpeed = attackKit[combo,9]
+var atkTimer = attackTimer-attackKit[combo,5]
+motion_add(lockeddir,cos(((atkTimer-atkMoveDuration)*pi)/(atkMoveDuration*2))*atkMoveSpeed)
+}
+#endregion
+
+
 if dodgetime>0{
 //spd=
 motion_add(lockeddir,cos(((dodgetime-initaldodgetime)*pi)/(initaldodgetime*2))*dodgespeed+dodgespeed/10 )//a cos funct to set the speed as a smooth curve over the distance of a initaldodgetime also adding a small portion of the speed to give an extra kick
@@ -261,9 +276,9 @@ scrollhptimer=scrollhptimermax
 }else if scrollhptimer>0 then scrollhptimer--
 
 
-
+#region saving, currently unused
 /*
-#region Saving
+
 
 //Manual Autosave
 
@@ -308,6 +323,5 @@ obj_camera_follow.y=y
 ds_list_read(global.inventory,ini_read_string("general","inventory",""))
 ini_close()
 }
-
-#endregion
 */
+#endregion
