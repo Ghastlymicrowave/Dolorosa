@@ -47,7 +47,7 @@ maxEquips=8
 
 //inventorycreated=0
 
-slot = 0
+obj_inventoryControl.slot = 0
 
 
 uiPresets[4,4]=0
@@ -87,7 +87,7 @@ uiPresets[3,1]=0.05
 uiPresets[3,2]=0.90
 uiPresets[3,3]=0.90
 
-side=0
+obj_inventoryControl.side=0
 
 
 /*
@@ -99,11 +99,10 @@ ivh1=ivh*/
 depth=-5
 image_alpha=0.5
 
-lastslotx=0
-lastsloty=0
+obj_inventoryControl.lastslotx=0
+obj_inventoryControl.lastsloty=0
 
-heldtime =0 
-heldwaittime=0
+
 
 page=0
 //pageheight=ivh/2  

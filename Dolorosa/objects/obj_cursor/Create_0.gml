@@ -19,3 +19,15 @@ stillx=window_mouse_get_x()
 stilly=window_mouse_get_y()
 
 cursor_sprite=sp_cursor; visible=0;	
+
+boxWidth=sprite_width
+boxHeight=sprite_height
+
+smoothScaleX=1
+smoothScaleY=1
+
+xSmooth=0
+ySmooth=0
+
+scaleSpd = 0.2
+moveSpd = 0.4

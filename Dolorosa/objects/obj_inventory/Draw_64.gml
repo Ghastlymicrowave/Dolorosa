@@ -22,6 +22,8 @@ depth=-500
 
 if obj_player.interactState=1{
 	
+	
+	
 	var w = ivw
 
 	
@@ -36,7 +38,7 @@ if obj_player.interactState=1{
 		onetick=0
 		}else{
 		 
-		 switch side {
+		 switch obj_inventoryControl.side {
 	case 0:
 	case 1:
 		draw_sprite_ext(sprite_index,0,ivw*uiPresets[0,0]-horizmove,ivh*uiPresets[0,1],uiPresets[0,2]*ivw/sprite_get_width(sprite_index),uiPresets[0,3]*ivh/sprite_get_height(sprite_index),0,c_white,image_alpha)
@@ -53,121 +55,9 @@ if obj_player.interactState=1{
 	 }
 	
 	
-	#region control
-	if slotx=-1{slotx=0;sloty=0;lastslotx=0;lastsloty=0}
-	
-	if slotx!=lastslotx {
-		//show_debug_message(string(slotx)+":"+string(lastslotx))
-	slotx=lastslotx
-	}
-	if sloty!=lastsloty {
-		//show_debug_message(string(sloty)+":"+string(lastsloty))
-	sloty=lastsloty
-	}
-	page= floor(sloty/MaxRowsPerPage) 
-	
-	var v =keyboard_check_pressed(ord("S")) - keyboard_check_pressed(ord("W"))
-	var h =keyboard_check_pressed(ord("D")) - keyboard_check_pressed(ord("A"))
-	//var switchToOther = keyboard_check_pressed(ord("R"))
-	var v1 =keyboard_check(ord("S")) - keyboard_check(ord("W"))
-	var h1 =keyboard_check(ord("D")) - keyboard_check(ord("A"))
-	
-	
-	
-	if (abs(v1)xor(abs(h1))) {if heldtime <20 {heldtime++;heldwaittime=8} }else heldtime=0
-	
-	if heldtime=20{
-		heldwaittime--
-		if heldwaittime=0{
-		v=v1
-		h=h1
-		heldwaittime=8//ads a delay for holding down keys
-		} 
-	}
-	
-	if slot != slotx{
-	slot = slotx
-	show_debug_message("changed to "+string(slotx))
-	}
-	
-	switch side {
-		
-	case 0:
-	horizdistance=0
-	if (slotx==objectsPerRow-1&& h>0){
-		side=1
-		slotx=0
-		lastslotx= slotx
-		lastsloty= sloty
-		onetick=1
-		show_debug_message("goto1from0")
-		break;
-		}
-	if (h>0 && slotx<objectsPerRow-1)||(h<0&&slotx>0) {slotx+=h}
-	if (v>0)||(v<0&&sloty>0) { sloty+=v} 
-	break;
-	
-	case 1:
-	horizdistance=0
-		if (slotx==0&&h<0){
-			side=0
-			slotx=objectsPerRow-1
-			lastslotx= slotx
-			lastsloty= sloty
-			onetick=1
-			show_debug_message("goto0from1")
-			break;
-		}
-		if (slotx==maxEquips-1&&h>0){
-			side=2
-			sloty=0
-			lastslotx= slotx
-			lastsloty= sloty
-			onetick=1
-			show_debug_message("goto2from1")
-			break;
-		}
-	if (h>0 && slotx<maxEquips-1)||(h<0&&slotx>0) {slotx+=h}
-	break;
-	
-	case 2:
-	horizdistance=1
-//show_debug_message(slotx)
-		if (h<0){
-			side=1
-			slotx=maxEquips-1
-			lastslotx= slotx
-			lastsloty= sloty
-			onetick=1
-			show_debug_message("goto1from2")
-			break;
-		}
-		if (h>0){
-			side=3
-			slotx=0
-			lastslotx= slotx
-			lastsloty= sloty
-			onetick=1
-			show_debug_message("goto3from2")
-			break;
-		}
-		if (v>0)||(v<0&&sloty>0) { sloty+=v} 
-	break;
-	
-	case 3:
-	horizdistance=2
-		if (h<0&&slotx=0){
-			side=2
-			slotx=maxEquips-1
-			lastslotx= slotx
-			lastsloty= sloty
-			onetick=1
-			show_debug_message("goto2from3")
-			break;
-		}
-	
-	}
-	#endregion
+	if obj_inventoryControl.side=0||obj_inventoryControl.side=1{  //convert this page int to an array of ints, one for any page with other scrolls
+		page= floor(obj_inventoryControl.sloty/MaxRowsPerPage)
+	}else page = 0
 	
 
 	
@@ -191,7 +81,7 @@ if obj_player.interactState=1{
 	
 	
 	
-	if side=0||side=1||abs(horizmove-horizdistance*ivw)>1{
+	if obj_inventoryControl.side=0||obj_inventoryControl.side=1||abs(horizmove-horizdistance*ivw)>1{
 	//&&sloty<MaxRowsPerPage-1
 	gotopageheight=(page*panelH+page)
 	followpageheight+= (gotopageheight-followpageheight)/2
@@ -302,14 +192,15 @@ for (var i = 0; i<ivDivided;i++){//for each full row
 			var yy = ivy+i*panelH/MaxRowsPerPage+((i+1)*panelH/MaxRowsPerPage)/panelH+panelH/MaxRowsPerPage/2 -followpageheight
 			//instance_create_depth(xx,yy,-1,obj_inventoryItem)	
 			//show_debug_message(string(iii)+" 3,2 "+string(ii))
-			if obj_player.interactState=1 && (obj_cursor.keyboardMenus=1||obj_cursor.keyboardMenus=2)&&(sloty=i&&slotx=iii-floor(i*objectsPerRow))&&side=0{
+			if obj_player.interactState=1 && (obj_cursor.keyboardMenus=1||obj_cursor.keyboardMenus=2)&&(obj_inventoryControl.sloty=i&&obj_inventoryControl.slotx=iii-floor(i*objectsPerRow))&&obj_inventoryControl.side=0{
 				//show_debug_message("fat")
 				//show_debug_message(string(slotx)+":"+string(iii-floor(i*objectsPerRow))+","+string(sloty)+":"+string(i))
 			obj_cursor.keyboardx=xx
 			obj_cursor.keyboardy=yy
-			lastslotx=slotx
-			lastsloty=sloty
-			
+			obj_inventoryControl.lastslotx=obj_inventoryControl.slotx
+			obj_inventoryControl.lastsloty=obj_inventoryControl.sloty
+			obj_cursor.boxWidth = panelW/objectsPerRow 
+			obj_cursor.boxHeight = panelH/MaxRowsPerPage
 			}//else show_debug_message(string(slotx)+":"+string(iii-floor(i*objectsPerRow))+","+string(sloty)+":"+string(i))
 			
 			var spr = sp_placeholderItem
@@ -325,15 +216,15 @@ for (var i = 0; i<ivDivided;i++){//for each full row
 			//draw_sprite(sp_badCircle,0,ConvertRealtoGUI(obj_cursor.x,0),ConvertRealtoGUI(obj_cursor.y,1))
 			if point_in_rectangle(ConvertRealtoGUI(obj_cursor.x,0),ConvertRealtoGUI(obj_cursor.y,1),x1,y1,x2,y2){
 			
-			if mouse_check_button_pressed(mb_left)&&side=0{
+			if mouse_check_button_pressed(mb_left)&&obj_inventoryControl.side=0{
 			
 			show_debug_message("clicked item "+ string(iii)+" object: "+ string(ds_list_find_value(global.inventory,iii)))
 			
 			if  (ds_list_size(global.currentEquips)>0&&ds_list_find_index(global.currentEquips,ds_list_find_value(global.inventory,iii))==-1)||(ds_list_size(global.currentEquips)==0){
 				ds_list_add(global.currentEquips,ds_list_find_value(global.inventory,iii))
 			}
-			}else if side!=0 && obj_cursor.keyboardInUse==0{
-			side=0	
+			}else if obj_inventoryControl.side!=0 && obj_cursor.keyboardInUse==0{
+			obj_inventoryControl.side=0	
 			}
 			
 		}
@@ -357,14 +248,15 @@ for (var i = 0; i<maxEquips;i++){
 	var xx = (i+1)*panelW/(maxEquips+1)+ivx
 	var yy = ivy+panelH/2
 	
-	if obj_player.interactState=1 && (obj_cursor.keyboardMenus=1||obj_cursor.keyboardMenus=2)&&(slotx=i)&&side=1{
+	if obj_player.interactState=1 && (obj_cursor.keyboardMenus=1||obj_cursor.keyboardMenus=2)&&(obj_inventoryControl.slotx=i)&&obj_inventoryControl.side=1{
 				//show_debug_message(ConvertGUItoReal(xx,0))
 				//show_debug_message(string(slotx)+":"+string(iii-floor(i*objectsPerRow))+","+string(sloty)+":"+string(i))
 			obj_cursor.keyboardx=xx
 			obj_cursor.keyboardy=yy
-			lastslotx=slotx
-			lastsloty=sloty
-			
+			obj_inventoryControl.lastslotx=obj_inventoryControl.slotx
+			obj_inventoryControl.lastsloty=obj_inventoryControl.sloty
+			obj_cursor.boxWidth = panelW/maxEquips
+			obj_cursor.boxHeight = panelW/maxEquips
 			}
 	
 	//look into the array of items based on the item in the list
@@ -384,11 +276,11 @@ for (var i = 0; i<maxEquips;i++){
 		if collision_rectangle(x1,y1,x2,y2,obj_cursor,1,1){
 			
 			
-			if mouse_check_button_pressed(mb_left)&&side=1{
+			if mouse_check_button_pressed(mb_left)&&obj_inventoryControl.side=1{
 			show_debug_message("clicked item "+ string(i)+" object: "+ string(ds_list_find_value(global.currentEquips,i)))
 			ds_list_delete(global.currentEquips,i)
-			}else if side != 1 && obj_cursor.keyboardInUse==0{
-			side = 1	
+			}else if obj_inventoryControl.side != 1 && obj_cursor.keyboardInUse==0{
+			obj_inventoryControl.side = 1	
 			}
 		}
 	}else{
@@ -409,7 +301,7 @@ for (var i = 0; i<maxEquips;i++){
 	
 //something happening earlier stopping code from getting here
 #region side 2, map
-if side == 2||abs(horizmove-horizdistance*ivw)>1{
+if obj_inventoryControl.side == 2||abs(horizmove-horizdistance*ivw)>1{
 
 
 	var ivx=display_get_gui_width()*uiPresets[2,4]+horizmove-w //+ horizdistance*ivw
@@ -428,13 +320,14 @@ for (var i = 0; i<ds_list_size(global.currentMapLocations);i++){
 	var yy = ivy+(i+1)*panelH/(ds_list_size(global.currentMapLocations)+1)
 	
 	
-	if obj_player.interactState=1 && (obj_cursor.keyboardMenus=1||obj_cursor.keyboardMenus=2)&&(sloty==i)&&side=2{
+	if obj_player.interactState=1 && (obj_cursor.keyboardMenus=1||obj_cursor.keyboardMenus=2)&&(obj_inventoryControl.sloty==i)&&obj_inventoryControl.side=2{
 				
 			obj_cursor.keyboardx=xx
 			obj_cursor.keyboardy=yy
-			lastslotx=slotx
-			lastsloty=sloty
-			
+			obj_inventoryControl.lastslotx=obj_inventoryControl.slotx
+			obj_inventoryControl.lastsloty=obj_inventoryControl.sloty
+			obj_cursor.boxWidth = panelW
+			obj_cursor.boxHeight = panelH/ds_list_size(global.currentMapLocations)
 			}
 
 	var spr = sp_placeholderItem
@@ -473,7 +366,7 @@ for (var i = 0; i<ds_list_size(global.currentMapLocations);i++){
 		if collision_rectangle(x1,y1,x2,y2,obj_cursor,1,1){
 			
 			
-			if mouse_check_button_pressed(mb_left)&&side=2{
+			if mouse_check_button_pressed(mb_left)&&obj_inventoryControl.side=2{
 			show_debug_message("clicked item "+ string(i))
 			//clicked
 			}
@@ -496,4 +389,4 @@ for (var i = 0; i<ds_list_size(global.currentMapLocations);i++){
 #endregion
 
 
-}else {slotx=-1;sloty=-1}//if inventory open ^^
+}//else {obj_inventoryControl.slotx=-1;obj_inventoryControl.sloty=-1}//if inventory open ^^

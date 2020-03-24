@@ -8,6 +8,7 @@ if destroyMe=1{
 		obj_player.dodgetime=0
 		obj_player.dodgespeed=0
 		obj_player.dodgedelay=0
+		obj_inventoryControl.side=0
 		instance_destroy()
 	return;
 	}

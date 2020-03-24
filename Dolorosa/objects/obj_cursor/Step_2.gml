@@ -9,19 +9,24 @@ if (keyboardMenus=1|| (keyboardMenus=2 && keyboardInUse=1)) {
 
 wobbletimer++
 
-wobblex= cos((pi*wobbletimer)/60)*6
-wobbley= sin((pi*wobbletimer)/56)*6
+//wobblex= cos((pi*wobbletimer)/60)*6
+//wobbley= sin((pi*wobbletimer)/56)*6
 cursor_sprite=sp_null; visible=1
 	
-gotox= ConvertGUItoReal(keyboardx-(obj_inventory.horizdistance*obj_inventory.ivw-obj_inventory.horizmove)/10,0)+obj_camera_follow.hspeed +round(wobblex)
-gotoy= ConvertGUItoReal(keyboardy,1)+obj_camera_follow.vspeed +round(wobbley)
+	
+	
 
 
-x+=(gotox-x)/4
-y+=(gotoy-y)/4
+xSmooth += (keyboardx-xSmooth)*moveSpd
+ySmooth += (keyboardy-ySmooth)*moveSpd
+
+gotox= ConvertGUItoReal(xSmooth-(obj_inventory.horizdistance*obj_inventory.ivw-obj_inventory.horizmove)/10,0)//+obj_camera_follow.hspd //+round(wobblex)
+gotoy= ConvertGUItoReal(ySmooth,1)//+obj_camera_follow.vspd //+round(wobbley)
 
 x=gotox
 y=gotoy
+
+
 
 } else {
 	

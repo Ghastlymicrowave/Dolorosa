@@ -19,10 +19,10 @@ if obj_player.interactState=1 {
 direction = point_direction(centerx,centery,cX,cY)
 speed = point_distance(centerx,centery,cX,cY)*distancefactor	
 
-	if obj_inventory.side=0{
+	if obj_inventoryControl.side=0{
 x= obj_player.x-camera_get_view_width(view_camera[0])/3
 y= obj_player.y+camera_get_view_height(view_camera[0])/4
-	}else if obj_inventory.side=1{
+	}else if obj_inventoryControl.side=1{
 x= obj_player.x-camera_get_view_width(view_camera[0])/-3
 y= obj_player.y+camera_get_view_height(view_camera[0])/4		
 	}
