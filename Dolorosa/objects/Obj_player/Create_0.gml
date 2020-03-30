@@ -79,12 +79,25 @@ instance_create_depth(0,0,0,obj_inventoryControl)
 
 #endregion
 #region attack overhaul
-
-for (var i1=0; i1<=32; i1++){
-	for (var i2=0; i2<=12; i2++){
-		attackKit[i1,i2]=0
+var csvImport = load_csv("attacks.csv")
+attackKit[0,0]=0
+//convert strings to ints
+for (var i1=0; i1<ds_grid_width(csvImport); i1++){
+	for (var i2=0; i2<ds_grid_height(csvImport); i2++){
+		
+		var tempstr = csvImport[# i1, i2]
+		//show_message(tempstr)
+		if tempstr != noone{
+		attackKit[i1,i2]=real(csvImport[# i1,i2])
+		} else {attackKit[i1,i2]=-4}
 	}
 }
+
+atktype = 0 // <== changed every time you attack
+//0 is light
+//1 is heavy melee
+//2 is light ranged
+//3 is heavy ranged
 
 //attackKit[32,12]=noone
 combo=0

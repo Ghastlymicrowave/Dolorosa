@@ -1,5 +1,7 @@
 var num = string(argument0)
-if string_letters(num)<2{
+
+if string_length(num)<2{
 num = "0"+num	
 }
-return asset_get_index("obj_pHitbox"+num)
+var strOutput = "obj_pHitbox_"+num
+return asset_get_index(strOutput)

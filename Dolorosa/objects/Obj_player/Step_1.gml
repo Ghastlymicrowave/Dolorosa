@@ -41,13 +41,17 @@ if dodgedelay>0 then dodgedelay--
 #region ATTACKS
 	#region ATTACK ITSELF
 //Initiate attack
-if(mouse_check_button_pressed(mb_left)&&attackPhase=0){
+if(mouse_check_button_pressed(mb_left)&&attackPhase=0&&interactState==0){
 	attackTick=1
 	attackTimer=0
 	attackPhase=1
+	if attackKit[5,combo+atktype*8]==-4||combo=8{
+	combo=0	
+	}
 }
 //Attack Tick
 attackTimer+=attackTick
+
 /*attackPhase
 0-Not attacking
 1-warmup
@@ -56,20 +60,31 @@ attackTimer+=attackTick
 4-moving cooldown
 */
 //Hold Timer
-if(mouse_check_button(mb_left)){
-attackTimer=min(attackKit[combo,5],attackTimer)
+//show_debug_message(string(attackPhase)+":"+string(attackTimer))
+
+if(mouse_check_button(mb_left))&&attackPhase==1{
+	
+	
+attackTimer=min(attackKit[5,combo+atktype*8]-1,attackTimer)
 }
 //Release timer
-
-var relA = attackKit[combo,5]
-var relB = attackKit[combo,6]+relA
-var relC = attackKit[combo,7]+relB
-var relD = attackKit[combo,8]+relC
-if(!mouse_check_button(mb_left)){
+//show_debug_message(attackKit[5,combo+atktype*8]==attackTimer)
+///light
+var relA = attackKit[5,combo+atktype*8]
+var relB = attackKit[6,combo+atktype*8]+relA
+var relC = attackKit[7,combo+atktype*8]+relB
+var relD = attackKit[8,combo+atktype*8]+relC
+/*show_debug_message("releases")
+show_debug_message("A:"+string(relA))
+show_debug_message("B:"+string(relB))
+show_debug_message("C:"+string(relC))
+show_debug_message("D:"+string(relD))*/
+if relA == 0 {show_message(combo)}
+//if(!mouse_check_button(mb_left)){
 	switch(attackTimer){
 		case relA:
 			attackPhase=2
-			currentHitbox = instance_create_depth(x,y,0,attackKit[combo,0])
+			currentHitbox = instance_create_depth(x,y,0,HitboxFromInt(attackKit[0,combo+atktype*8]))
 			//spawn the hitbox
 		break;
 		case relB:
@@ -91,7 +106,7 @@ if(!mouse_check_button(mb_left)){
 		break;
 	}
 
-}
+//}
 	#endregion
 	#region COMBO TRACKING
 	if(attackPhase=0){
@@ -247,9 +262,9 @@ vspeed=round(vspeed)
 #region attack movement
 if attackPhase>=2&&attackPhase<4{
 //a cos funct to set the speed as a smooth curve over the distance of a initaldodgetime also adding a small portion of the speed to give an extra kick
-var atkMoveDuration = attackKit[combo,6] + attackKit[combo,7]
-var atkMoveSpeed = attackKit[combo,9]
-var atkTimer = attackTimer-attackKit[combo,5]
+var atkMoveDuration = attackKit[6,combo+atktype*8] + attackKit[7,combo+atktype*8]
+var atkMoveSpeed = attackKit[9,combo+atktype*8]
+var atkTimer = attackTimer-attackKit[5,combo+atktype*8]
 motion_add(lockeddir,cos(((atkTimer-atkMoveDuration)*pi)/(atkMoveDuration*2))*atkMoveSpeed)
 }
 #endregion
