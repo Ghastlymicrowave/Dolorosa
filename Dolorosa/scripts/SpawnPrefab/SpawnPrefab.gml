@@ -1,4 +1,9 @@
-//(string filename, anchor x, anchor y)
+///@func SpawnPrefab( filename, anchorX, anchorY)
+///@desc 
+///@arg filename as string
+///@arg anchorX
+///@arg anchorY
+
 
 //spawns a dummy object and spawns prefab items relative to it's position
 
@@ -6,6 +11,8 @@
 var spawner = instance_create_depth(argument[1],argument[2],0,obj_temp)
 
 with (spawner){
+	show_debug_message(argument[0])
+	show_debug_message(file_exists(argument[0]))
 	
 	var file = file_text_open_read(argument[0])
 	var iGrid = ds_grid_create(1,1)
@@ -33,8 +40,9 @@ with (spawner){
 		inst.sprite_index=spriteIndex 
 		inst.optional_A = optionA
 		inst.optional_B = optionB
-		
+		show_debug_message(ds_grid_height(iGrid))
 		if ds_grid_height(iGrid)>6{ //loading from extended
+			show_debug_message("LoadingFromExt!!!")
 			 inst.image_xscale = iGrid[# i,7]
 			 inst.image_yscale = iGrid[# i,8]
 			 inst.image_angle =	 iGrid[# i,9]

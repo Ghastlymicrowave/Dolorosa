@@ -50,7 +50,7 @@ for (I = 0; I < n; I += 1) {
 }
 
 
-var file = file_text_open_write("testFile")
+var file = file_text_open_write("outputPrefab")
 file_text_write_string(file,ds_grid_write(iGrid))
 file_text_close(file)
 

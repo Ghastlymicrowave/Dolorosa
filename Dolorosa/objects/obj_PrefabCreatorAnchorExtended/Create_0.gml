@@ -1,4 +1,4 @@
-var iGrid = ds_grid_create(instance_count,5)
+var iGrid = ds_grid_create(instance_count,11)
 //all entries need to be interger values, floats will be rounded
 //x,0	instance
 //x,1	xcord
@@ -63,10 +63,9 @@ for (I = 0; I < n; I += 1) {
 }
 
 
-var file = file_text_open_write("testFile")
+var file = file_text_open_write("outputPrefab")
 file_text_write_string(file,ds_grid_write(iGrid))
 file_text_close(file)
-
 ds_grid_destroy(iGrid)
 //acessor: grid_index[# xpos, ypos]
 

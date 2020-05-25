@@ -119,7 +119,7 @@ scalefactor=5//pixels in width for the stamina bar and hp bar(not implimented ye
 maxstamina=100
 exaustSpd=12
 walkSpd=15
-sprintSpd=20
+sprintSpd=35
 heavyAtkTimeThreshold=30//#of frames you need to hold atk before heavy atking
 sprintHeldTreshold=20 //#of frames you need to hold sprint button before you go fast
 keyboardAiming=0//wether you aim with mouse(0) or keyboard(1)
@@ -128,7 +128,7 @@ keyboardAiming=0//wether you aim with mouse(0) or keyboard(1)
 //space roll 
 //left controll backstep
 
-
+lockeddir = 0
 currentHitbox=0
 
 
