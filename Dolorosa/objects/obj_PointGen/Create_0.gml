@@ -14,11 +14,12 @@ var w = sprite_get_width(sprite)
 var h = sprite_get_height(sprite)
 
 minDist =  sqrt((h*h)+(w*w))
-maxDist =  minDist*1.5
+maxDist =  minDist
 
-MainRooms = 15
+MainRooms = 20
 SidePaths = 10
 
+pathWidth = 600
 
 obj_player.x = x
 obj_player.y = y
@@ -93,14 +94,11 @@ for (var i = 0; i<MainRooms; i++){//loops until every room requrested in the mai
 				instance_place_list(x,y,obj_RoomNode,searchingNodes,true)
 				
 				if ds_list_size(searchingNodes)>0{
-					//show_debug_message("fat"+string(ds_list_size(test)))
 					for(var d = 0; d< ds_list_size(searchingNodes);d++){
 						var targ = ds_list_find_value(searchingNodes,d)	//checks if an object found is not the origin obj
 						if targ==checkInst{
 							show_debug_message(ds_list_size(obj_PointGen.nodesList))
 							checkers=1
-							float = instance_create_depth(checkInst.x,checkInst.y,0,floatingNumber)
-							float.num = "FAFAF"
 							break;
 						}
 					}
@@ -318,16 +316,112 @@ for(var node = 0; node< ds_list_size(shuffledNodes); node++){
 	break;
 		
 	}
-
+	SpawnPrefab("outerWallPrefab",nodeObj.x,nodeObj.y)
 	var float = instance_create_depth(nodeObj.x,nodeObj.y,0,floatingNumber)
 	float.num = nodeObj.num
 }
 
 
+//remove outer walls
 
 
+for (var a = 0; a < array_height_2d(nodesArray); a++){
+var obj1 = nodesArray[a,0]
+var obj2 = nodesArray[a,1]
 
+//var wallsList = ds_list_create()
+//collision_line_list(obj1.x,obj1.y,obj2.x,obj2.y,obj_outerWallObjstacle,false,true,wallsList,false)
 
+	//for (var b = 0; b < ds_list_size(wallsList); b++){
+	//	instance_destroy(ds_list_find_value(wallsList,b))
+	//}
+
+	#region wide raycast
+			var distance = point_distance(obj1.x,obj1.y,obj2.x,obj2.y)
+			//tempInst.x = obj1.x
+			//tempInst.y = obj2.y
+			var tempInst = instance_create_depth(obj1.x,obj1.y,0,obj_temp)
+			var angle1 = point_direction(obj1.x,obj1.y,obj2.x,obj2.y)
+			tempInst.host = obj1
+			tempInst.sprite_index = raycast_sprite
+			tempInst.image_yscale = distance/sprite_get_height(raycast_sprite)
+			tempInst.image_angle = angle1-90
+			tempInst.image_xscale= pathWidth/sprite_get_width(raycast_sprite)
+			tempInst.image_blend = c_red
+			tempInst.depth = -100000000
+			
+			
+			//mark wall edges
+			
+			//from staring side
+			//left
+
+			//var relx = lengthdir_x(h,angle2) * h
+			//var op = arcsin(degtorad(angle2)) * h
+			//var ad = arccos(degtorad(angle2)) * h
+			//
+			//left obj1
+			var h = tempInst.sprite_width/2
+			var angle2 = angle1+90
+			var relx = dcos(angle2) * h
+			var rely = dsin(angle2) * h
+			var out = RectangleGetAnglePoint(relx,rely,angle1,w,h)
+			var pointx = out[0]
+			var pointy = out[1]
+			instance_create_depth(pointx+obj1.x,pointy+obj1.y,-40,obj_rm_01)
+			//right obj1
+			var h = tempInst.sprite_width/2
+			var angle2 = angle1-90
+			var relx = dcos(angle2) * h
+			var rely = dsin(angle2) * h
+			var out = RectangleGetAnglePoint(relx,rely,angle1,w,h)
+			var pointx = out[0]
+			var pointy = out[1]
+			instance_create_depth(pointx+obj1.x,pointy+obj1.y,-40,obj_rm_01)
+			// left obj2
+			var h = tempInst.sprite_width/2
+			var angle2 = angle1+90
+			var relx = dcos(angle2) * h
+			var rely = dsin(angle2) * h
+			var out = RectangleGetAnglePoint(relx,rely,angle1+180,w,h)
+			var pointx = out[0]
+			var pointy = out[1]
+			instance_create_depth(pointx+obj2.x,pointy+obj2.y,-40,obj_rm_01)
+			//right obj2
+			var h = tempInst.sprite_width/2
+			var angle2 = angle1-90
+			var relx = dcos(angle2) * h
+			var rely = dsin(angle2) * h
+			var out = RectangleGetAnglePoint(relx,rely,angle1+180,w,h)
+			var pointx = out[0]
+			var pointy = out[1]
+			instance_create_depth(pointx+obj2.x,pointy+obj2.y,-40,obj_rm_01)
+			
+			
+			//colision check
+			with (tempInst){
+				searchingWalls = ds_list_create()
+				instance_place_list(x,y,obj_outerWallObjstacle,searchingWalls,true)
+				
+					//show_debug_message("fat"+string(ds_list_size(test)))
+					while ds_list_size(searchingWalls)>0{
+						var targ = ds_list_find_value(searchingWalls,0)	
+						instance_destroy(targ)
+						ds_list_delete(searchingWalls,0)
+					}
+					
+
+			ds_list_destroy(searchingWalls)
+			}
+			
+			
+			
+			
+	#endregion
+
+}
+
+//instance_destroy(tempInst)	
 
 
 /*
