@@ -337,6 +337,9 @@ var obj2 = nodesArray[a,1]
 	//}
 
 	#region wide raycast
+	//var w = sprite_get_width(sprite)//these were set before, this is just in case they got reset
+	//var h = sprite_get_height(sprite)
+	show_debug_message(string(w)+" "+string(h))
 			var distance = point_distance(obj1.x,obj1.y,obj2.x,obj2.y)
 			//tempInst.x = obj1.x
 			//tempInst.y = obj2.y
@@ -349,53 +352,28 @@ var obj2 = nodesArray[a,1]
 			tempInst.image_xscale= pathWidth/sprite_get_width(raycast_sprite)
 			tempInst.image_blend = c_red
 			tempInst.depth = -100000000
+				
+				//obj1 
+				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1-90)
+				var pointy = lengthdir_y(tempInst.sprite_width/2,angle1-90)
+				var out = RectangleGetAnglePoint(pointx,pointy,angle1,w/2,h/2)
+				instance_create_depth(out[0]+obj1.x,out[1]+obj1.y,-40,obj_rm_01)
 			
-			
-			//mark wall edges
-			
-			//from staring side
-			//left
-
-			//var relx = lengthdir_x(h,angle2) * h
-			//var op = arcsin(degtorad(angle2)) * h
-			//var ad = arccos(degtorad(angle2)) * h
-			//
-			//left obj1
-			var h = tempInst.sprite_width/2
-			var angle2 = angle1+90
-			var relx = dcos(angle2) * h
-			var rely = dsin(angle2) * h
-			var out = RectangleGetAnglePoint(relx,rely,angle1,w,h)
-			var pointx = out[0]
-			var pointy = out[1]
-			instance_create_depth(pointx+obj1.x,pointy+obj1.y,-40,obj_rm_01)
-			//right obj1
-			var h = tempInst.sprite_width/2
-			var angle2 = angle1-90
-			var relx = dcos(angle2) * h
-			var rely = dsin(angle2) * h
-			var out = RectangleGetAnglePoint(relx,rely,angle1,w,h)
-			var pointx = out[0]
-			var pointy = out[1]
-			instance_create_depth(pointx+obj1.x,pointy+obj1.y,-40,obj_rm_01)
-			// left obj2
-			var h = tempInst.sprite_width/2
-			var angle2 = angle1+90
-			var relx = dcos(angle2) * h
-			var rely = dsin(angle2) * h
-			var out = RectangleGetAnglePoint(relx,rely,angle1+180,w,h)
-			var pointx = out[0]
-			var pointy = out[1]
-			instance_create_depth(pointx+obj2.x,pointy+obj2.y,-40,obj_rm_01)
-			//right obj2
-			var h = tempInst.sprite_width/2
-			var angle2 = angle1-90
-			var relx = dcos(angle2) * h
-			var rely = dsin(angle2) * h
-			var out = RectangleGetAnglePoint(relx,rely,angle1+180,w,h)
-			var pointx = out[0]
-			var pointy = out[1]
-			instance_create_depth(pointx+obj2.x,pointy+obj2.y,-40,obj_rm_01)
+				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1+90)
+				var pointy = lengthdir_y(tempInst.sprite_width/2,angle1+90)
+				var out = RectangleGetAnglePoint(pointx,pointy,angle1,w/2,h/2)
+				instance_create_depth(out[0]+obj1.x,out[1]+obj1.y,-40,obj_rm_01)
+				
+				//obj2
+				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1-90)
+				var pointy = lengthdir_y(tempInst.sprite_width/2,angle1-90)
+				var out = RectangleGetAnglePoint(pointx,pointy,angle1+180,w/2,h/2)
+				instance_create_depth(out[0]+obj2.x,out[1]+obj2.y,-40,obj_rm_01)
+				
+				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1+90)
+				var pointy = lengthdir_y(tempInst.sprite_width/2,angle1+90)
+				var out = RectangleGetAnglePoint(pointx,pointy,angle1+180,w/2,h/2)
+				instance_create_depth(out[0]+obj2.x,out[1]+obj2.y,-40,obj_rm_01)
 			
 			
 			//colision check

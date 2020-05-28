@@ -9,114 +9,97 @@
 
 //gets a point on the outer edge of a rectangle from a the centerpoint and the width and height
 
-var offsetX = argument[0]
-var offsetY = argument[1]
-var angl = argument[2]
+var offsetX = argument[0]//c
+var offsetY = argument[1]//d
+var angl = -argument[2]+360
 var wdth = argument[3]
 var hght = argument[4]
 
-//angl -= angl % 90
+if (angl > 45 && angl < 135) || (angl > 225 && angl < 315){
+angl+= 180	
+}
+
+var i = dtan(angl)*(wdth-offsetX)+offsetY
+var j = dtan(angl)*(-wdth-offsetX)+offsetY
+var k = -1/dtan(angl)*(offsetY+hght)+offsetX
+var l = -1/dtan(angl)*(offsetY-hght)+offsetX
+
+var output = array_create(2,0)
+
+var angleSide = round( angl / 90 ) 
+
+angleSide = angleSide % 4
+
+/*
+0 = right
+1 = top
+2 = left
+3 = bottom
+*/
 
 
-
-//fuck this shit \/
-if !( offsetX == 0 && offsetY == 0 ){
-	
-//	show_debug_message(angl)
-//	var temp = RectangleGetAnglePoint(0,0,angl,wdth-(offsetX)*2,hght+(offsetY)*2)//-abs(offsetX)-abs(offsetY)
-	
-//	angl = point_direction(0,0,temp[0]-(offsetX)*2,temp[1]+(offsetY)*2)	
-//	show_debug_message(angl)
-	
-	if angl > 0 && angl < 90{//topright
-	
-	}else if angl > 90 && angl < 180{//topleft
-	
-	}else if angl > 180 && angl < 270{//bottomleft
-		
-	}else if angl > 270 && angl < 360{//bottomright
-	
-	} else if angl == 90 {
-		
-	} else if angl == 180 {
-	} else if angl == 270 {
-	} else if angl == 360||angl==0 {
-	
+switch(angleSide){
+case 0:
+	if i > hght{
+		angleSide = 3
+	}else if i < -hght{
+		angleSide++
 	}
-	
-	
-	
+break;
+case 1:
+	if k > wdth{
+		angleSide--
+	}else if k < -wdth{
+		angleSide++
+	}
+break;
+case 2:
+	if j > hght{
+		angleSide++
+	}else if j < -hght{
+		angleSide--
+	}
+break;
+case 3:
+	if l > wdth{
+		angleSide = 0
+	}else if l < -wdth{
+		angleSide --
+	}
+break;
 }
 
 
-var anglSide = round( angl / 90 ) 
-
-anglSide = anglSide % 4
-
-
-
-
-//while anglSide < 0{
-//	anglSide += 4
-//}
-
-// 0 = 0
-// 1 = 90
-// 2 = 180
-// 3 = 270
-
-var horiz = (anglSide==0||anglSide==2) //1 is horiz, 0 is vert
-
-
-
-
-//if horiz{
-//	angl = point_direction(offsetX,offsetY,lengthdir_x(wdth*2,angl),lengthdir_y(wdth*2,angl))+180
-//} else {
-//	angl = point_direction(offsetX,offsetY,lengthdir_x(hght*2,angl),lengthdir_y(hght*2,angl))+180
-//}
-
-// anglSide = round( angl / 90 ) 
-//anglSide = anglSide % 4
-//horiz = (anglSide==0||anglSide==2)
-
-//if horiz{
-//	if anglSide == 0 {
-//		wdth-=offsetX
-//	}else{
-//		wdth+=offsetX
-//	}
-//} else {
-//	if anglSide == 1 {
-//		hght-=offsetY
-//	}else{
-//		hght+=offsetY
-//	}
+switch (angleSide){
+case 0:
+//draw_sprite(sprite2,0,x+wdth,y+i)//right
+output[0] = wdth
+output[1] = i
+break;
+case 1:
+//draw_sprite(sprite2,0,x+k,y-hght)//top
+output[0] = k
+output[1] = -hght
+break;
+case 2:
+//draw_sprite(sprite2,0,x-wdth,y+j)//left
+output[0] = -wdth
+output[1] = j
+break;
+case 3:
+//draw_sprite(sprite2,0,x+l,y+hght)//bottom
+output[0] = l
+output[1] = hght
+break;
 	
-	
-//}
+}
 
-//hght-=abs(offsetY)/2 * horiz
+//
+//
+//
 
-	if (horiz){
-	
-		var outX = wdth/2 - wdth * (anglSide==2)
-		var outY = (wdth*dsin(angl))/(2*dcos(angl))
-	
-	
-	}else{
-		
-		var outX = (hght*dcos(angl))/(2*dsin(angl))
-		var outY = hght/2 - hght * (anglSide==3)
-	}
+//if point_in_rectangle()
 
-
-
-
-
-var output = array_create(2,0)
-output[0] = outX//+offsetX/2
-output[1] = outY//+offsetY/2
 return output
 
 
