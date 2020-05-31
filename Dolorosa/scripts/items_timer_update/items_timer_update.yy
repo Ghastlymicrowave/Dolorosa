@@ -1,8 +1,8 @@
 {
-    "id": "21914574-a4c3-4614-ba3b-90c39497685e",
+    "id": "81011a7b-3554-44b7-89fc-27e558b23b59",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "GetStringFromKeyInput",
+    "name": "items_timer_update",
     "IsCompatibility": false,
     "IsDnD": false
 }

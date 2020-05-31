@@ -191,14 +191,6 @@
             }
         },
         {
-            "Key": "21914574-a4c3-4614-ba3b-90c39497685e",
-            "Value": {
-                "id": "a6aca021-fccc-4c9d-8aa2-9f6310a7296d",
-                "resourcePath": "scripts\/GetStringFromKeyInput\/GetStringFromKeyInput.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "2257a0aa-1bab-4386-9610-c190d45857ee",
             "Value": {
                 "id": "785d8845-54d1-4368-8c79-ec66b95cf39a",
@@ -639,6 +631,14 @@
             }
         },
         {
+            "Key": "81011a7b-3554-44b7-89fc-27e558b23b59",
+            "Value": {
+                "id": "cb1f5a75-37a6-4a7a-a740-b7cdfb31e5b1",
+                "resourcePath": "scripts\\items_timer_update\\items_timer_update.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "852a7884-b08a-49e3-9c1b-33aa2a719da7",
             "Value": {
                 "id": "5abdc897-65c9-4a9c-926c-cc2fa5f2ea65",
@@ -764,6 +764,14 @@
                 "id": "daa16c8d-d36d-45e1-8abd-7f1048eed6eb",
                 "resourcePath": "rooms\/rm_test1\/rm_test1.yy",
                 "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "9b7dad2c-0cb5-4136-b7ea-11b66273c335",
+            "Value": {
+                "id": "084e080f-0f55-42bd-92ac-895ea67b42ee",
+                "resourcePath": "views\\9b7dad2c-0cb5-4136-b7ea-11b66273c335.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -1267,7 +1275,6 @@
         "74b2dee2-530d-44d3-a579-0e37049375c3",
         "bfdad2b8-31c5-4ff0-9892-c73e1c18eb9f",
         "ef39e8b8-f3a2-4aed-a7be-aab977dd25bc",
-        "21914574-a4c3-4614-ba3b-90c39497685e",
         "b18d8909-3725-42f3-bd8d-c17efcadc39f",
         "f2dcd9f2-0920-414b-af9c-58048054d52f",
         "48c40c2f-66b7-4e8c-9683-5aceb4f3eba0",
@@ -1293,7 +1300,8 @@
         "55eefd48-6860-4246-a6ac-93707b2bf15d",
         "e7852993-73bd-4a8d-ba93-f2c55d1320ee",
         "918efadb-070c-44eb-9581-98b4eabcd322",
-        "66f65d45-94ad-4c3b-ab1c-09f11d96aacf"
+        "66f65d45-94ad-4c3b-ab1c-09f11d96aacf",
+        "81011a7b-3554-44b7-89fc-27e558b23b59"
     ],
     "tutorial": ""
 }
