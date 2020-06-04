@@ -1,14 +1,15 @@
 
 
 var mouseMoved = point_distance(window_mouse_get_x(),window_mouse_get_y(),stillx,stilly)>50
-if keyboardInUse=1 && mouseMoved{
+if(keyboardInUse=1 && mouseMoved){
 
 keyboardInUse=0	
 startx = x
 starty = y
 lastmousex = mouse_x
 lastmousey = mouse_y
-if obj_player.interactState=0{movetime=1}
+if(obj_player.interactState=0){movetime=1}
+
 }
 else if keyboardMenus=2 && keyboardInUse=0 {
 	

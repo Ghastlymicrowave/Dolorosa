@@ -27,6 +27,10 @@ staminabarcolor=staminaEmptyColor
 if staminaTimer>0 then staminaTimer-- else if stamina<maxstamina { stamina+=0.5} 
 
 #endregion
+#region ITEMS
+	items_activate()
+	items_timer_update()
+#endregion
 #region SPRINT
 if stamina>0&&keyboard_check(vk_shift)&&staminaExaust=0&&spd>=walkSpd { sprintheld++}else {sprint=0;sprintheld=0}
 if sprintheld>=sprintHeldTreshold{sprint=1;stamina-=0.5;staminaTimer=20}

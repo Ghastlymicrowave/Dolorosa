@@ -89,99 +89,6 @@ if obj_player.interactState=1{
 	//show_debug_message(followpageheight)
 	//show_debug_message(yoffset)
 
-#region old row code
-/*
-var ii=0//don't delete this line
-for (var i = 0; i<ivDivided;i++){//for each full row
-	//loops for each full row
-	//show_debug_message("its doin a")
-	//if i > MaxRowsPerPage-1 then break;
-	show_debug_message("i : "+string(i) + " "+string(floor(ivDivided)) +"|"+ string(ivDivided))
-	for (var ii=0; ii<objectsPerRow;ii++){
-		var pos = ii+i*objectsPerRow
-		var xx = ivx+ii*panelW/objectsPerRow+((ii+1)*panelW/objectsPerRow)/panelW+panelW/objectsPerRow/2
-		var yy = ivy+i*panelH/MaxRowsPerPage+((i+1)*panelH/MaxRowsPerPage)/panelH+panelH/MaxRowsPerPage/2 -followpageheight
-		//instance_create_depth(xx,yy,-5000,obj_inventoryItem)	
-		//			this needs to be reformatted to take the information from a 2d array contaning the object's ID and all the information about it
-		
-			if obj_player.inventoryopen=1 && (obj_cursor.keyboardMenus=1|| obj_cursor.keyboardMenus=2) && (sloty=i&&slotx=ii)&&side=0{
-			//show_debug_message(string(slotx)+string(ii)+string(sloty)+string(i)+"MOVED")
-			obj_cursor.keyboardx=ConvertGUItoReal(xx,0)
-			obj_cursor.keyboardy=ConvertGUItoReal(yy,1)
-			lastslotx=slotx
-			lastsloty=sloty
-			}//else show_debug_message(string(slotx)+string(ii)+string(sloty)+string(i))
-		
-		var spr = sp_placeholderItem
-		
-		//if point_in_rectangle(xx,yy,x,y,x+sprite_width,y+sprite_height){
-		draw_sprite(spr,depth-1,xx,yy)
-		
-		var x1 = ConvertGUItoReal(xx-panelW/objectsPerRow/2,0)
-		var y1 = ConvertGUItoReal(yy-panelH/MaxRowsPerPage/2,1)
-		var x2 = ConvertGUItoReal(xx+panelW/objectsPerRow/2,0)
-		var y2 = ConvertGUItoReal(yy+panelH/MaxRowsPerPage/2,1)
-		draw_rectangle(xx-panelW/objectsPerRow/2,yy-panelH/MaxRowsPerPage/2,xx+panelW/objectsPerRow/2,yy+panelH/MaxRowsPerPage/2,5)
-	
-		if collision_rectangle(x1,y1,x2,y2,obj_cursor,1,1)&&mouse_check_button_pressed(mb_left)&&side=0{
-		//idk it's clicked	
-		show_debug_message("clicked item "+ string(pos)+" object: "+ string(ds_list_find_value(global.inventory,pos)))
-		if (ds_list_size(global.currentEquips)>0&&ds_list_find_index(global.currentEquips,ds_list_find_value(global.inventory,pos))!=-1)||(ds_list_size(global.currentEquips)==0){
-				ds_list_add(global.currentEquips,ds_list_find_value(global.inventory,ii+i*objectsPerRow))
-			}
-		}
-		//}
-	}
-
-}
-
-#endregion
-	//show_debug_message(string(i)+"full rows")
-	
-	#region alternate for not full rows
-	if floor(ivDivided)!=ivDivided{
-		
-		//show_debug_message("its doin b")
-		for (var iii=floor(i*objectsPerRow); iii<ivSize;iii++){ //iii = 0+floor(i*objectsPerRow)
-			//show_debug_message(string(iii)+"leftover")
-			
-			var xx = ivx+(iii-round(i*objectsPerRow))*panelW/objectsPerRow+(panelW/objectsPerRow)/panelW+panelW/objectsPerRow/2
-			var yy = ivy+i*panelH/MaxRowsPerPage+((i+1)*panelH/MaxRowsPerPage)/panelH+panelH/MaxRowsPerPage/2 -followpageheight
-			//instance_create_depth(xx,yy,-1,obj_inventoryItem)	
-			//show_debug_message(string(iii)+" 3,2 "+string(ii))
-			if obj_player.inventoryopen=1 && (obj_cursor.keyboardMenus=1||obj_cursor.keyboardMenus=2)&&(sloty=i&&slotx=iii-floor(i*objectsPerRow))&&side=0{
-				
-				//show_debug_message(string(slotx)+":"+string(iii-floor(i*objectsPerRow))+","+string(sloty)+":"+string(i))
-			obj_cursor.keyboardx=ConvertGUItoReal(xx,0)
-			obj_cursor.keyboardy=ConvertGUItoReal(yy,1)
-			lastslotx=slotx
-			lastsloty=sloty
-			
-			}//else show_debug_message(string(slotx)+":"+string(iii-floor(i*objectsPerRow))+","+string(sloty)+":"+string(i))
-			
-			var spr = sp_placeholderItem
-			
-			//if point_in_rectangle(xx,yy,x,y,x+sprite_width,y+sprite_height){
-			draw_sprite(spr,depth-1,xx,yy)
-			draw_rectangle(xx-panelW/objectsPerRow/2,yy-panelH/MaxRowsPerPage/2,xx+panelW/objectsPerRow/2,yy+panelH/MaxRowsPerPage/2,5)
-		
-			if collision_rectangle(xx-panelW/objectsPerRow/2,yy-panelH/MaxRowsPerPage/2,xx+panelW/objectsPerRow/2,yy+panelH/MaxRowsPerPage/2,obj_cursor,1,1)&&mouse_check_button_pressed(mb_left)&&side=0{
-			
-			show_debug_message("clicked item "+ string(iii)+" object: "+ string(ds_list_find_value(global.inventory,iii)))
-			
-			if  (ds_list_size(global.currentEquips)>0&&ds_list_find_index(global.currentEquips,ds_list_find_value(global.inventory,iii))!=-1)||(ds_list_size(global.currentEquips)==0){
-				ds_list_add(global.currentEquips,ds_list_find_value(global.inventory,iii))
-			}
-			}
-			//}
-			
-		}
-	}*/
-#endregion
-
-
-
-
 #region side 0, charms iv
 
 //var ii=0//don't delete this line
@@ -224,6 +131,7 @@ for (var i = 0; i<ivDivided;i++){//for each full row
 			
 			if  (ds_list_size(global.currentEquips)>0&&ds_list_find_index(global.currentEquips,ds_list_find_value(global.inventory,iii))==-1)||(ds_list_size(global.currentEquips)==0){
 				ds_list_add(global.currentEquips,ds_list_find_value(global.inventory,iii))
+				items_equip(ds_list_find_value(global.inventory,iii))
 			}
 			}else if obj_inventoryControl.side!=0 && obj_cursor.keyboardInUse==0{
 			obj_inventoryControl.side=0	
@@ -280,6 +188,7 @@ for (var i = 0; i<maxEquips;i++){
 			
 			if mouse_check_button_pressed(mb_left)&&obj_inventoryControl.side=1{
 			show_debug_message("clicked item "+ string(i)+" object: "+ string(ds_list_find_value(global.currentEquips,i)))
+			items_unequip(ds_list_find_value(global.currentEquips,i))
 			ds_list_delete(global.currentEquips,i)
 			}else if obj_inventoryControl.side != 1 && obj_cursor.keyboardInUse==0{
 			obj_inventoryControl.side = 1	
