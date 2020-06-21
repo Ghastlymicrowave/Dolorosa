@@ -11,9 +11,12 @@
 
 var offsetX = argument[0]//c
 var offsetY = argument[1]//d
-var angl = -argument[2]+360
+var angl = argument[2]
 var wdth = argument[3]
 var hght = argument[4]
+
+var flag = 0
+angl = -angl+360
 
 if (angl > 45 && angl < 135) || (angl > 225 && angl < 315){
 angl+= 180	
@@ -30,6 +33,13 @@ var angleSide = round( angl / 90 )
 
 angleSide = angleSide % 4
 
+if angleSide < 0 {
+angleSide = 4 + angleSide
+//angleSide += 2
+angleSide = angleSide % 4
+flag = 1
+}
+
 /*
 0 = right
 1 = top
@@ -37,6 +47,12 @@ angleSide = angleSide % 4
 3 = bottom
 */
 
+/*
+							1/-3
+					2/-2				0
+							3/-1
+
+*/
 
 switch(angleSide){
 case 0:
@@ -99,6 +115,16 @@ break;
 //
 
 //if point_in_rectangle()
+
+if flag == 1{
+//var a = -output[0]
+//var b = -output[1]	
+//	show_message(string(output[0])+string(output[1])+" : "+string(a)+string(b))
+//output[0] = a
+//output[1] = b
+
+	
+}
 
 return output
 
