@@ -314,9 +314,7 @@ for(var node = 0; node< ds_list_size(shuffledNodes); node++){
 	case 3: //unlimited WIP
 		SpawnPrefab(CreatePrefabFileName("testRoomPrefab_",3),nodeObj.x,nodeObj.y)
 	break;
-		
 	}
-	SpawnPrefab("outerWallPrefab",nodeObj.x,nodeObj.y)
 	var float = instance_create_depth(nodeObj.x,nodeObj.y,0,floatingNumber)
 	float.num = nodeObj.num
 }
