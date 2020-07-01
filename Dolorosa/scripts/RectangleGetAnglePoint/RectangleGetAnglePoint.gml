@@ -91,25 +91,25 @@ case 0:
 //draw_sprite(sprite2,0,x+wdth,y+i)//right
 output[0] = wdth
 output[1] = i
-output[2] = angleSide*100+(hght+i)/(2*hght)
+output[2] = angleSide*100+(hght+i)/(2*hght)*100
 break;
 case 1:
 //draw_sprite(sprite2,0,x+k,y-hght)//top
 output[0] = k
 output[1] = -hght
-output[2] = angleSide*100+(wdth+i)/(2*wdth)
+output[2] = angleSide*100+(wdth+k)/(2*wdth)*100
 break;
 case 2:
 //draw_sprite(sprite2,0,x-wdth,y+j)//left
 output[0] = -wdth
 output[1] = j
-output[2] = angleSide*100+(hght+i)/(2*hght)
+output[2] = angleSide*100+(hght+j)/(2*hght)*100
 break;
 case 3:
 //draw_sprite(sprite2,0,x+l,y+hght)//bottom
 output[0] = l
 output[1] = hght
-output[2] = angleSide*100+(wdth+i)/(2*wdth)
+output[2] = angleSide*100+(wdth+l)/(2*wdth)*100
 break;
 	
 }
