@@ -1,22 +1,24 @@
-///@func clockwise_closest(origin,return,point,return...)
+///@func clockwise_closest(origin,list)
 ///@arg origin
-///@arg return
-///@arg point
-///@arg return...
-
-var out = noone
+///@arg list
+var out = id
+var list = argument[1]
 var diff = 400
 var i = 0
-repeat(argument_count/2-1){
-	i++
-	if(argument[i*2]>argument[0]){
-		if((argument[i*2]-argument[0]<diff)){
-			out=argument[i*2+1]
-		}
-	}else{
-		if((argument[i*2]+400-argument[0]<diff)){
-			out=argument[i*2+1]
+var ref = argument[0]
+
+repeat(ds_list_size(list)-1){
+	var dest = ds_list_find_value(list,i)
+	if(ref!=dest){
+		if(dest.cpos>ref.cpos){
+			if((dest.cpos-ref.cpos)<diff){
+				
+				out=ds_list_find_value(list,i)
+				diff=dest.cpos-ref.cpos
+				
+			}
 		}
 	}
+	i++
 }
 return out

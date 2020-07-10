@@ -4,7 +4,26 @@
     "mvc": "1.0",
     "name": "obj_breakstend",
     "eventList": [
-        
+        {
+            "id": "a313d36e-d77e-4ee6-bb36-2c8b053faf5a",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
+            "enumb": 0,
+            "eventtype": 0,
+            "m_owner": "e0e8658c-02f0-416b-aa98-9a239a950db9"
+        },
+        {
+            "id": "53260090-48f0-4ca8-936b-f966bebe1a78",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
+            "enumb": 0,
+            "eventtype": 8,
+            "m_owner": "e0e8658c-02f0-416b-aa98-9a239a950db9"
+        }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
     "overriddenProperties": null,
