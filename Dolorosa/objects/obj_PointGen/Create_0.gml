@@ -409,6 +409,8 @@ var obj2 = nodesArray[a,1]
 			tempInst.image_blend = c_red
 			tempInst.depth = -100000000
 				
+				//																		ADD OBJECT PARENTS FOR BREAKSTARTS AND BREAKENDS !!!!!!!!
+				
 				//obj1 
 				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1-90)
 				var pointy = lengthdir_y(tempInst.sprite_width/2,angle1-90)
