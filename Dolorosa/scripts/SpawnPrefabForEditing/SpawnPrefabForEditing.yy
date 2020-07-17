@@ -1,8 +1,8 @@
 {
-    "id": "e113580c-5dca-48aa-9b84-c8d3db512ac2",
+    "id": "69bbbcdd-01ad-4ca9-a735-23dc041e7865",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "SpawnPrefab",
+    "name": "SpawnPrefabForEditing",
     "IsCompatibility": false,
     "IsDnD": false
 }

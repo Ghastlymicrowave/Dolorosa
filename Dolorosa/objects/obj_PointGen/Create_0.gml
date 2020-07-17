@@ -10,11 +10,12 @@ raycast_sprite = sp_roomRaycaster
 //room 3 = unlimited
 
 
-var w = sprite_get_width(sprite)
-var h = sprite_get_height(sprite)
+var w = 0
+var h = 0
 
-minDist =  sqrt((h*h)+(w*w))
-maxDist =  minDist
+ws[1]=0
+hs[1]=0
+
 
 MainRooms = 20
 SidePaths = 10
@@ -24,7 +25,6 @@ pathWidth = 600
 obj_player.x = x
 obj_player.y = y
 
-mask_index = sprite
 
 num = 0
 
@@ -33,29 +33,73 @@ nodesArray[0,0]=0
 
 nodesList = ds_list_create()
 //create first node
-var inst = instance_create_depth(x,y,0,obj_RoomNode)
+var inst = instance_create_depth(x,y,0,obj_RoomNode) //CHANGE THIS TO WORK WITH W AND H AND THE FILE FORMAT
 inst.num = num++
 ds_list_add(nodesList,inst)
 inst.image_blend=c_blue
 inst.roomType = 0
 
+
+
 var checkInst = instance_create_depth(x,y,0,obj_temp_2)
 for (var i = 0; i<MainRooms; i++){//loops until every room requrested in the mainrooms var is created sucessfully
-	var pos = irandom_range(0,ds_list_size(nodesList)-1)
-	var startingSize = ds_list_size(nodesList)-1
-	var target = ds_list_find_value(nodesList,pos)
+	
+		
+		
+		var fname = ""
+		switch(0/*some random function here*/){ //load room file
+		
+	case 0: //start
+		fname = "testRoomPrefab_1"//CreatePrefabFileName("testRoomPrefab_",1)
+	
+		
+	break;
+	case 1: //exit
+	//	SpawnPrefab(CreatePrefabFileName("testRoomPrefab_",2),nodeObj.x,nodeObj.y)
+	break;
+	case 2: //limited  WIP
+	break;
+	case 3: //unlimited WIP
+	//	SpawnPrefab(CreatePrefabFileName("testRoomPrefab_",3),nodeObj.x,nodeObj.y)
+	break;
+	}
+		//load data about specific room and set room specific variables
+		file_text_open_read(fname)
+		var inputData = file_text_read_string(fname)
+		file_text_close(fname)
+		
+		var templist = ds_list_create()
+		ds_list_read(templist,inputData)
+		
+		w = ds_list_find_value(templist,1)
+		h = ds_list_find_value(templist,2)
+		
+		var roomString = ds_list_find_value(templist,0)
+		
+		var minDist =  sqrt((h*h)+(w*w))
+		var maxDist =  minDist
+		mask_index = sp_onePixel
+		image_xscale = w
+		image_yscale = h
+		
+		checkInst.x = xpos
+		checkInst.y = ypos
+		
+		//set random position variables
+		var pos = irandom_range(0,ds_list_size(nodesList)-1)
+		var startingSize = ds_list_size(nodesList)-1
+		var target = ds_list_find_value(nodesList,pos)
 		
 		var angle = random_range(0,359)
 		var dist = random_range(minDist,maxDist)
 		var xpos = lengthdir_x(dist,angle)+target.x
 		var ypos = lengthdir_y(dist,angle)+target.y
 		
-		checkInst.x = xpos
-		checkInst.y = ypos
-		
 		var intersect = 0
-		checks = 0
-		for (var a = 0; a < ds_list_size(nodesList)-1; a++){
+		
+		var checks = 0
+		
+		for (var a = 0; a < ds_list_size(nodesList)-1; a++){//collision checks w other rooms
 			checks++
 			show_debug_message(checks)
 			var obj1 = nodesArray[a,0]
@@ -85,7 +129,7 @@ for (var i = 0; i<MainRooms; i++){//loops until every room requrested in the mai
 			tempInst.sprite_index = raycast_sprite
 			tempInst.image_yscale = distance/sprite_get_height(raycast_sprite)
 			tempInst.image_angle = angle1-90
-			tempInst.image_xscale=1
+			tempInst.image_xscale = 1
 			
 			//colision check
 			with (tempInst){
@@ -109,7 +153,7 @@ for (var i = 0; i<MainRooms; i++){//loops until every room requrested in the mai
 			}
 			
 			
-			if (tempInst.checkers!=0){
+			if (tempInst.checkers!=0){//pass the flag to this object
 				intersect =1	
 				break;
 			}
@@ -125,13 +169,36 @@ for (var i = 0; i<MainRooms; i++){//loops until every room requrested in the mai
 		
 		
 		
-		if !instance_place(xpos,ypos,obj_RoomNode)&&intersect==0&&distBetween>minDist{
+		if !instance_place(xpos,ypos,obj_RoomNode)&&intersect==0&&distBetween>minDist{//create new room if possible, otherwise loop
+			
 			var newObj = instance_create_depth(xpos,ypos,0,obj_RoomNode)
 			newObj.num = num ++
 			newObj.roomType = 3
 			nodesArray[startingSize,0] = target
 			nodesArray[startingSize,1] = newObj
 			ds_list_add(nodesList,newObj)
+			newObj.sprite_index = sp_onePixel
+			newObj.image_xscale = w
+			newObj.image_yscale = h
+			
+			newObj.w =w
+			newObj.h =h
+
+			with(newObj){
+				with(instance_create_depth(x+w,y+h,0,obj_breakstend)){
+					cpos=0
+				}
+				with(instance_create_depth(x+w,y-h,0,obj_breakstend)){
+					cpos=100
+				}
+				with(instance_create_depth(x-w,y-h,0,obj_breakstend)){
+					cpos=200
+				}
+				with(instance_create_depth(x-w,y+h,0,obj_breakstend)){
+					cpos=300
+				}			
+			}	
+			
 			if i == MainRooms -1 {//check if exit room
 				var firstObj = ds_list_find_value(nodesList,0)
 				var newList = ds_list_create()
@@ -141,7 +208,8 @@ for (var i = 0; i<MainRooms; i++){//loops until every room requrested in the mai
 				var furtherstObj = ds_list_find_value(newList,ds_list_size(newList)-1)
 				furtherstObj.image_blend=c_red
 				furtherstObj.roomType= 1
-				}
+			}
+				
 		}else{
 			i--
 		}
@@ -301,20 +369,10 @@ ds_list_shuffle(shuffledNodes)
 
 for(var node = 0; node< ds_list_size(shuffledNodes); node++){
 	var nodeObj = ds_list_find_value(shuffledNodes,node)
-	switch(nodeObj.roomType){
-		
-	case 0: //start
-		SpawnPrefab(CreatePrefabFileName("testRoomPrefab_",1),nodeObj.x,nodeObj.y)
-	break;
-	case 1: //exit
-		SpawnPrefab(CreatePrefabFileName("testRoomPrefab_",2),nodeObj.x,nodeObj.y)
-	break;
-	case 2: //limited  WIP
-	break;
-	case 3: //unlimited WIP
-		SpawnPrefab(CreatePrefabFileName("testRoomPrefab_",3),nodeObj.x,nodeObj.y)
-	break;
-	}
+	
+	// SPAWN THE ROOM PREFAB HERE
+	SpawnPrefabFromString(roomString)
+	
 	var float = instance_create_depth(nodeObj.x,nodeObj.y,0,floatingNumber)
 	float.num = nodeObj.num
 }
@@ -448,61 +506,5 @@ var roomsCRepeat = 1
 var totalRequestedRooms = maxRoomsA+maxRoomsB+maxRoomsC
 */
 
-#region old alt paths
-/*
-
-var looped = 0
-for (var a = 0; a < 40; a++){
-	
-	//var obj1 = ds_list_find_value(nodesList,random(ds_list_size(nodesList)))
-	if looped==ds_list_size(nodesList){break;}
-	var obj1 = ds_list_find_value(nodesList,looped)
-	image_angle=0
-	mask_index=image_index
-	image_yscale=50
-	image_xscale=50
-	
-	var instances = ds_list_create()
-	instances = InstancePlaceList(obj1.x,obj1.y,obj_RoomNode)
-	
-	
-	//show_debug_message(ds_list_size(instances))
-	
-for (var c = 0; c< ds_list_size(instances);c++){
-		
-		var obj2 = ds_list_find_value(instances,c)
-		var intersect = 0
-		for (var b = 0; b < ds_list_size(nodesList)-1+sidepaths; b++){
-			var objA = nodesArray[b,0]
-			var objB = nodesArray[b,1]
-			var check = ((obj1 == objA && obj2 == objB) || (obj1 == objB && obj2 == objA))
-			if LinesIntersect(obj1.x,obj1.y,obj2.x,obj2.y,objA.x,objA.y,objB.x,objB.y,true)!=0||check==1{
-				//intersect=1
-				//show_debug_message("B"+string(b))
-				break;
-			}
-			//if b == ds_list_size(nodesList)-1+sidepaths{intersect=1}
-		}	
-	
-	if obj1==obj2||intersect==1{
-		a--	
-	}else{
-		nodesArray[ds_list_size(nodesList)-1+a,0] = obj1
-		nodesArray[ds_list_size(nodesList)-1+a,1] = obj2
-		sidepaths++
-		//show_debug_message("made at "+string(looped))
-		show_debug_message("obj1:"+string(obj1)+"obj2:"+string(obj2))
-		break;
-	}
-	
-	
-}
-	//var obj2 = ds_list_find_value(nodesList,random(ds_list_size(nodesList)))
-			
-	looped++
-	if looped=9000{break;}
-}
-		*/
-#endregion
 
 

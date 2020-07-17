@@ -31,6 +31,14 @@
     },
     "resources": [
         {
+            "Key": "009c9340-72b4-495f-a18e-3ae06a08d6f6",
+            "Value": {
+                "id": "8b583ce7-0adc-40f2-b4de-786a8ea16d97",
+                "resourcePath": "views\\009c9340-72b4-495f-a18e-3ae06a08d6f6.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "00f20c90-6a5e-4b36-a56d-2006d483e50d",
             "Value": {
                 "id": "48d8759e-2660-4734-92c6-82c6f281b7a6",
@@ -84,6 +92,14 @@
                 "id": "78fc6653-6854-484d-bd71-7b1373a0b012",
                 "resourcePath": "objects\\obj_inventoryControl\\obj_inventoryControl.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "0c55297b-63a5-4486-9384-fd1fc01798b2",
+            "Value": {
+                "id": "b26ae371-7025-46ae-9214-63650c10d369",
+                "resourcePath": "views\\0c55297b-63a5-4486-9384-fd1fc01798b2.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -151,6 +167,14 @@
             }
         },
         {
+            "Key": "16c02bd0-e1af-4c1e-ae34-154e97b1fad7",
+            "Value": {
+                "id": "5c45016c-29af-457e-acb3-5632bdae8bf2",
+                "resourcePath": "rooms\\rm_prefabEditor\\rm_prefabEditor.yy",
+                "resourceType": "GMRoom"
+            }
+        },
+        {
             "Key": "175cd645-6022-4833-b7e8-56583bef9faa",
             "Value": {
                 "id": "cc9c68ee-3af6-4709-b21c-1b1276c38b47",
@@ -188,6 +212,14 @@
                 "id": "54cf13a0-1ffd-4747-90f1-0e63a6dd0608",
                 "resourcePath": "views\\1c2c6830-7814-440e-9dbe-d6abde897177.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "1df7337c-96cd-4634-993c-de318b2671a5",
+            "Value": {
+                "id": "322a0f8f-325a-4a67-a857-30724cc8f270",
+                "resourcePath": "scripts\\ConstructRoomPrefab\\ConstructRoomPrefab.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -287,6 +319,14 @@
             }
         },
         {
+            "Key": "2c599cf2-134f-41cb-9273-a3c98728571e",
+            "Value": {
+                "id": "7816d7f1-1e6b-4182-aa40-db1b18f6906d",
+                "resourcePath": "views\\2c599cf2-134f-41cb-9273-a3c98728571e.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "2f912ccf-a5c8-46db-8183-089790e1b555",
             "Value": {
                 "id": "8e62194e-3d46-45da-aa90-526105f75e7d",
@@ -327,11 +367,27 @@
             }
         },
         {
+            "Key": "3ad80f81-f906-4a58-aba8-f41f4d227ceb",
+            "Value": {
+                "id": "11e85c4c-08f7-4016-8b9e-7e178150a79c",
+                "resourcePath": "objects\\obj_prefabEditor\\obj_prefabEditor.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "3b533230-7f0a-44b3-ba3c-257323daf5a5",
             "Value": {
                 "id": "7375c2b8-fd0e-45a8-a63f-c68ab7cc1bb1",
                 "resourcePath": "sprites\\sprite19\\sprite19.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "3cba0b97-d093-4de4-993b-cca64c7a363c",
+            "Value": {
+                "id": "10d09152-d4ef-478a-9381-c34f310b3f04",
+                "resourcePath": "scripts\\ConstructPrefab\\ConstructPrefab.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -348,14 +404,6 @@
                 "id": "825c03ca-c91a-4e42-8828-8f06df3a432e",
                 "resourcePath": "views\/3f728b77-9817-4496-83e0-306ec87ce3fc.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "3f768fca-fee9-450e-90a0-5aa11fcdc8fb",
-            "Value": {
-                "id": "a4547a1b-13e2-41c0-8c6f-c5ba6ad40734",
-                "resourcePath": "rooms\\PrefabCreator\\PrefabCreator.yy",
-                "resourceType": "GMRoom"
             }
         },
         {
@@ -439,27 +487,11 @@
             }
         },
         {
-            "Key": "5390a2b8-9bba-4333-959e-89145c546e23",
-            "Value": {
-                "id": "864cd613-dddf-44de-b520-36b11e25640d",
-                "resourcePath": "views\\5390a2b8-9bba-4333-959e-89145c546e23.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
             "Key": "557184fb-7934-4b1e-bd5a-e9d8c7f1e36d",
             "Value": {
                 "id": "b4d9c681-53b4-4d5f-89e6-c2db2e1154b3",
                 "resourcePath": "objects\\obj_temp\\obj_temp.yy",
                 "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "55eefd48-6860-4246-a6ac-93707b2bf15d",
-            "Value": {
-                "id": "b255c5f5-5f29-4005-b30e-1bc41163860f",
-                "resourcePath": "scripts\\CreatePrefabFileName\\CreatePrefabFileName.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -527,6 +559,14 @@
             }
         },
         {
+            "Key": "5f85118d-7399-4733-9cd9-2e2aefbec66e",
+            "Value": {
+                "id": "3faced18-c4f8-4558-880a-f7a85dba4fd0",
+                "resourcePath": "views\\5f85118d-7399-4733-9cd9-2e2aefbec66e.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "5feff011-f174-47f5-8887-071507ea52e5",
             "Value": {
                 "id": "c87c3e25-98a6-4b05-95a3-9482c1c5c1ee",
@@ -564,6 +604,14 @@
                 "id": "aadbfda9-c977-4bd8-b4c6-587514bc0c85",
                 "resourcePath": "views\/685e4bf4-ddc2-43ac-a6bb-ff3a23520768.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "69bbbcdd-01ad-4ca9-a735-23dc041e7865",
+            "Value": {
+                "id": "35e63edd-ca9f-42fe-8c6e-32e150f04b51",
+                "resourcePath": "scripts\\SpawnPrefabForEditing\\SpawnPrefabForEditing.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -639,6 +687,14 @@
             }
         },
         {
+            "Key": "78e526d8-1084-4749-bcc5-2cda90f0aef9",
+            "Value": {
+                "id": "e5f6d142-c707-4589-a9df-4c27635b4b65",
+                "resourcePath": "scripts\\SpawnPrefabFromString\\SpawnPrefabFromString.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7c3e3f85-290b-4101-bf2e-fcbd17b80855",
             "Value": {
                 "id": "5d887eae-e425-4476-923f-577bcb87b026",
@@ -679,6 +735,14 @@
             }
         },
         {
+            "Key": "85b0293c-ac03-48f0-81e5-27566bf806ae",
+            "Value": {
+                "id": "78e87b94-986f-48ff-b716-6dc7a9b97200",
+                "resourcePath": "sprites\\spr_wall\\spr_wall.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "889b7b37-edfb-4f9b-82ab-c93dd0988b7c",
             "Value": {
                 "id": "effbd2c6-d5c3-41c2-adf6-380c7e6832bb",
@@ -700,6 +764,14 @@
                 "id": "996c1bbe-763f-4c61-951f-619ddc35cb84",
                 "resourcePath": "objects\/obj_textDraw\/obj_textDraw.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "8b8ffbe0-d303-4947-b164-96e2bf0db57c",
+            "Value": {
+                "id": "7f422c04-3aba-48cc-9d6b-0649fb99a5c2",
+                "resourcePath": "sprites\\spr_prefab_origin\\spr_prefab_origin.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -804,6 +876,14 @@
                 "id": "084e080f-0f55-42bd-92ac-895ea67b42ee",
                 "resourcePath": "views\\9b7dad2c-0cb5-4136-b7ea-11b66273c335.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "9c66aaa3-549f-4c04-8a7d-8ed81a551423",
+            "Value": {
+                "id": "c432c17c-c785-4d10-946c-f333ed9304be",
+                "resourcePath": "objects\\obj_prefabComponent\\obj_prefabComponent.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -1111,6 +1191,14 @@
             }
         },
         {
+            "Key": "ceeee566-16c8-40c2-b02e-19e2777a8c08",
+            "Value": {
+                "id": "2f8029d4-9042-4161-9f05-7a56e56b724e",
+                "resourcePath": "extensions\\nsfs\\nsfs.yy",
+                "resourceType": "GMExtension"
+            }
+        },
+        {
             "Key": "cf07d783-b263-4850-84e7-ad00aabf48da",
             "Value": {
                 "id": "17bc6118-ac7c-430e-91c8-f5c68570670e",
@@ -1119,11 +1207,27 @@
             }
         },
         {
+            "Key": "d0d83b1d-7278-469b-a49e-07faab57da3f",
+            "Value": {
+                "id": "79b80d21-6026-4b9a-bddc-b17f34526733",
+                "resourcePath": "scripts\\CreateRoomFromString\\CreateRoomFromString.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d2c23938-a548-4437-b2e6-817d444c6547",
             "Value": {
                 "id": "de31c63e-5b9c-42db-9595-ea728fd30d9c",
                 "resourcePath": "views\/d2c23938-a548-4437-b2e6-817d444c6547.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "d3de24b3-1824-4f31-937e-81b7f4fe448b",
+            "Value": {
+                "id": "bd5530d0-cfb8-479b-9f25-262bf801266a",
+                "resourcePath": "notes\\compatibility_report_170720_1334553455.yy",
+                "resourceType": "GMNotes"
             }
         },
         {
@@ -1188,14 +1292,6 @@
                 "id": "c509adf8-8415-4fe1-8f24-8ec18c500619",
                 "resourcePath": "objects\\obj_breakstend\\obj_breakstend.yy",
                 "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "e113580c-5dca-48aa-9b84-c8d3db512ac2",
-            "Value": {
-                "id": "e6a51002-6916-4f99-bfee-4bb6968d815f",
-                "resourcePath": "scripts\\SpawnPrefab\\SpawnPrefab.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -1360,8 +1456,6 @@
         "90a6bdd9-4c2e-44f9-92d9-fbdaab4035d3",
         "cb3768f9-a733-45c7-b332-74e9321e0fa7",
         "66f21a6c-3657-42dd-8bec-7b906ba751b5",
-        "e113580c-5dca-48aa-9b84-c8d3db512ac2",
-        "55eefd48-6860-4246-a6ac-93707b2bf15d",
         "e7852993-73bd-4a8d-ba93-f2c55d1320ee",
         "918efadb-070c-44eb-9581-98b4eabcd322",
         "66f65d45-94ad-4c3b-ab1c-09f11d96aacf",
@@ -1369,7 +1463,12 @@
         "0f269e59-c033-434f-84d4-42c58528d56e",
         "4dff27a0-b287-47ad-a072-daeac31b66bf",
         "f904f22e-1ba4-4e5f-a14c-4237aa2d1b34",
-        "3462dcb0-505d-47cc-9240-96bae4227e8c"
+        "3462dcb0-505d-47cc-9240-96bae4227e8c",
+        "69bbbcdd-01ad-4ca9-a735-23dc041e7865",
+        "3cba0b97-d093-4de4-993b-cca64c7a363c",
+        "1df7337c-96cd-4634-993c-de318b2671a5",
+        "78e526d8-1084-4749-bcc5-2cda90f0aef9",
+        "d0d83b1d-7278-469b-a49e-07faab57da3f"
     ],
     "tutorial": ""
 }
