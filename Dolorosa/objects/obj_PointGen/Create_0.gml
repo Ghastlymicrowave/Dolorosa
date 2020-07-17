@@ -355,13 +355,17 @@ var obj2 = nodesArray[a,1]
 				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1-90)
 				var pointy = lengthdir_y(tempInst.sprite_width/2,angle1-90)
 				var out = RectangleGetAnglePoint(pointx,pointy,angle1,w/2,h/2)
+				global.nextpos = out[2]
 				with (instance_create_depth(out[0]+obj1.x,out[1]+obj1.y,-40,obj_breakend)){
+					cpos=global.nextpos
 				}
 			
 				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1+90)
 				var pointy = lengthdir_y(tempInst.sprite_width/2,angle1+90)
 				var out = RectangleGetAnglePoint(pointx,pointy,angle1,w/2,h/2)
+				global.nextpos = out[2]
 				with (instance_create_depth(out[0]+obj1.x,out[1]+obj1.y,-40,obj_breakstart)){
+					cpos=global.nextpos
 				}
 				
 				//angle1 += 180
@@ -370,13 +374,17 @@ var obj2 = nodesArray[a,1]
 				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1-90)
 				var pointy = lengthdir_y(tempInst.sprite_width/2,angle1-90)
 				var out = RectangleGetAnglePoint(pointx,pointy,angle1,w/2,h/2)
+				global.nextpos = out[2]
 				with (instance_create_depth(-out[0]+obj2.x,-out[1]+obj2.y,-40,obj_breakend)){
+					cpos=global.nextpos
 				}
 				
 				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1+90)
 				var pointy = lengthdir_y(tempInst.sprite_width/2,angle1+90)
 				var out = RectangleGetAnglePoint(pointx,pointy,angle1,w/2,h/2)
+				global.nextpos = out[2]
 				with (instance_create_depth(-out[0]+obj2.x,-out[1]+obj2.y,-40,obj_breakstart)){
+					cpos=global.nextpos
 				}
 			
 			
