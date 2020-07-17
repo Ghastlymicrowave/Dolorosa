@@ -87,14 +87,6 @@
             }
         },
         {
-            "Key": "0cfc3b2b-5362-41d4-92fe-f0beb52bc3d3",
-            "Value": {
-                "id": "11c2ab7a-4c1c-4d03-8635-c75c636aa7f2",
-                "resourcePath": "objects\\obj_corner\\obj_corner.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "0e988c98-ef4d-462a-89d5-61f596000e6f",
             "Value": {
                 "id": "01155188-c483-4b5b-9809-1d849a97ed6b",
@@ -895,14 +887,6 @@
             }
         },
         {
-            "Key": "ad31fc68-36a7-4ec4-bce5-74a344bb4151",
-            "Value": {
-                "id": "203d93c6-c4ed-451f-8a61-7b76ef246bb4",
-                "resourcePath": "sprites\\dod\\dod.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
             "Key": "ad35a501-7501-4f05-867f-f6f4aedd7766",
             "Value": {
                 "id": "7a3c1eeb-d19b-48fd-8940-a5607736c976",
@@ -1311,14 +1295,6 @@
             }
         },
         {
-            "Key": "f70d2c85-323d-4ef9-ad85-783ee11444bc",
-            "Value": {
-                "id": "00013bcd-3674-4ba9-b55d-428773f5e6d4",
-                "resourcePath": "scripts\\wall_raycast\\wall_raycast.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "f904f22e-1ba4-4e5f-a14c-4237aa2d1b34",
             "Value": {
                 "id": "4a84b57c-ee01-4d47-b303-b443520a8fb6",
@@ -1393,8 +1369,7 @@
         "0f269e59-c033-434f-84d4-42c58528d56e",
         "4dff27a0-b287-47ad-a072-daeac31b66bf",
         "f904f22e-1ba4-4e5f-a14c-4237aa2d1b34",
-        "3462dcb0-505d-47cc-9240-96bae4227e8c",
-        "f70d2c85-323d-4ef9-ad85-783ee11444bc"
+        "3462dcb0-505d-47cc-9240-96bae4227e8c"
     ],
     "tutorial": ""
 }
