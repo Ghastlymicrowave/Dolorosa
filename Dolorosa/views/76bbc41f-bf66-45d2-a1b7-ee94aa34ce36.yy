@@ -10,10 +10,7 @@
         "03eceb98-49b9-479c-b7b8-db9c214fdf5b",
         "32253671-3757-4429-9ee9-fdd59e64471b",
         "23216db9-3b83-4e8f-8c09-46b9811ee29b",
-        "f268c6fa-d617-4ff5-bbe7-d0d83ce83eb8",
-        "20e1f9bc-b1d7-487f-be9f-6fc6399277b9",
-        "fea42bde-2704-40c0-81a8-10c9916b662d",
-        "e0e8658c-02f0-416b-aa98-9a239a950db9"
+        "f268c6fa-d617-4ff5-bbe7-d0d83ce83eb8"
     ],
     "filterType": "GMObject",
     "folderName": "RoomGen",
