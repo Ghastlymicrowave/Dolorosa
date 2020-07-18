@@ -13,14 +13,17 @@ raycast_sprite = sp_roomRaycaster
 var w = 0
 var h = 0
 
-ws[1]=0
-hs[1]=0
+//ws[1]=0
+//hs[1]=0
 
 
-MainRooms = 20
-SidePaths = 10
+MainRooms = 10
+SidePaths = 4
 
 pathWidth = 600
+
+wallPaths[1,1] = 0
+pathPairs = 0
 
 obj_player.x = x
 obj_player.y = y
@@ -31,15 +34,55 @@ num = 0
 nodesArray[0,0]=0
 //nodes array is fomatted with [x,0] being the origin object and [x,1] being the object the line is drawn to
 
+
+
+#region first node, needs to be cleaned up a lot
+
 nodesList = ds_list_create()
-//create first node
+
+		var fname = "testRoomPrefab_1"
+		var inputFile=file_text_open_read_ns(fname,65001) 
+			var inputData = string_load_ns(inputFile)
+		file_text_close_ns(inputFile)
+		//THIS ONLY WORKS ON WINDOWS, TO MY KNOWLEGE, MIGHT NEED TO LOOK HOW THE UN-SANDBOXER WORKS
+		
+		var templist = ds_list_create()
+		ds_list_read(templist,inputData)
+		
+		w = ds_list_find_value(templist,1)
+		h = ds_list_find_value(templist,2)
+
+		var roomString = ds_list_find_value(templist,0)
+																	//create first node
 var inst = instance_create_depth(x,y,0,obj_RoomNode) //CHANGE THIS TO WORK WITH W AND H AND THE FILE FORMAT
 inst.num = num++
 ds_list_add(nodesList,inst)
 inst.image_blend=c_blue
 inst.roomType = 0
+inst.breakObjs = ds_list_create()
+inst.sprite_index = sp_onePixel
+			inst.image_xscale = w
+			inst.image_yscale = h
+			inst.w =w
+			inst.h =h
+			with(inst){
+				var corner1 =instance_create_depth(x+w/2,y+h/2,0,obj_breakstend)
+				var corner2 = instance_create_depth(x+w/2,y-h/2,0,obj_breakstend)
+				var corner3 = instance_create_depth(x-w/2,y-h/2,0,obj_breakstend)
+				var corner4 = instance_create_depth(x-w/2,y+h/2,0,obj_breakstend)
+				
+				ds_list_add(inst.breakObjs,corner1 )
+				ds_list_add(inst.breakObjs,corner2 )
+				ds_list_add(inst.breakObjs,corner3 )
+				ds_list_add(inst.breakObjs,corner4 )
+			}	
 
 
+SpawnPrefabFromString(roomString,inst.x,inst.y)
+
+ds_list_destroy(templist)
+
+#endregion
 
 var checkInst = instance_create_depth(x,y,0,obj_temp_2)
 for (var i = 0; i<MainRooms; i++){//loops until every room requrested in the mainrooms var is created sucessfully
@@ -64,26 +107,34 @@ for (var i = 0; i<MainRooms; i++){//loops until every room requrested in the mai
 	break;
 	}
 		//load data about specific room and set room specific variables
-		file_text_open_read(fname)
-		var inputData = file_text_read_string(fname)
-		file_text_close(fname)
+		//var file = file_text_open_read(fname)
+		//	var inputData = file_text_read_string(file)
+		//file_text_close(file)
+		var inputFile=file_text_open_read_ns(fname,65001) 
+			var inputData = string_load_ns(inputFile)
+		file_text_close_ns(inputFile)
+		//THIS ONLY WORKS ON WINDOWS, TO MY KNOWLEGE, MIGHT NEED TO LOOK HOW THE UN-SANDBOXER WORKS
 		
 		var templist = ds_list_create()
 		ds_list_read(templist,inputData)
+		//show_message(ds_list_find_value(templist,0))
 		
 		w = ds_list_find_value(templist,1)
 		h = ds_list_find_value(templist,2)
 		
+		//show_message(ds_list_size(templist))
+
 		var roomString = ds_list_find_value(templist,0)
 		
-		var minDist =  sqrt((h*h)+(w*w))
+		ds_list_destroy(templist)
+		
+		var minDist =  2000 //w*h//sqrt((h*h)+(w*w))
 		var maxDist =  minDist
 		mask_index = sp_onePixel
 		image_xscale = w
 		image_yscale = h
 		
-		checkInst.x = xpos
-		checkInst.y = ypos
+		
 		
 		//set random position variables
 		var pos = irandom_range(0,ds_list_size(nodesList)-1)
@@ -94,6 +145,9 @@ for (var i = 0; i<MainRooms; i++){//loops until every room requrested in the mai
 		var dist = random_range(minDist,maxDist)
 		var xpos = lengthdir_x(dist,angle)+target.x
 		var ypos = lengthdir_y(dist,angle)+target.y
+		
+		checkInst.x = xpos
+		checkInst.y = ypos
 		
 		var intersect = 0
 		
@@ -183,29 +237,38 @@ for (var i = 0; i<MainRooms; i++){//loops until every room requrested in the mai
 			
 			newObj.w =w
 			newObj.h =h
-
-			with(newObj){
-				with(instance_create_depth(x+w,y+h,0,obj_breakstend)){
-					cpos=0
-				}
-				with(instance_create_depth(x+w,y-h,0,obj_breakstend)){
-					cpos=100
-				}
-				with(instance_create_depth(x-w,y-h,0,obj_breakstend)){
-					cpos=200
-				}
-				with(instance_create_depth(x-w,y+h,0,obj_breakstend)){
-					cpos=300
-				}			
+			newObj.breakObjs = ds_list_create()
+			with(newObj){ 
+				var corner1 =instance_create_depth(x+w/2,y+h/2,0,obj_breakstend)
+				var corner2 = instance_create_depth(x+w/2,y-h/2,0,obj_breakstend)
+				var corner3 = instance_create_depth(x-w/2,y-h/2,0,obj_breakstend)
+				var corner4 = instance_create_depth(x-w/2,y+h/2,0,obj_breakstend)
+				
+				ds_list_add(newObj.breakObjs,corner1 )
+				ds_list_add(newObj.breakObjs,corner2 )
+				ds_list_add(newObj.breakObjs,corner3 )
+				ds_list_add(newObj.breakObjs,corner4 )
 			}	
+
 			
 			if i == MainRooms -1 {//check if exit room
 				var firstObj = ds_list_find_value(nodesList,0)
 				var newList = ds_list_create()
-				image_xscale=1000
-				image_yscale=1000
-				instance_place_list(firstObj.x,firstObj.y,obj_RoomNode,newList,true)
-				var furtherstObj = ds_list_find_value(newList,ds_list_size(newList)-1)
+				var furthestDist = 0
+				var furthestIndex = 0;
+				for(a = 0; a < ds_list_size(nodesList);a++){//cycle all room nodes to find the furthest
+					var someNode = ds_list_find_value(nodesList,a)
+					var farDist = point_distance(firstObj.x,firstObj.y,someNode.x,someNode.y)
+					if farDist > furthestDist {
+						furthestDist = farDist
+						furthestIndex = a
+					}
+				}
+				
+				var furtherstObj = ds_list_find_value(nodesList,furthestIndex)
+
+				//instance_place_list(firstObj.x,firstObj.y,obj_RoomNode,newList,true)
+				//var furtherstObj = ds_list_find_value(newList,ds_list_size(newList)-1)
 				furtherstObj.image_blend=c_red
 				furtherstObj.roomType= 1
 			}
@@ -325,9 +388,7 @@ for (var c = 0; c< ds_list_size(instances);c++){
 							break;
 						}
 					}
-
-				
-			}
+				}
 			ds_list_destroy(test)
 			}
 			
@@ -363,15 +424,15 @@ ds_list_destroy(instances)
 
 
 
-shuffledNodes = ds_list_create()
-ds_list_copy(shuffledNodes,nodesList)
-ds_list_shuffle(shuffledNodes)
+//shuffledNodes = ds_list_create()
+//ds_list_copy(shuffledNodes,nodesList)
+//ds_list_shuffle(shuffledNodes)
 
-for(var node = 0; node< ds_list_size(shuffledNodes); node++){
-	var nodeObj = ds_list_find_value(shuffledNodes,node)
+for(var node = 0; node< ds_list_size(nodesList); node++){
+	var nodeObj = ds_list_find_value(nodesList,node)
 	
 	// SPAWN THE ROOM PREFAB HERE
-	SpawnPrefabFromString(roomString)
+	SpawnPrefabFromString(roomString,nodeObj.x,nodeObj.y)
 	
 	var float = instance_create_depth(nodeObj.x,nodeObj.y,0,floatingNumber)
 	float.num = nodeObj.num
@@ -385,20 +446,10 @@ for (var a = 0; a < array_height_2d(nodesArray); a++){
 var obj1 = nodesArray[a,0]
 var obj2 = nodesArray[a,1]
 
-//var wallsList = ds_list_create()
-//collision_line_list(obj1.x,obj1.y,obj2.x,obj2.y,obj_outerWallObjstacle,false,true,wallsList,false)
-
-	//for (var b = 0; b < ds_list_size(wallsList); b++){
-	//	instance_destroy(ds_list_find_value(wallsList,b))
-	//}
 
 	#region wide raycast
-	//var w = sprite_get_width(sprite)//these were set before, this is just in case they got reset
-	//var h = sprite_get_height(sprite)
 	show_debug_message(string(w)+" "+string(h))
 			var distance = point_distance(obj1.x,obj1.y,obj2.x,obj2.y)
-			//tempInst.x = obj1.x
-			//tempInst.y = obj2.y
 			var tempInst = instance_create_depth(obj1.x,obj1.y,0,obj_temp)
 			var angle1 = point_direction(obj1.x,obj1.y,obj2.x,obj2.y)
 			tempInst.host = obj1
@@ -408,68 +459,183 @@ var obj2 = nodesArray[a,1]
 			tempInst.image_xscale= pathWidth/sprite_get_width(raycast_sprite)
 			tempInst.image_blend = c_red
 			tempInst.depth = -100000000
-				
+			
 				//																		ADD OBJECT PARENTS FOR BREAKSTARTS AND BREAKENDS !!!!!!!!
+				//																			I did that
 				
 				//obj1 
-				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1-90)
+				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1-90)//right
 				var pointy = lengthdir_y(tempInst.sprite_width/2,angle1-90)
 				var out = RectangleGetAnglePoint(pointx,pointy,angle1,w/2,h/2)
-				global.nextpos = out[2]
-				with (instance_create_depth(out[0]+obj1.x,out[1]+obj1.y,-40,obj_breakend)){
-					cpos=global.nextpos
-				}
-			
-				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1+90)
+				var obj1a = instance_create_depth(out[0]+obj1.x,out[1]+obj1.y,-40,obj_breakend)
+				ds_list_add(obj1.breakObjs,obj1a)
+
+				//obj1
+				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1+90)//left
 				var pointy = lengthdir_y(tempInst.sprite_width/2,angle1+90)
 				var out = RectangleGetAnglePoint(pointx,pointy,angle1,w/2,h/2)
-				global.nextpos = out[2]
-				with (instance_create_depth(out[0]+obj1.x,out[1]+obj1.y,-40,obj_breakstart)){
-					cpos=global.nextpos
-				}
-				
-				//angle1 += 180
+				var obj1b = instance_create_depth(out[0]+obj1.x,out[1]+obj1.y,-40,obj_breakstart)
+				ds_list_add(obj1.breakObjs,obj1b)
+
 				
 				//obj2
 				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1-90)
 				var pointy = lengthdir_y(tempInst.sprite_width/2,angle1-90)
 				var out = RectangleGetAnglePoint(pointx,pointy,angle1,w/2,h/2)
-				global.nextpos = out[2]
-				with (instance_create_depth(-out[0]+obj2.x,-out[1]+obj2.y,-40,obj_breakend)){
-					cpos=global.nextpos
-				}
-				
+				var obj2a = instance_create_depth(-out[0]+obj2.x,-out[1]+obj2.y,-40,obj_breakend)
+				ds_list_add(obj2.breakObjs,obj2a)
+
+				//obj2
 				var pointx = lengthdir_x(tempInst.sprite_width/2,angle1+90)
 				var pointy = lengthdir_y(tempInst.sprite_width/2,angle1+90)
 				var out = RectangleGetAnglePoint(pointx,pointy,angle1,w/2,h/2)
-				global.nextpos = out[2]
-				with (instance_create_depth(-out[0]+obj2.x,-out[1]+obj2.y,-40,obj_breakstart)){
-					cpos=global.nextpos
-				}
-			
-			
+				var obj2b = instance_create_depth(-out[0]+obj2.x,-out[1]+obj2.y,-40,obj_breakstart)
+				ds_list_add(obj2.breakObjs,obj2b)
+
+				wallPaths[pathPairs,0] = obj1a
+				wallPaths[pathPairs,1] = obj2b
+				pathPairs++
+				wallPaths[pathPairs,0] = obj2a
+				wallPaths[pathPairs,1] = obj1b
+				pathPairs++
 			//colision check
 			with (tempInst){
 				searchingWalls = ds_list_create()
 				instance_place_list(x,y,obj_outerWallObjstacle,searchingWalls,true)
 				
-					//show_debug_message("fat"+string(ds_list_size(test)))
 					while ds_list_size(searchingWalls)>0{
 						var targ = ds_list_find_value(searchingWalls,0)	
 						instance_destroy(targ)
 						ds_list_delete(searchingWalls,0)
 					}
-					
 
 			ds_list_destroy(searchingWalls)
 			}
 			
-			
-			
-			
 	#endregion
 
 }
+
+//SELECTION SORT THE LIST BASED ON ROTATION FROM ROOM ORIGIN, SLOT 0 MUST HAVE A BREAKEND
+
+var node;
+var obj;
+var thisNode;
+var thisList;
+var currentObj;
+
+for( var node = 0; node < ds_list_size(nodesList);node++;){//loop nodes
+	 thisNode = ds_list_find_value(nodesList,node)
+	 thisList = thisNode.breakObjs
+	for( obj = 0; obj < ds_list_size(thisList);obj++){//loop objects to set rotation
+		 currentObj = ds_list_find_value(thisList,obj)
+		currentObj.angle = point_direction(thisNode.x,thisNode.y,currentObj.x,currentObj.y)
+		show_debug_message(currentObj.angle)
+	}
+	
+	thisNode.sortedBreakObjs = ds_list_create()
+	while( ds_list_size(thisList)>0){//selection sort based on rotation
+		show_debug_message(ds_list_size(thisList))
+		var highestIndex = 0
+		
+		for( obj = 0; obj< ds_list_size(thisList);obj++;){
+			var thisAngle = ds_list_find_value(thisList,obj).angle
+			var newhighest = ds_list_find_value(thisList,highestIndex)
+			
+			//find why shit gets wacky here, but more importantly find why sometimes nodes don't get lists 
+			
+			show_debug_message(thisAngle)
+			//show_debug_message(lowestIndex)
+			//show_debug_message(newLowest)
+			//show_debug_message(newLowest.angle)
+			var currenthighest = newhighest.angle
+			if thisAngle>currenthighest{
+			highestIndex=obj	
+			}
+		}
+		ds_list_add(thisNode.sortedBreakObjs,ds_list_find_value(thisList,highestIndex))//move and delete 
+		ds_list_delete(thisList,highestIndex)
+
+		if ds_list_size(thisList) == 0 {
+		break;	
+		}
+	}
+	ds_list_copy(thisNode.breakObjs,thisNode.sortedBreakObjs)
+	ds_list_destroy(thisNode.sortedBreakObjs)
+
+
+	while( object_get_name(ds_list_find_value(thisNode.breakObjs,0).object_index) != "obj_breakend" ){ // keep shifting list until it starts with a breakend
+		//show_debug_message(object_get_name(ds_list_find_value(thisNode.breakObjs,0)))
+		thisNode.shifted = ds_list_create()
+		
+		for(i = 1; i < ds_list_size(thisNode.breakObjs) ; i++;){
+			
+			ds_list_add(thisNode.shifted,ds_list_find_value(thisNode.breakObjs,i))
+			
+			if (i == ds_list_size(thisNode.breakObjs) - 1) {
+				ds_list_add(thisNode.shifted,ds_list_find_value(thisNode.breakObjs,0))
+			}
+		
+		}
+	ds_list_copy(thisNode.breakObjs,thisNode.shifted)
+	ds_list_destroy(thisNode.shifted)
+	}
+}
+
+//SETTING WALLS
+var thisNode;
+var thisList;
+var currentObj;
+var stopSkippingFlag =0;
+var wallPairs;
+for(var node = 0; node< ds_list_size(nodesList);node++){
+	
+	thisNode = ds_list_find_value(nodesList,node)
+	thisList = thisNode.breakObjs
+	thisNode.walls[1,1] = 0 
+	wallPairs = 0
+	stopSkippingFlag=0
+	var point = 0
+
+	for(var obj = 0; obj < ds_list_size(thisList);obj++){
+		currentObj = ds_list_find_value(thisList,obj)
+		show_debug_message(string(obj)+":			"+string(object_get_name(currentObj.object_index)))
+		thisNode.walls[wallPairs,point % 2] = currentObj
+		show_debug_message("A"+string(wallPairs)+string(point%2))
+		if (point % 2)==1 {wallPairs++}
+		
+		switch(currentObj.object_index){
+			case obj_breakstart:
+			case obj_breakend:
+			point++
+			break;
+			case obj_breakstend:
+			
+			if (point % 2)==1 {
+				point++
+				thisNode.walls[wallPairs,(point) % 2] = currentObj
+				show_debug_message("B"+string(wallPairs)+string(point%2))//works
+				point++
+			} else {
+				point++
+				thisNode.walls[wallPairs,(point) % 2] = currentObj
+				show_debug_message("C"+string(wallPairs)+string(point%2))//doesnt work post
+				wallPairs++
+				point++
+			}
+			
+			break;
+		}
+		
+			
+		
+	}
+	thisNode.wallPairs = wallPairs
+}
+
+
+
+
 
 //instance_destroy(tempInst)	
 

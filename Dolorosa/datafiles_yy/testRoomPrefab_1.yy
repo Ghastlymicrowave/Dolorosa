@@ -1,5 +1,5 @@
 {
-    "id": "da10bbd6-0531-4d61-bb32-232a39ef9392",
+    "id": "f3eda87c-90cf-471f-8d87-cbeda352bfd6",
     "modelName": "GMIncludedFile",
     "mvc": "1.0",
     "name": "testRoomPrefab_1",

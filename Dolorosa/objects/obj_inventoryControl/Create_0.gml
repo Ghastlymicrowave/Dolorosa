@@ -15,3 +15,4 @@
 			
 			heldtime =0 
 			heldwaittime=0
+			side = 0
