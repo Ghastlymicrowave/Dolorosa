@@ -78,28 +78,26 @@ if(place_meeting(x,y,prnt_enemy)){
 
 #endregion
 #region ROTATE AND COLLISION
-
-for (var angle = 0;angle<=70; angle += 1){
-				xtarg = x+lengthdir_x(speed,angle+direction)
-				ytarg = y+lengthdir_y(speed,angle+direction)
-				if !place_meeting(xtarg,ytarg,obj_obstacle){
-					direction = direction + angle
-					//hspeed=floor(abs(hspeed))*sign(hspeed)
-					//vspeed=floor(abs(vspeed))*sign(vspeed)
-					break;
-				}
-			}
+var free = 0
+for (var angle = 0;angle<=89; angle += 1){
+		xtarg = x+lengthdir_x(speed,angle+direction)
+		ytarg = y+lengthdir_y(speed,angle+direction)
+		if !place_meeting(xtarg,ytarg,obj_obstacle){
+			direction = direction + angle
+			free=free or 1
+			break;
+		}
+	}
 		
-		for (var angle = 0;angle<=70; angle += 1){
-				xtarg = x+lengthdir_x(speed,-angle+direction)
-				ytarg = y+lengthdir_y(speed,-angle+direction)
-				if !place_meeting(xtarg,ytarg,obj_obstacle){
-					direction = direction -angle
-					//hspeed=floor(abs(hspeed))*sign(hspeed)
-					//vspeed=floor(abs(vspeed))*sign(vspeed)
-					break;
-				}
-			}
-			
-CollisionWith(obj_obstacle)
+for (var angle = 0;angle<=89; angle += 1){
+		xtarg = x+lengthdir_x(speed,-angle+direction)
+		ytarg = y+lengthdir_y(speed,-angle+direction)
+		if !place_meeting(xtarg,ytarg,obj_obstacle){
+			direction = direction -angle
+			free=free or 1
+			break;
+		}
+	}
+speed*=free
+//CollisionWith(obj_obstacle)
 #endregion
