@@ -1,19 +1,17 @@
 switch(t){
 	case 0:
 	#region frame 1
-	draw_set_color(c_red)
-	for (var i = 0; i < array_height_2d(nodesArray); i++){
-		//show_debug_message("sidepaths"+string(sidepaths))
-		//show_debug_message("node size"+string(ds_list_size(nodesList)-1))
-		var obj1 = nodesArray[i,0]
-		var obj2 = nodesArray[i,1]
+	//draw_set_color(c_red)
+	//for (var i = 0; i < array_height_2d(nodesArray); i++){
+	//	//show_debug_message("sidepaths"+string(sidepaths))
+	//	//show_debug_message("node size"+string(ds_list_size(nodesList)-1))
+	//	var obj1 = nodesArray[i,0]
+	//	var obj2 = nodesArray[i,1]
 	
-		if i >= ds_list_size(nodesList)-1 {
-		draw_set_color(c_blue)	
-		}
-		draw_line_width(obj1.x,obj1.y,obj2.x,obj2.y,10)
-	
-	
+	//	if i >= ds_list_size(nodesList)-1 {
+	//	draw_set_color(c_blue)	
+	//	}
+	//	draw_line_width(obj1.x,obj1.y,obj2.x,obj2.y,10)
 	
 	
 	
@@ -21,7 +19,9 @@ switch(t){
 	
 	
 	
-	}
+	
+	
+	//}
 
 	//create wall objects
 
@@ -38,14 +38,36 @@ switch(t){
 		for(var wall = 0; wall < arrayLength; wall++){
 			var startObj = thisArray[wall,0]
 			var endObj = thisArray[wall,1]
-			draw_set_color(c_green)
-			with(instance_create_depth(x,y,0,obj_wall)){
-				coords[0]=startObj.x
-				coords[1]=startObj.y
-				coords[2]=endObj.x
-				coords[3]=endObj.y
-				image_yscale=30
+
+			var inst = instance_create_depth(x,y,0,obj_wall)
+			objx1=startObj.x
+			objy1=startObj.y
+			objx2=endObj.x
+			objy2=endObj.y
+			inst.host = id
+			
+			with (inst){
+				var x1 = host.objx1
+				var y1 = host.objy1
+				var x2 = host.objx2
+				var y2 = host.objy2
+				x = x1
+				y = y1
+				image_angle=point_direction(x1,y1,x2,y2)
+				if(point_distance(x1,y1,x2,y2)>15){
+					image_xscale=point_distance(x1,y1,x2,y2) / sprite_width
+				}else{instance_destroy()}
 			}
+			
+			//with(inst)){
+				
+			//	x=host.x1
+			//	y=host.y1
+			//	y=x2
+			//	
+			//	
+			//}
+			
 			show_debug_message(string(startObj.x)+":"+string(startObj.y)+"\n"+string(endObj.x)+":"+string(endObj.y))
 		
 
@@ -58,13 +80,25 @@ switch(t){
 		var obj1 = wallPaths[path,0]	
 		var obj2 = wallPaths[path,1]	
 	
-		with(instance_create_depth(x,y,0,obj_wall)){
-				coords[0]=obj1.x
-				coords[1]=obj1.y
-				coords[2]=obj2.x
-				coords[3]=obj2.y
-				image_yscale=30
-		}
+		var inst = instance_create_depth(x,y,0,obj_wall)
+			objx1=obj1.x
+			objy1=obj1.y
+			objx2=obj2.x
+			objy2=obj2.y
+			inst.host = id
+			
+			with (inst){
+				var x1 = host.objx1
+				var y1 = host.objy1
+				var x2 = host.objx2
+				var y2 = host.objy2
+				x = x1
+				y = y1
+				image_angle=point_direction(x1,y1,x2,y2)
+				if(point_distance(x1,y1,x2,y2)>15){
+					image_xscale=point_distance(x1,y1,x2,y2) / sprite_width
+				}else{instance_destroy()}
+			}
 	}
 	#endregion
 	t++

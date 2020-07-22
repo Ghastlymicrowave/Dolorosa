@@ -1421,6 +1421,14 @@
                 "resourcePath": "objects\\obj_breakend\\obj_breakend.yy",
                 "resourceType": "GMObject"
             }
+        },
+        {
+            "Key": "ffff87d1-312f-4fbc-8455-9c7e1823ffbc",
+            "Value": {
+                "id": "a6632e3c-a0b3-46f3-8ae0-bb1cfd465b84",
+                "resourcePath": "sprites\\sp_wallSprite\\sp_wallSprite.yy",
+                "resourceType": "GMSprite"
+            }
         }
     ],
     "script_order": [
