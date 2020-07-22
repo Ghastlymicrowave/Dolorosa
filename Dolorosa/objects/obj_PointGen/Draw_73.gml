@@ -44,7 +44,7 @@ switch(t){
 				coords[1]=startObj.y
 				coords[2]=endObj.x
 				coords[3]=endObj.y
-				image_yscale=10
+				image_yscale=30
 			}
 			show_debug_message(string(startObj.x)+":"+string(startObj.y)+"\n"+string(endObj.x)+":"+string(endObj.y))
 		
@@ -63,7 +63,7 @@ switch(t){
 				coords[1]=obj1.y
 				coords[2]=obj2.x
 				coords[3]=obj2.y
-				image_yscale=10
+				image_yscale=30
 		}
 	}
 	#endregion
