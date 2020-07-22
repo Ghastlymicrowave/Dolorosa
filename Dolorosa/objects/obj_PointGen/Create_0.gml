@@ -9,6 +9,7 @@ raycast_sprite = sp_roomRaycaster
 //room 2 = limited
 //room 3 = unlimited
 
+t=0 //timer variable
 
 var w = 0
 var h = 0
