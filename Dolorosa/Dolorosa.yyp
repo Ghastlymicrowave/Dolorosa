@@ -1143,6 +1143,14 @@
             }
         },
         {
+            "Key": "c341e624-0ba9-4a25-8fdc-3183780a39e8",
+            "Value": {
+                "id": "ae229279-11bf-4252-9b02-547a9c4662c3",
+                "resourcePath": "sprites\\spr_circleWallSprite\\spr_circleWallSprite.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "c5b2b51b-7151-4a75-bd7e-16d5e40334af",
             "Value": {
                 "id": "c8c23179-07a4-4fcf-a5b7-ccecf0452773",

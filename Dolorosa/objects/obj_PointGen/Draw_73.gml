@@ -54,8 +54,13 @@ switch(t){
 				x = x1
 				y = y1
 				image_angle=point_direction(x1,y1,x2,y2)
+				image_yscale = host.wallWidth / sprite_height
 				if(point_distance(x1,y1,x2,y2)>15){
 					image_xscale=point_distance(x1,y1,x2,y2) / sprite_width
+					var inst2 = instance_create_depth(x2,y2,0,obj_wall)
+					inst2.sprite_index = spr_circleWallSprite
+					inst2.image_xscale = host.wallWidth / inst2.sprite_width
+					inst2.image_yscale = host.wallWidth / inst2.sprite_height
 				}else{instance_destroy()}
 			}
 			
@@ -95,8 +100,14 @@ switch(t){
 				x = x1
 				y = y1
 				image_angle=point_direction(x1,y1,x2,y2)
+				image_yscale = host.wallWidth / sprite_height
 				if(point_distance(x1,y1,x2,y2)>15){
 					image_xscale=point_distance(x1,y1,x2,y2) / sprite_width
+					var inst2 = instance_create_depth(x,y,0,obj_wall)
+					inst2.sprite_index = spr_circleWallSprite
+					inst2.image_xscale = host.wallWidth / inst2.sprite_width
+					inst2.image_yscale = host.wallWidth / inst2.sprite_height
+					
 				}else{instance_destroy()}
 			}
 	}

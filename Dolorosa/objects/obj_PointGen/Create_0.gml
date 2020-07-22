@@ -17,6 +17,7 @@ var h = 0
 //ws[1]=0
 //hs[1]=0
 
+wallWidth = 40
 
 MainRooms = 10
 SidePaths = 4
