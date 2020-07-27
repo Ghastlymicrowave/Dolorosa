@@ -186,9 +186,6 @@ if stamina>0&&readyAction==1&&dodgetime==0&&interactState=0&&atkwarmuptime=0{
 
 }
 #endregion
-#region SPIKES
-if(place_meeting(x,y,obj_spikes)){}
-#endregion
 
 //first while dodgetime is running out, the player is locked in a direction with their speed dictacted by dodgetime, dodgespeed, and initaldodgetime
 //next standbytime counds down, during this the player cannot move
@@ -210,8 +207,6 @@ if mouse_check_button_pressed(mb_left)&&wielding=0{
 
 if dodgetime>0{
 } else if standbytime<=0{
-	
-	
 	
 //if any input
 if (vinput!=0)||(hinput!=0){
