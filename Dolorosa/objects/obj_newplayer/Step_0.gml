@@ -8,20 +8,22 @@
 #endregion
 #region collision
 	var free = 0
-	for (var angle = 0;angle<=45; angle += 1){
+	var maxAngle = 45
+	var controlDir = point_direction(0,0,hinput,vinput)
+	for (var angle = 0;angle<=maxAngle; angle += 1){
 			xtarg = x+lengthdir_x(speed,angle+direction)
 			ytarg = y+lengthdir_y(speed,angle+direction)
-			if !place_meeting(xtarg,ytarg,obj_obstacle){
+			if !place_meeting(xtarg,ytarg,obj_obstacle)&&angle_difference(direction,controlDir)<maxAngle{
 				direction = direction + angle
 				free=free or 1
 				break;
 			}
 		}
 		
-	for (var angle = 0;angle<=45; angle += 1){
+	for (var angle = 0;angle<=maxAngle; angle += 1){
 			xtarg = x+lengthdir_x(speed,-angle+direction)
 			ytarg = y+lengthdir_y(speed,-angle+direction)
-			if !place_meeting(xtarg,ytarg,obj_obstacle){
+			if !place_meeting(xtarg,ytarg,obj_obstacle)&&angle_difference(controlDir,direction)<maxAngle{
 				direction = direction -angle
 				free=free or 1
 				break;
