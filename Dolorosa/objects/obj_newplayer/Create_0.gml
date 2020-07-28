@@ -16,8 +16,9 @@ enum movestates{
 walk,
 roll,
 backstep,
-knockback
-
+knockback,
+attack,
+attackHold
 }
 
 enum playerstates{
@@ -44,6 +45,7 @@ attackstate = attackstates.sheathed
 attack_time = 0
 attack_combo = 0
 comboTime = 40
+
 
 //attack_windupTime = 0
 //attack_hitTime = 0

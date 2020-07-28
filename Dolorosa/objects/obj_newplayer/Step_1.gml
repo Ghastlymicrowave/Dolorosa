@@ -9,6 +9,7 @@
 	heavyAttack=mouse_check_button_pressed(mb_right)
 	attack = lightAttack||heavyAttack
 	hold=mouse_check_button(mb_left)||mouse_check_button(mb_right)
+	
 	if(abs(hinput)+abs(vinput)>0){facing=point_direction(0,0,hinput,vinput)}
 #endregion
 #region controller
@@ -21,15 +22,15 @@
 			motion_add(facing,min(acceleration,acceleration*point_distance(0,0,hinput,vinput)))
 			//roll
 			if(roll){
-				var stun = floor(maxspd/acceleration)
-				PlayerSetMovestate(movestates.roll,facing,maxspd*2,maxspd*2,acceleration/2,stun)
+				PlayerSetMovestate(movestates.roll,facing,maxspd*2,maxspd*2,acceleration/2)
+				stuntime = floor(maxspd/acceleration)
 				break;
 			}
 			//backstep
 			if(backstep){
 				var mousePoint = point_direction(mouse_x,mouse_y,x,y)
-				var stun = floor(maxspd/acceleration)
-				PlayerSetMovestate(movestates.backstep,mousePoint,maxspd*2,maxspd*2,acceleration,stun)
+				PlayerSetMovestate(movestates.backstep,mousePoint,maxspd*2,maxspd*2,acceleration)
+				stuntime = floor(maxspd/acceleration)
 				break;
 			}
 		break;
@@ -48,6 +49,20 @@
 				maxspd/=2
 			}
 		break;
+		case movestates.attack://attacking
+			//stuntime--
+			//if(stuntime=0){
+			//	movestate=movestates.walk
+			//	//maxspd/=2
+			//	//acceleration*=2
+			//}
+		break;
+		case movestates.attackHold://attacking
+			//if attackstate !=attackstates.holding && attackstate!=attackstates.windup{
+			//	//movestate = movestates.walk
+			//}
+			motion_add(facing,min(acceleration,acceleration*point_distance(0,0,hinput,vinput)))
+		break;
 	}
 #endregion
 
@@ -58,6 +73,8 @@ if (playerstate==playerstates.standard&&attackstate==attackstates.sheathed){
 }
 
 #endregion
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!! Direction isn't locked when attacking, 
 
 
 #region attacks
@@ -81,9 +98,11 @@ case attackstates.sheathed:
 	}
 	attackID = attack_combo+8*heavyAttack-lowerToViable
 	var hitboxobj = HitboxFromInt(hitboxid)
-	if object_exists(hitboxobj){
+	if object_exists(hitboxobj){//switch to holding
 		attack_hitbox = hitboxobj
 		attack_time = attackKit[5,attackID]
+		movestate=movestates.attackHold
+		maxspd/=2
 		}
 	}
 break;
@@ -94,6 +113,7 @@ case attackstates.holding:
 	}
 	if (!hold){
 		attackstate = attackstates.windup
+		maxspd*=2
 		motion_add(facing,attackKit[9,attackID])
 	}
 break;
@@ -103,13 +123,16 @@ case attackstates.windup:
 		attackstate = attackstates.hit
 		attack_time = attackKit[6,attackID]
 		//create hitbox
-		
+		stuntime = attack_time
+		movestate = movestates.attack
 		currentHitbox = instance_create_depth(x,y,0,HitboxFromInt(attackKit[0,attackID]))
 	}
 break;
 case attackstates.hit:
 	attack_time --
+	//direction = lockeddir
 	if attack_time == 0 {//hit ends
+		movestate = movestates.walk
 		attackstate = attackstates.cooldown
 		attack_time = attackKit[7,attackID]
 		//destroy hitbox
