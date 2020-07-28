@@ -11,3 +11,12 @@ room_speed=60
 	stuntime=0
 	facing=0
 #endregion
+
+enum movestates{
+walk,
+roll,
+backstep,
+knockback
+
+	
+}

@@ -12,39 +12,35 @@
 #region set shit based on inputs
 //direct movement
 	switch(movestate){
-		case 0:
+		case movestates.walk:
 			//base movement
 			motion_add(facing,min(acceleration,acceleration*point_distance(0,0,hinput,vinput)))
 			//roll
 			if(roll){
-				motion_add(facing,maxspd*2)
-				movestate=1
-				maxspd*=2
-				acceleration/=2
-				stuntime=floor(maxspd/acceleration)
+				var stun = floor(maxspd/acceleration)
+				PlayerSetMovestate(movestates.roll,facing,maxspd*2,maxspd*2,acceleration/2,stun)
 				break;
 			}
 			//backstep
 			if(backstep){
-				motion_add(point_direction(mouse_x,mouse_y,x,y),maxspd*2)
-				movestate=2
-				maxspd*=2
-				stuntime=floor(maxspd/acceleration)
+				var mousePoint = point_direction(mouse_x,mouse_y,x,y)
+				var stun = floor(maxspd/acceleration)
+				PlayerSetMovestate(movestates.backstep,mousePoint,maxspd*2,maxspd*2,acceleration,stun)
 				break;
 			}
 		break;
-		case 1://rolling
+		case movestates.roll://rolling
 			stuntime--
 			if(stuntime=0){
-				movestate=0
+				movestate=movestates.walk
 				maxspd/=2
 				acceleration*=2
 			}
 		break;
-		case 2://backstepping
+		case movestates.backstep://backstepping
 			stuntime--
 			if(stuntime=0){
-				movestate=0
+				movestate=movestates.walk
 				maxspd/=2
 			}
 		break;
