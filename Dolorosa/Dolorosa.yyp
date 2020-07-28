@@ -71,14 +71,6 @@
             }
         },
         {
-            "Key": "063f1ff8-1df0-4e22-9c84-1b8573177037",
-            "Value": {
-                "id": "da23cfe3-ed23-4882-9dc5-2848e976d946",
-                "resourcePath": "datafiles_yy\\attacks.csv.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "0b764d74-9b3b-4b91-ada6-c0c7aeb5ae92",
             "Value": {
                 "id": "daae7374-2b15-463c-97c8-a3186fec5346",
@@ -372,6 +364,14 @@
                 "id": "02238893-bcdf-4298-8905-9a8d7971802d",
                 "resourcePath": "scripts\\clockwise_closest\\clockwise_closest.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "3710120c-91b7-42cc-9b79-fb276b55b18f",
+            "Value": {
+                "id": "e0ec7b54-dd25-4b4f-b0ab-74ff645f900a",
+                "resourcePath": "datafiles_yy\\attacks.csv.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1226,7 +1226,7 @@
             "Key": "cf07d783-b263-4850-84e7-ad00aabf48da",
             "Value": {
                 "id": "17bc6118-ac7c-430e-91c8-f5c68570670e",
-                "resourcePath": "objects\\obj_pHitbox_00\\obj_pHitbox_00.yy",
+                "resourcePath": "objects\\obj_pHitbox_01\\obj_pHitbox_01.yy",
                 "resourceType": "GMObject"
             }
         },
