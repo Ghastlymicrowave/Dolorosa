@@ -10,6 +10,11 @@ room_speed=60
 	movestate=0
 	stuntime=0
 	facing=0
+	
+	default_maxspd = maxspd
+	default_acceleration = acceleration
+	lastdir = 0
+	
 #endregion
 
 enum movestates{

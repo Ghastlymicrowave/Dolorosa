@@ -10,7 +10,7 @@
 	attack = lightAttack||heavyAttack
 	hold=mouse_check_button(mb_left)||mouse_check_button(mb_right)
 	
-	if(abs(hinput)+abs(vinput)>0){facing=point_direction(0,0,hinput,vinput)}
+	if(abs(hinput)+abs(vinput)>0){facing=point_direction(0,0,hinput,vinput); lastdir=direction}
 #endregion
 #region controller
 #endregion
@@ -19,17 +19,18 @@
 	switch(movestate){
 		case movestates.walk:
 			//base movement
+			
 			motion_add(facing,min(acceleration,acceleration*point_distance(0,0,hinput,vinput)))
 			//roll
 			if(roll){
-				PlayerSetMovestate(movestates.roll,facing,maxspd*2,maxspd*2,acceleration/2)
+				PlayerSetMovestate(movestates.roll,facing,default_maxspd*2,default_maxspd*2,default_acceleration/2)
 				stuntime = floor(maxspd/acceleration)
 				break;
 			}
 			//backstep
 			if(backstep){
 				var mousePoint = point_direction(mouse_x,mouse_y,x,y)
-				PlayerSetMovestate(movestates.backstep,mousePoint,maxspd*2,maxspd*2,acceleration)
+				PlayerSetMovestate(movestates.backstep,mousePoint,default_maxspd*2,default_maxspd*2,default_acceleration)
 				stuntime = floor(maxspd/acceleration)
 				break;
 			}
@@ -38,15 +39,15 @@
 			stuntime--
 			if(stuntime=0){
 				movestate=movestates.walk
-				maxspd/=2
-				acceleration*=2
+				maxspd = default_maxspd
+				acceleration = default_acceleration
 			}
 		break;
 		case movestates.backstep://backstepping
 			stuntime--
 			if(stuntime=0){
-				movestate=movestates.walk
-				maxspd/=2
+				movestate = movestates.walk
+				maxspd = default_maxspd
 			}
 		break;
 		case movestates.attack://attacking
@@ -101,20 +102,18 @@ case attackstates.sheathed:
 	if object_exists(hitboxobj){//switch to holding
 		attack_hitbox = hitboxobj
 		attack_time = attackKit[5,attackID]
-		movestate=movestates.attackHold
-		maxspd/=2
+		movestate = movestates.attackHold
+		maxspd = default_maxspd/2
 		}
 	}
 break;
 
 case attackstates.holding:
-	if attack_time > 1{
-		attack_time--	
-	}
+	
 	if (!hold){
 		attackstate = attackstates.windup
-		maxspd*=2
-		motion_add(facing,attackKit[9,attackID])
+		maxspd = default_maxspd
+		
 	}
 break;
 case attackstates.windup:
@@ -126,6 +125,7 @@ case attackstates.windup:
 		stuntime = attack_time
 		movestate = movestates.attack
 		currentHitbox = instance_create_depth(x,y,0,HitboxFromInt(attackKit[0,attackID]))
+		//motion_add(facing,attackKit[9,attackID])
 	}
 break;
 case attackstates.hit:

@@ -10,4 +10,3 @@ vspeed=obj_player.vspeed
 duration--
 if duration = 0 then instance_destroy()
 
-dir= direction
