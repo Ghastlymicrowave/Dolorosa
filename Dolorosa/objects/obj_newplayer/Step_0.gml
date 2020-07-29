@@ -5,7 +5,10 @@
 
 	if(((hinput=0&&vinput=0))&&speed>0){
 			speed=max(0,speed-acceleration)
-		}else {speed=max(0,speed-acceleration/180*abs(angle_difference(direction,facing)))}
+		}else{
+			speed=max(0,speed-acceleration/180*abs(angle_difference(direction,facing)))
+		}
+
 	speed=min(speed,maxspd)
 #endregion
 #region collision
@@ -32,4 +35,10 @@
 			}
 		}
 	speed*=free
+	
+	if(hinput!=0||vinput!=0){}
+	
+	lookDir += clamp(angle_difference(facing,lookDir)/8,-10,10)
+	
+	image_angle=lookDir
 #endregion

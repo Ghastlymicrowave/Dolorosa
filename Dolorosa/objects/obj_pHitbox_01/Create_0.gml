@@ -13,6 +13,5 @@ iframes=20
 staggerDamage=20
 knockbacktype=0
 
-direction=round(obj_player.lastdir/45)*45
 
-image_angle=direction
+

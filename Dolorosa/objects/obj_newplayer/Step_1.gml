@@ -10,7 +10,7 @@
 	attack = lightAttack||heavyAttack
 	hold=mouse_check_button(mb_left)||mouse_check_button(mb_right)
 	
-	if(abs(hinput)+abs(vinput)>0){facing=point_direction(0,0,hinput,vinput); lastdir=direction}
+	if(abs(hinput)+abs(vinput)>0){facing=point_direction(0,0,hinput,vinput); }
 #endregion
 #region controller
 #endregion
@@ -125,7 +125,11 @@ case attackstates.windup:
 		stuntime = attack_time
 		movestate = movestates.attack
 		currentHitbox = instance_create_depth(x,y,0,HitboxFromInt(attackKit[0,attackID]))
-		//motion_add(facing,attackKit[9,attackID])
+		var aimDir = lookDir//round(point_direction(x,y,mouse_x,mouse_y)/30)*30
+		currentHitbox.direction = aimDir
+		currentHitbox.image_angle = currentHitbox.direction
+		motion_add(aimDir,attackKit[9,attackID]*4)
+		acceleration=default_acceleration/4
 	}
 break;
 case attackstates.hit:
@@ -139,7 +143,7 @@ case attackstates.hit:
 		if instance_exists(currentHitbox){
 			instance_destroy(currentHitbox)
 		}
-		
+		acceleration=default_acceleration
 	}
 break;
 case attackstates.cooldown:

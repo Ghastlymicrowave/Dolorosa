@@ -13,7 +13,8 @@ room_speed=60
 	
 	default_maxspd = maxspd
 	default_acceleration = acceleration
-	lastdir = 0
+	lookDir = 0
+	
 	
 #endregion
 
