@@ -25,6 +25,7 @@
 			if(roll){
 				PlayerSetMovestate(movestates.roll,facing,default_maxspd*2,default_maxspd*2,default_acceleration/2)
 				stuntime = floor(maxspd/acceleration)
+				lookDir=facing
 				break;
 			}
 			//backstep
@@ -32,6 +33,7 @@
 				var mousePoint = point_direction(mouse_x,mouse_y,x,y)
 				PlayerSetMovestate(movestates.backstep,mousePoint,default_maxspd*2,default_maxspd*2,default_acceleration)
 				stuntime = floor(maxspd/acceleration)
+				lookDir=mousePoint
 				break;
 			}
 		break;
@@ -129,13 +131,19 @@ case attackstates.windup:
 		currentHitbox.direction = aimDir
 		currentHitbox.image_angle = currentHitbox.direction
 		motion_add(aimDir,attackKit[9,attackID]*4)
+		maxspd= default_maxspd*2
 		acceleration=default_acceleration/4
 	}
 break;
 case attackstates.hit:
 	attack_time --
+	if instance_exists(currentHitbox){
+			currentHitbox.image_angle=lookDir
+		}
+	
 	//direction = lockeddir
 	if attack_time == 0 {//hit ends
+		maxspd= default_maxspd
 		movestate = movestates.walk
 		attackstate = attackstates.cooldown
 		attack_time = attackKit[7,attackID]

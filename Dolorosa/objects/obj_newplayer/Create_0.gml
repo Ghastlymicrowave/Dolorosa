@@ -53,7 +53,7 @@ cooldown
 	playersprites[3]=sp_bug_demo_04	
 	playersprites[2]=sp_bug_demo_03	
 	playersprites[1]=sp_bug_demo_07	
-	playersprites[0]=sp_bug_demo_02	
+
 
 movestate = movestates.walk
 playerstate = playerstates.standard

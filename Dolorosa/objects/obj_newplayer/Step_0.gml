@@ -37,8 +37,18 @@
 	speed*=free
 	
 	if(hinput!=0||vinput!=0){}
+	var angleMax = 0
 	
-	lookDir += clamp(angle_difference(facing,lookDir)/4,-30,30)
+	switch(movestate){
+	case movestates.walk: angleMax = 20; break;
+	case movestates.roll: angleMax = 5; break;
+	case movestates.attackHold: angleMax = 10; break;
+	case movestates.attack: angleMax=5;break;
+	default: angleMax = 0; break;
+	}
+	
+	lookDir += clamp(angle_difference(facing,lookDir)/6,-angleMax,angleMax)
+	
 	while lookDir < 0 {
 	lookDir += 360	
 	}
@@ -53,7 +63,7 @@
 	
 	
 	
-	
+	//image_angle=lookDir
 	sprite_index = playersprites[outputDir]
 	
 	
