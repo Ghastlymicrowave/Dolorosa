@@ -1,6 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
 room_speed=60
+mask_index = sp_bug_demo_01
+depth=-5
 #region default input vars
 	//to-do: Entire thing
 #endregion 
@@ -43,6 +45,15 @@ hit,
 cooldown
 	
 }
+	playersprites[0]=sp_bug_demo_02	
+	playersprites[7]=sp_bug_demo_06	
+	playersprites[6]=sp_bug_demo_01	
+	playersprites[5]=sp_bug_demo_05	
+	playersprites[4]=sp_bug_demo_00	
+	playersprites[3]=sp_bug_demo_04	
+	playersprites[2]=sp_bug_demo_03	
+	playersprites[1]=sp_bug_demo_07	
+	playersprites[0]=sp_bug_demo_02	
 
 movestate = movestates.walk
 playerstate = playerstates.standard

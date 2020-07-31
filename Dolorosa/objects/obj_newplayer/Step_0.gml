@@ -38,7 +38,24 @@
 	
 	if(hinput!=0||vinput!=0){}
 	
-	lookDir += clamp(angle_difference(facing,lookDir)/8,-10,10)
+	lookDir += clamp(angle_difference(facing,lookDir)/4,-30,30)
+	while lookDir < 0 {
+	lookDir += 360	
+	}
+	while lookDir > 360 {
+	lookDir -= 360	
+	}
 	
-	image_angle=lookDir
+	var outputDir = round(lookDir/45)
+	while outputDir > 7 {
+	outputDir-=8	
+	}
+	
+	
+	
+	
+	sprite_index = playersprites[outputDir]
+	
+	
+	//image_angle=lookDir
 #endregion
