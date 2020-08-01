@@ -23,7 +23,7 @@
 			motion_add(facing,min(acceleration,acceleration*point_distance(0,0,hinput,vinput)))
 			//roll
 			if(roll){
-				PlayerSetMovestate(movestates.roll,facing,default_maxspd*2,default_maxspd*2,default_acceleration/2)
+				PlayerSetMovestate(movestates.roll,facing,default_maxspd*2,default_maxspd*2,default_acceleration/4)
 				stuntime = floor(maxspd/acceleration)
 				lookDir=facing
 				break;
@@ -38,6 +38,7 @@
 			}
 		break;
 		case movestates.roll://rolling
+			direction=lookDir
 			stuntime--
 			if(stuntime=0){
 				movestate=movestates.walk
@@ -65,6 +66,15 @@
 			//	//movestate = movestates.walk
 			//}
 			motion_add(facing,min(acceleration,acceleration*point_distance(0,0,hinput,vinput)))
+		break;
+		case movestates.donked://hit wall while moving
+			stuntime--
+			if (stuntime==0){
+				movestate = movestates.walk	
+				acceleration=default_acceleration
+				maxspd=default_maxspd
+			}
+		
 		break;
 	}
 #endregion

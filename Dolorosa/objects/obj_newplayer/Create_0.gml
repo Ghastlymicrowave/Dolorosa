@@ -26,7 +26,8 @@ roll,
 backstep,
 knockback,
 attack,
-attackHold
+attackHold,
+donked
 }
 
 enum playerstates{
