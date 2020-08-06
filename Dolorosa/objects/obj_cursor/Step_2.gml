@@ -43,8 +43,8 @@ if movetime == 0{
 	
 }else{
 	movetime--
-	x = startx+(mouse_x-startx)*((maxmovetime-movetime)/maxmovetime)
-	y = starty+(mouse_y-starty)*((maxmovetime-movetime)/maxmovetime)
+//	x = mouse_x //startx+(mouse_x-startx)*((maxmovetime-movetime)/maxmovetime)
+//	y = mouse_y //starty+(mouse_y-starty)*((maxmovetime-movetime)/maxmovetime)
 	if movetime==0{
 		cursor_sprite=sp_cursor; visible=0;	
 		x=mouse_x
@@ -56,9 +56,9 @@ if movetime == 0{
 }
 
 
-if obj_player.interactState==0&&keyboardInUse==1||obj_player.interactState==3{
-visible=0	
-}
+//if obj_player.interactState==0&&keyboardInUse==1||obj_player.interactState==3{
+//visible=0	
+//}
 
 /*
 acelScale -= acelScale/20

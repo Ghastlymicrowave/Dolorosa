@@ -703,6 +703,14 @@
             }
         },
         {
+            "Key": "71ff3f2c-5b26-452a-9f59-4780fbb50b47",
+            "Value": {
+                "id": "7da2fbec-fbae-44cf-846d-4fd7260cff1e",
+                "resourcePath": "scripts\\ResizeViewport\\ResizeViewport.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "72eb5e92-f45d-4e76-a0e9-32b205b3a3a3",
             "Value": {
                 "id": "19984895-bf73-4b96-842e-34a27578dfb3",
@@ -1573,7 +1581,8 @@
         "1df7337c-96cd-4634-993c-de318b2671a5",
         "78e526d8-1084-4749-bcc5-2cda90f0aef9",
         "d0d83b1d-7278-469b-a49e-07faab57da3f",
-        "81dcc3a1-c58c-4ef9-92be-a0e00b4a4713"
+        "81dcc3a1-c58c-4ef9-92be-a0e00b4a4713",
+        "71ff3f2c-5b26-452a-9f59-4780fbb50b47"
     ],
     "tutorial": ""
 }

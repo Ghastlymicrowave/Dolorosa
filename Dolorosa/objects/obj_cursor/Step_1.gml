@@ -8,12 +8,12 @@ startx = x
 starty = y
 lastmousex = mouse_x
 lastmousey = mouse_y
-if(obj_player.interactState=0){movetime=1}
+if(obj_player.playerstate!=playerstates.inventory){movetime=1}
 
 }
 else if keyboardMenus=2 && keyboardInUse=0 {
 	
-if (keyboard_check(ord("S")) || keyboard_check(ord("W"))|| keyboard_check(ord("D")) || keyboard_check(ord("A")))&&(obj_player.interactState=1||obj_player.interactState=2){
+if (obj_player.vinput!=0||obj_player.hinput!=0)&&(obj_player.playerstate==playerstates.inventory){
 keyboardInUse=1	
 stillx=window_mouse_get_x()
 stilly=window_mouse_get_y()	

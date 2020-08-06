@@ -1,10 +1,10 @@
 x=obj_player.x
 y=obj_player.y
-if obj_player.wielding=1{
-distancefactor=.5 + (obj_player.atktimeheld/100)/2
-}else{
-	distancefactor=.5	
-}
+//if has gun out{
+//distancefactor=.5 + (obj_player.atktimeheld/100)/2
+//}else{
+//	distancefactor=.5	
+//}
 centerx= window_get_width()/2 //camera_get_view_x(view_camera[0])+camera_get_view_width(view_camera[0])/2
 centery= window_get_height()/2//camera_get_view_y(view_camera[0])+camera_get_view_height(view_camera[0])/2
 
@@ -12,7 +12,7 @@ centery= window_get_height()/2//camera_get_view_y(view_camera[0])+camera_get_vie
 direction = point_direction(centerx,centery,window_mouse_get_x(),window_mouse_get_y())
 speed = point_distance(centerx,centery,window_mouse_get_x(),window_mouse_get_y())*distancefactor
 
-if obj_player.interactState=1 {
+if obj_player.playerstate == playerstates.inventory{
 	var cX = obj_cursor.x - camera_get_view_x(view_camera[0])/camera_get_view_width(view_camera[0]) * window_get_width()
 	var cY = obj_cursor.y - camera_get_view_y(view_camera[0])/camera_get_view_height(view_camera[0]) * window_get_height()
 	
@@ -30,7 +30,7 @@ direction = point_direction(x,y,mouse_x,mouse_y)+180
 speed/=10
 //ScreenshakeAmt(0,20,0,1)
 obj_camera_follow.time=10
-ScreenZoom(20,2,3)
+//ScreenZoom(20,1,3)
 
 //obj_camera_follow.screenshake =argument[0]
 //obj_camera_follow.initalscreenshake =argument[0]

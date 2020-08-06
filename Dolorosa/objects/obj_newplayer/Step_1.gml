@@ -9,6 +9,9 @@
 	heavyAttack=mouse_check_button_pressed(mb_right)
 	attack = lightAttack||heavyAttack
 	hold=mouse_check_button(mb_left)||mouse_check_button(mb_right)
+	invenOpen=keyboard_check_pressed(ord("I"))
+	interact=keyboard_check_pressed(ord("E"))
+	fullScreen=keyboard_check_pressed(ord("M"))
 	
 	if(abs(hinput)+abs(vinput)>0){facing=point_direction(0,0,hinput,vinput); }
 #endregion
@@ -20,7 +23,7 @@
 		case movestates.walk:
 			//base movement
 			
-			motion_add(facing,min(acceleration,acceleration*point_distance(0,0,hinput,vinput)))
+			if playerstate == playerstates.standard motion_add(facing,min(acceleration,acceleration*point_distance(0,0,hinput,vinput)))
 			//roll
 			if(roll){
 				PlayerSetMovestate(movestates.roll,facing,default_maxspd*2,default_maxspd*2,default_acceleration/4)
@@ -81,10 +84,22 @@
 
 #region interaction
 
-if (playerstate==playerstates.standard&&attackstate==attackstates.sheathed){
-	
-}
 
+switch (playerstate) {
+	case playerstates.standard:
+	if attackstate==attackstates.sheathed {
+		if invenOpen {
+			playerstate = playerstates.inventory
+		}
+	}
+	break;
+	
+	case playerstates.inventory:
+	if invenOpen {
+		playerstate=playerstates.standard	
+	}
+	break;
+}
 #endregion
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!! Direction isn't locked when attacking, 
@@ -171,6 +186,20 @@ case attackstates.cooldown:
 		attack_time = comboTime
 	}
 break;
+}
+
+if ((window_get_height()!=windowH) || (window_get_width()!=windowW )){
+	ResizeViewport(0,windowW*1.5,windowH*1.5)
+	obj_camera_follow.viewh = windowW
+	obj_camera_follow.viewv = windowH
+	camera_set_view_size(view_camera[0],windowW*2,windowH*2)
+}
+
+if fullScreen {
+	fscreen=!fscreen
+	window_set_fullscreen(fscreen)
+	
+	//ResizeViewport(0)
 }
 
 

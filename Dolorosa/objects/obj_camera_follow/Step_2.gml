@@ -6,13 +6,13 @@ hspd= obj_camera_place.x-x
 vspd= obj_camera_place.y-y
 
 
-if obj_player.wielding=1{
-x+= hspd/5 
-y+= vspd/5
-} else{
+//if obj_player.wielding=1{ has gun out
+//x+= hspd/5 
+//y+= vspd/5
+//} else{
 x+= hspd/10
 y+= vspd/10	
-}
+//}
 
 
 /*screenZoomTime=0

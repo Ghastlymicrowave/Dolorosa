@@ -91,8 +91,9 @@
 	default: angleMax = 0; break;
 	}
 	
+	if playerstate!=playerstates.inventory{
 	lookDir += clamp(angle_difference(facing,lookDir)/6,-angleMax,angleMax)
-	
+	}
 	while lookDir < 0 {
 	lookDir += 360	
 	}
