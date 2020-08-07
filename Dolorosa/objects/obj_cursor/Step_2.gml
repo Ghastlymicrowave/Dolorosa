@@ -30,25 +30,39 @@ y=gotoy
 
 } else {
 	
+	var a = application_get_position();
+	var xoff = a[0];
+	var yoff = a[1];	
+	var mouseX=ConvertGUItoReal((window_mouse_get_x()-xoff)/(window_get_width()-xoff*2) * surface_get_width(application_surface),0)
+	var mouseY=ConvertGUItoReal((window_mouse_get_y()-yoff)/(window_get_height()-yoff*2) * surface_get_height(application_surface),1)
+	gotox=mouseX+obj_camera_follow.hspeed 
+	gotoy=mouseY+obj_camera_follow.vspeed 
 
-gotox=mouse_x+obj_camera_follow.hspeed 
-gotoy=mouse_y+obj_camera_follow.vspeed 
-
-image_xscale=1
-image_yscale=1
+	image_xscale=1
+	image_yscale=1
 
 if movetime == 0{
 	x=mouse_x
 	y=mouse_y
 	
 }else{
+	show_debug_message(((maxmovetime-movetime)/maxmovetime))
 	movetime--
-//	x = mouse_x //startx+(mouse_x-startx)*((maxmovetime-movetime)/maxmovetime)
-//	y = mouse_y //starty+(mouse_y-starty)*((maxmovetime-movetime)/maxmovetime)
+	
+	var a = application_get_position();
+	var xoff = a[0];
+	var yoff = a[1];	
+	//this is all screwey
+	var mouseX=(window_mouse_get_x()-xoff)/(window_get_width()-xoff*2) * surface_get_width(application_surface)
+	var mouseY=(window_mouse_get_y()-yoff)/(window_get_height()-yoff*2) * surface_get_height(application_surface)
+	
+	//gotox = startx+(mouseX-startx)*((maxmovetime-movetime)/maxmovetime)
+	//gotoy = starty+(mouseY-starty)*((maxmovetime-movetime)/maxmovetime)
+	
 	if movetime==0{
 		cursor_sprite=sp_cursor; visible=0;	
-		x=mouse_x
-		y=mouse_y
+		x=mouseX
+		y=mouseY
 	}
 	
 	

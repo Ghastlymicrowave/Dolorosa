@@ -92,7 +92,21 @@ if screenshakeTime = 0 {var shakePwr=0}else{
 #endregion
 
 
+//check if wall is within bounds, if so- draw it
+var x1 = camera_get_view_x(view_camera[0])
+var y1 = camera_get_view_y(view_camera[0])
+var x2 = camera_get_view_width(view_camera[0]) + x1
+var y2 = camera_get_view_height(view_camera[0]) + y1
 
+for (var i = 0; i < instance_number(obj_wall); ++i){
+	var inst = instance_find(obj_wall,i)
+		if collision_rectangle(x1,y1,x2,y2,inst,false,true){
+			inst.visible = 1
+		} else {
+			inst.visible = 0
+		}
+	
+}
 
 
 ////////////////////////////////////////////////////////////////////////////

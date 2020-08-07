@@ -8,12 +8,30 @@
 	lightAttack=mouse_check_button_pressed(mb_left)
 	heavyAttack=mouse_check_button_pressed(mb_right)
 	attack = lightAttack||heavyAttack
-	hold=mouse_check_button(mb_left)||mouse_check_button(mb_right)
+	hold=0//mouse_check_button(mb_left)||mouse_check_button(mb_right)
 	invenOpen=keyboard_check_pressed(ord("I"))
 	interact=keyboard_check_pressed(ord("E"))
 	fullScreen=keyboard_check_pressed(ord("M"))
 	
 	if(abs(hinput)+abs(vinput)>0){facing=point_direction(0,0,hinput,vinput); }
+	
+	nextActionTime= max(nextActionTime-1,0);
+	
+	
+	if playerstate==playerstates.standard&&attackstate==attackstates.sheathed&&movestate==movestates.walk&&nextActionTime!=0{
+		switch nextaction{
+			case actions.none:
+			break;
+			case actions.roll: roll = true; nextaction = actions.none;
+			break;
+			case actions.backstep: backstep = true; nextaction = actions.none;
+			break;
+			case actions.heavy: heavyAttack = true; attack =  true; nextaction = actions.none;
+			break;
+			case actions.light: lightAttack = true; attack =  true; nextaction = actions.none;
+			break;
+		}
+	}
 #endregion
 #region controller
 #endregion
@@ -41,6 +59,7 @@
 			}
 		break;
 		case movestates.roll://rolling
+			ProcNextAction()
 			direction=lookDir
 			stuntime--
 			if(stuntime=0){
@@ -50,13 +69,14 @@
 			}
 		break;
 		case movestates.backstep://backstepping
+			ProcNextAction()
 			stuntime--
 			if(stuntime=0){
 				movestate = movestates.walk
 				maxspd = default_maxspd
 			}
 		break;
-		case movestates.attack://attacking
+		case movestates.attack://attacking - while hitbox is out
 			//stuntime--
 			//if(stuntime=0){
 			//	movestate=movestates.walk
@@ -115,8 +135,8 @@ case attackstates.sheathed:
 			attack_combo = 0
 		}
 	}
-
-	if (attack&&playerstate==playerstates.standard&&attackstate==attackstates.sheathed){//initiate attack
+	if attack{show_debug_message("FAT")}
+	if (attack&&playerstate==playerstates.standard&&attackstate==attackstates.sheathed&&movestate==movestates.walk){//initiate attack
 	attackstate=attackstates.holding
 	var hitboxid = attackKit[0,attack_combo+8*heavyAttack]
 	var lowerToViable = 0
@@ -180,6 +200,7 @@ case attackstates.hit:
 	}
 break;
 case attackstates.cooldown:
+	ProcNextAction()
 	attack_time --
 	if attack_time == 0 {//cooldown ends
 		attackstate = attackstates.sheathed

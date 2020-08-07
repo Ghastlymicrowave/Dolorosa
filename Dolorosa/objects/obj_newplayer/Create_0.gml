@@ -17,9 +17,19 @@ depth=-5
 	default_acceleration = acceleration
 	lookDir = 0
 	
+	nextActionTime=0
+	nextActionTimeframe = 20 //# of frames before an action you can prepare an aciton
 	
 #endregion
 
+enum actions{
+none,
+roll,
+backstep,
+light,
+heavy
+}
+nextaction = actions.none
 enum movestates{
 walk,
 roll,

@@ -14,7 +14,7 @@
 #region collision
 	var free = 0
 	var maxAngle = 45
-	var controlDir = point_direction(0,0,hinput,vinput)
+	var controlDir = lookDir//point_direction(0,0,hinput,vinput)
 	var xtarg = x+lengthdir_x(speed,direction) 
 	var ytarg = y+lengthdir_y(speed,direction)
 	

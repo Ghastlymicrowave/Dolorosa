@@ -3,9 +3,14 @@ var a = application_get_position();
 var xoff = a[0];
 var yoff = a[1];
 
-mouseX=(window_mouse_get_x()-xoff)/(window_get_width()-xoff*2) * surface_get_width(application_surface)//-window_get_x()
+if obj_cursor.keyboardInUse==0{
+	mouseX=(window_mouse_get_x()-xoff)/(window_get_width()-xoff*2) * surface_get_width(application_surface)
+	mouseY=(window_mouse_get_y()-yoff)/(window_get_height()-yoff*2) * surface_get_height(application_surface)
+} else {
+	mouseX=ConvertRealtoGUI(obj_cursor.x,0)
+	mouseY=ConvertRealtoGUI(obj_cursor.y,1)
+}
 
-mouseY=(window_mouse_get_y()-yoff)/(window_get_height()-yoff*2) * surface_get_height(application_surface)//-window_get_y()
 
 
 ivw=surface_get_width(application_surface)//display_get_gui_width()//		/wscale
@@ -53,7 +58,7 @@ if obj_player.playerstate==playerstates.inventory{ //check if player has menu op
 		page = floor(obj_inventoryControl.sloty/MaxRowsPerPage)
 	}else page = 0
 	
-	horizmove += (horizdistance*ivw-horizmove)/4
+	horizmove += clamp((horizdistance*ivw-horizmove)/8,-ivw/40,ivw/40)
 	
 	var ivx=scw*uiPresets[0,0]+horizmove
 	var ivy=sch*uiPresets[0,1]
@@ -100,7 +105,6 @@ for (var i = 0; i<ivDivided;i++){//for each full row, draws rows differently bec
 			var y2 = yy+panelH/MaxRowsPerPage/2
 			draw_rectangle(x1,y1,x2,y2,1)
 			if point_in_rectangle(mouseX,mouseY,x1,y1,x2,y2){
-			
 			if mouse_check_button_released(mb_left)&&obj_inventoryControl.side=0{
 			
 			show_debug_message("clicked item "+ string(iii)+" object: "+ string(ds_list_find_value(global.inventory,iii)))
@@ -146,13 +150,14 @@ for (var i = 0; i<maxEquips;i++){
 		
 		//switch based on the item's info
 		var spr = sp_placeholderItem
+		var sprw =sprite_get_width(spr)
+		var sprh =sprite_get_height(spr)
+	draw_rectangle(xx-sprw/2,yy-sprh/2,xx+sprw/2,yy+sprh/2,5)	
 		
-	draw_rectangle(xx-sprite_get_width(spr)/2,yy-sprite_get_height(spr)/2,xx+sprite_get_width(spr)/2,yy+sprite_get_height(spr)/2,5)	
-		
-		var x1 =  xx-sprite_get_width(spr)/2
-		var x2 =  xx+sprite_get_width(spr)/2
-		var y1 =  yy-sprite_get_height(spr)/2
-		var y2 =  yy+sprite_get_height(spr)/2
+		var x1 =  xx-sprw/2
+		var x2 =  xx+sprw/2
+		var y1 =  yy-sprh/2
+		var y2 =  yy+sprh/2
 		
 		
 		if point_in_rectangle(mouseX,mouseY,x1,y1,x2,y2){//collision_rectangle(x1,y1,x2,y2,obj_cursor,1,1){
@@ -162,16 +167,20 @@ for (var i = 0; i<maxEquips;i++){
 			items_unequip(ds_list_find_value(global.currentEquips,i))
 			ds_list_delete(global.currentEquips,i)
 			}else if obj_inventoryControl.side != 1 && obj_cursor.keyboardInUse==0{
-			obj_inventoryControl.side = 1	
+				obj_inventoryControl.side = 1	
 			}
 		}
 	}else{
 	
 	var spr = sp_thing
-	
+	var sprw =sprite_get_width(spr)
+	var sprh =sprite_get_height(spr)
 	}
-	
-	draw_sprite(spr,0,xx,yy)
+	// final / regular = mod
+	var wmod = (panelW/(maxEquips+1)) / sprw
+	var hmod = (panelW/(maxEquips+1)) / sprh
+	draw_sprite_ext(spr,0,xx,yy,wmod,hmod,0,0,1)
+	//draw_sprite(spr,0,xx,yy)
 }
 }
 #endregion
