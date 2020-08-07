@@ -8,7 +8,7 @@
 	lightAttack=mouse_check_button_pressed(mb_left)
 	heavyAttack=mouse_check_button_pressed(mb_right)
 	attack = lightAttack||heavyAttack
-	hold=0//mouse_check_button(mb_left)||mouse_check_button(mb_right)
+	hold=mouse_check_button(mb_left)||mouse_check_button(mb_right)
 	invenOpen=keyboard_check_pressed(ord("I"))
 	interact=keyboard_check_pressed(ord("E"))
 	fullScreen=keyboard_check_pressed(ord("M"))
