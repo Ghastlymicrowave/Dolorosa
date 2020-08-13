@@ -1,5 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
+
+//show_message(DistanceCheck(200,20,0,25,0.00001,2000))
+
 room_speed=60
 mask_index = sp_bug_demo_01
 depth=-5
@@ -7,7 +10,7 @@ depth=-5
 	//to-do: Entire thing
 #endregion 
 #region movement/physics
-	maxspd=10
+	maxspd=15
 	acceleration=0.2*maxspd
 	movestate=0
 	stuntime=0

@@ -3,10 +3,10 @@
 #region speed management
 
 
-	if(((hinput=0&&vinput=0))&&speed>0){
+	if(((hinput=0&&vinput=0))&&speed>0)||stuntime>0{
 			speed=max(0,speed-acceleration)
 		}else{
-			speed=max(0,speed-acceleration/180*abs(angle_difference(direction,facing)))
+			//speed=max(0,speed-acceleration/180*abs(angle_difference(direction,facing)))
 		}
 
 	speed=min(speed,maxspd)
