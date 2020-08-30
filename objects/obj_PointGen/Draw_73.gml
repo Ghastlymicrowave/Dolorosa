@@ -39,7 +39,7 @@ switch(t){
 			var startObj = thisArray[wall,0]
 			var endObj = thisArray[wall,1]
 
-			var inst = instance_create_depth(x,y,0,obj_wall)
+			var inst = instance_create_depth(x,y,0,obj_prewall)
 			objx1=startObj.x
 			objy1=startObj.y
 			objx2=endObj.x
@@ -57,7 +57,7 @@ switch(t){
 				image_yscale = host.wallWidth / sprite_height
 				if(point_distance(x1,y1,x2,y2)>15){
 					image_xscale=point_distance(x1,y1,x2,y2) / sprite_width
-					var inst2 = instance_create_depth(x2,y2,0,obj_wall)
+					var inst2 = instance_create_depth(x2,y2,0,obj_prewall)
 					inst2.sprite_index = spr_circleWallSprite
 					inst2.image_xscale = host.wallWidth / inst2.sprite_width
 					inst2.image_yscale = host.wallWidth / inst2.sprite_height
@@ -87,7 +87,7 @@ switch(t){
 		//if !instance_exists(obj1)||!instance_exists(obj2){
 		//continue;	
 		//}
-		var inst = instance_create_depth(x,y,0,obj_wall)
+		var inst = instance_create_depth(x,y,0,obj_prewall)
 			objx1=obj1.x
 			objy1=obj1.y
 			objx2=obj2.x
@@ -107,7 +107,7 @@ switch(t){
 				image_yscale = host.wallWidth / sprite_height
 				if(point_distance(x1,y1,x2,y2)>15){
 					image_xscale=point_distance(x1,y1,x2,y2) / sprite_width
-					var inst2 = instance_create_depth(x,y,0,obj_wall)
+					var inst2 = instance_create_depth(x,y,0,obj_prewall)
 					inst2.sprite_index = spr_circleWallSprite
 					inst2.image_xscale = host.wallWidth / inst2.sprite_width
 					inst2.image_yscale = host.wallWidth / inst2.sprite_height
