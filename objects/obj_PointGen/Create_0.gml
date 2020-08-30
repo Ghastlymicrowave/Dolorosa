@@ -357,7 +357,7 @@ for (var c = 0; c< ds_list_size(instances);c++){
 			
 		}
 		
-		if ((objA==obj1&&objB==obj2)||(objA==obj2&&objB==objA)){
+		if ((objA==obj1&&objB==obj2)||(objA==obj2&&objB==obj1)){
 			existsAlready=1	
 		}
 		
@@ -475,7 +475,6 @@ for(var node = 0; node< ds_list_size(nodesList); node++){
 }
 
 
-//remove outer walls
 
 
 for (var a = 0; a < array_height_2d(nodesArray); a++){
@@ -581,12 +580,10 @@ for( var node = 0; node < ds_list_size(nodesList);node++;){//loop nodes
 			var thisAngle = ds_list_find_value(thisList,obj).angle
 			var newhighest = ds_list_find_value(thisList,highestIndex)
 			
-			//find why shit gets wacky here, but more importantly find why sometimes nodes don't get lists 
+
 			
 			show_debug_message(thisAngle)
-			//show_debug_message(lowestIndex)
-			//show_debug_message(newLowest)
-			//show_debug_message(newLowest.angle)
+
 			var currenthighest = newhighest.angle
 			if thisAngle>currenthighest{
 			highestIndex=obj	
@@ -617,14 +614,14 @@ for( var node = 0; node < ds_list_size(nodesList);node++;){//loop nodes
 		var obj_1 = ds_list_find_value(thisNode.breakObjs,pos1)
 		var obj_2 = ds_list_find_value(thisNode.breakObjs,pos2)	
 		
-		//GO THROUGH EACH OF THE NODES, COMPARING ORIGINS, CONSOLIDATING OVERLAPPED NODES AND ALSO MESSING WIH THE WALLS ARRAY. OVERALL NEEDS MORE CLASSIFICATION TO WORK PROPERLY
-		}
-
+		
 	}
+
+	
 
 
 	while( object_get_name(ds_list_find_value(thisNode.breakObjs,0).object_index) != "obj_breakend" ){ // keep shifting list until it starts with a breakend
-		//show_debug_message(object_get_name(ds_list_find_value(thisNode.breakObjs,0)))
+
 		thisNode.shifted = ds_list_create()
 		
 		for(i = 1; i < ds_list_size(thisNode.breakObjs) ; i++;){
@@ -641,44 +638,80 @@ for( var node = 0; node < ds_list_size(nodesList);node++;){//loop nodes
 	}
 }
 
+//number objs
+var thisList
+var thisNode
+for(var node=0; node< ds_list_size(nodesList);node++){
+	thisNode = ds_list_find_value(nodesList,node)
+	thisList = thisNode.breakObjs
+	for(var obj=0; obj< ds_list_size(thisList);obj++){
+		var instance = ds_list_find_value(thisList,obj){
+		instance.num = obj;
+		}
+		
+	}
+}
+
+
 //SETTING WALLS
 var thisNode;
 var thisList;
 var currentObj;
 var stopSkippingFlag =0;
 var wallPairs;
-for(var node = 0; node< ds_list_size(nodesList);node++){
-	
+for(var node = 0; node< ds_list_size(nodesList);node++){//cycle through room nodes
+	show_debug_message("###Node:"+string(node))
 	thisNode = ds_list_find_value(nodesList,node)
 	thisList = thisNode.breakObjs
 	thisNode.walls[1,1] = 0 
 	wallPairs = 0
 	stopSkippingFlag=0
 	var point = 0
-
-	for(var obj = 0; obj < ds_list_size(thisList);obj++){
+	var continueFlag=0
+	
+	for(var obj = 0; obj < ds_list_size(thisList);obj++){//cycle through break objs on nodes
+		if continueFlag{
+			continueFlag=0
+			show_debug_message("boke from obj loop")
+			break;
+		}
 		currentObj = ds_list_find_value(thisList,obj)
-		show_debug_message(string(obj)+":			"+string(object_get_name(currentObj.object_index)))
-		thisNode.walls[wallPairs,point % 2] = currentObj
-		show_debug_message("A"+string(wallPairs)+string(point%2))
+		thisNode.walls[wallPairs,point % 2] = currentObj//alternates start and end of wall array
+		show_debug_message("slot ["+string(wallPairs)+","+string(point%2)+"] : "+string(object_get_name(currentObj.object_index)+" obj:"+string(obj)))
 		if (point % 2)==1 {wallPairs++}
 		
 		switch(currentObj.object_index){
 			case obj_breakstart:
+			point++
+			
+			var pos = obj+1
+			if pos >= ds_list_size(thisList){pos-=ds_list_size(thisList)}
+			var tempObj = ds_list_find_value(thisList,pos)
+			show_debug_message("checking for overlap, obj:"+string(obj)+" pos/listSize:"+string(pos)+"/"+string(ds_list_size(thisList)))
+			if tempObj.object_index==obj_breakstart{//overlapping
+					show_debug_message("OVERLAPPING!!!!!!!!!!!!")
+					obj = obj+2
+					if obj >= ds_list_size(thisList){obj-=ds_list_size(thisList);continueFlag=1;}
+					
+					currentObj = ds_list_find_value(thisList,obj)
+					thisNode.walls[wallPairs,(point) % 2] = currentObj
+					show_debug_message("slot ["+string(wallPairs)+","+string(point%2)+"] : "+string(object_get_name(currentObj.object_index)+" obj:"+string(obj)))
+					point++
+				}
+			break;
 			case obj_breakend:
 			point++
 			break;
 			case obj_breakstend:
-			
-			if (point % 2)==1 {
-				point++
+			point++
+			//even = start of wall , odd = end of wall
+			if (point % 2)!=1 {//start of wall
 				thisNode.walls[wallPairs,(point) % 2] = currentObj
-				show_debug_message("B"+string(wallPairs)+string(point%2))//works
+				show_debug_message("slot ["+string(wallPairs)+","+string(point%2)+"] : "+string(object_get_name(currentObj.object_index)+" obj:"+string(obj)))
 				point++
-			} else {
-				point++
+			} else {//end of wall
 				thisNode.walls[wallPairs,(point) % 2] = currentObj
-				show_debug_message("C"+string(wallPairs)+string(point%2))//doesnt work post
+				show_debug_message("slot ["+string(wallPairs)+","+string(point%2)+"] : "+string(object_get_name(currentObj.object_index)+" obj:"+string(obj)))
 				wallPairs++
 				point++
 			}

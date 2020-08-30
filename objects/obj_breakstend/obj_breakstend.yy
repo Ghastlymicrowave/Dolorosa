@@ -7,7 +7,10 @@
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "prnt_breakObjs",
+    "path": "objects/prnt_breakObjs/prnt_breakObjs.yy",
+  },
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,

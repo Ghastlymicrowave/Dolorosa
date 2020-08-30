@@ -70,6 +70,7 @@
     {"id":{"name":"PlayerAttack","path":"scripts/PlayerAttack/PlayerAttack.yy",},"order":6,},
     {"id":{"name":"ScreenZoom","path":"scripts/ScreenZoom/ScreenZoom.yy",},"order":7,},
     {"id":{"name":"ScreenRotate","path":"scripts/ScreenRotate/ScreenRotate.yy",},"order":8,},
+    {"id":{"name":"prnt_breakObjs","path":"objects/prnt_breakObjs/prnt_breakObjs.yy",},"order":10,},
     {"id":{"name":"ScreenShake","path":"scripts/ScreenShake/ScreenShake.yy",},"order":9,},
     {"id":{"name":"CosineCurveDec","path":"scripts/CosineCurveDec/CosineCurveDec.yy",},"order":10,},
     {"id":{"name":"CosineCurveDec2","path":"scripts/CosineCurveDec2/CosineCurveDec2.yy",},"order":11,},

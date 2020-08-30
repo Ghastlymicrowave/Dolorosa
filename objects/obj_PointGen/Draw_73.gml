@@ -81,7 +81,7 @@ switch(t){
 	}
 
 	arrayLength = pathPairs
-	/*for(var path = 0; path < arrayLength;path++){
+	for(var path = 0; path < arrayLength;path++){
 		var obj1 = wallPaths[path,0]	
 		var obj2 = wallPaths[path,1]	
 		//if !instance_exists(obj1)||!instance_exists(obj2){
@@ -93,14 +93,16 @@ switch(t){
 			objx2=obj2.x
 			objy2=obj2.y
 			inst.host = id
-			
+			inst.num = path
 			with (inst){
+				
 				var x1 = host.objx1
 				var y1 = host.objy1
 				var x2 = host.objx2
 				var y2 = host.objy2
 				x = x1
 				y = y1
+				
 				image_angle=point_direction(x1,y1,x2,y2)
 				image_yscale = host.wallWidth / sprite_height
 				if(point_distance(x1,y1,x2,y2)>15){
@@ -112,7 +114,7 @@ switch(t){
 					
 				}else{instance_destroy()}
 			}
-	}*/
+	}
 	#endregion
 	t++
 	break;
@@ -127,9 +129,9 @@ switch(t){
 			ds_list_delete(nodesList,node)
 		}
 	//delete corner objects
-		while(instance_exists(obj_breakstart)){instance_destroy(obj_breakstart)}
-		while(instance_exists(obj_breakend)){instance_destroy(obj_breakend)}
-		while(instance_exists(obj_breakstend)){instance_destroy(obj_breakstend)}
+		//while(instance_exists(obj_breakstart)){instance_destroy(obj_breakstart)}
+		//while(instance_exists(obj_breakend)){instance_destroy(obj_breakend)}
+		//while(instance_exists(obj_breakstend)){instance_destroy(obj_breakstend)}
 	break;
 	#endregion
 	t++

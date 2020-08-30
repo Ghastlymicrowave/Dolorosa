@@ -1,20 +1,14 @@
 {
-  "spriteId": {
-    "name": "sp_thing",
-    "path": "sprites/sp_thing/sp_thing.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": {
-    "name": "prnt_breakObjs",
-    "path": "objects/prnt_breakObjs/prnt_breakObjs.yy",
-  },
+  "parentObjectId": null,
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
-  "physicsGroup": 0,
+  "physicsGroup": 1,
   "physicsDensity": 0.5,
   "physicsRestitution": 0.1,
   "physicsLinearDamping": 0.1,
@@ -23,7 +17,10 @@
   "physicsStartAwake": true,
   "physicsKinematic": false,
   "physicsShapePoints": [],
-  "eventList": [],
+  "eventList": [
+    {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"parent":{"name":"prnt_breakObjs","path":"objects/prnt_breakObjs/prnt_breakObjs.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"parent":{"name":"prnt_breakObjs","path":"objects/prnt_breakObjs/prnt_breakObjs.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+  ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
@@ -31,7 +28,7 @@
     "path": "folders/Objects/RoomGen.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_breakstart",
+  "name": "prnt_breakObjs",
   "tags": [],
   "resourceType": "GMObject",
 }
