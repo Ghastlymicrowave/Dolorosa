@@ -1,4 +1,9 @@
 
+frame=0
+frameLoop=8
+frameDelay=0
+frameDelayLoop=5
+
 //create inventory
 onetick=0
 horizdistance=0
@@ -45,8 +50,8 @@ ds_list_add(global.currentEquips,1)
 ds_list_add(global.currentEquips,1)
 
 //inventory display variables - self explanitory
-objectsPerRow=3
-MaxRowsPerPage=4
+objectsPerRow=2
+MaxRowsPerPage=3
 
 //maximum items you can equip at once
 maxEquips=8

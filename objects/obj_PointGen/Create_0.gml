@@ -1,4 +1,4 @@
-//randomize()
+randomize()
 
 sprite = sp_roomHitbox
 raycast_sprite = sp_roomRaycaster
@@ -20,11 +20,11 @@ var h = 0
 wallWidth = 80
 
 MainRooms = 10
-SidePaths = 8
+SidePaths = 14
 
-pathWidth = 600
+pathWidth = 800
 //min_path_angle=45
-merge_dist=1
+//merge_dist=1
 //613
 wallPaths[1,1] = 0
 wallPaths = ds_list_create()
@@ -40,26 +40,49 @@ nodesArray[0,0]=0
 //nodes array is fomatted with [x,0] being the origin object and [x,1] being the object the line is drawn to
 
 
+#region functions
+
+function Room_load(filenameString){
+	//var fname = "testRoomPrefab_1"
+	var inputFile=file_text_open_read(filenameString)
+		var inputData = file_text_read_string(inputFile)
+	file_text_close(inputFile)
+	//files accessed here need to be enabled and included thru "included Files"
+		
+	roomStruct = ds_list_create()
+	ds_list_read(roomStruct,inputData)
+	return roomStruct;
+}
+
+function Room_get_prefabString(roomStruct){
+	return ds_list_find_value(roomStruct,0)	
+}
+
+function Room_get_width(roomStruct){
+	return ds_list_find_value(roomStruct,1)
+}
+
+function Room_get_height(roomStruct){
+	return ds_list_find_value(roomStruct,2)
+}
+
+
+#endregion
+
+roomsLibrary = ds_list_create()
+ds_list_add(roomsLibrary,Room_load("testRoomPrefab_1"))
+
 
 #region first node, needs to be cleaned up a lot
 
 nodesList = ds_list_create()
 
-		var fname = "testRoomPrefab_1"
-		var inputFile=file_text_open_read_ns(fname,65001) 
-			var inputData = string_load_ns(inputFile)
-		file_text_close_ns(inputFile)
-		//THIS ONLY WORKS ON WINDOWS, TO MY KNOWLEGE, MIGHT NEED TO LOOK HOW THE UN-SANDBOXER WORKS
-		
-		var templist = ds_list_create()
-		ds_list_read(templist,inputData)
-		
-		w = ds_list_find_value(templist,1)
-		h = ds_list_find_value(templist,2)
-
-		var roomString = ds_list_find_value(templist,0)
+		var thisRoom = ds_list_find_value(roomsLibrary,0)
+		w = Room_get_width(thisRoom)
+		h = Room_get_height(thisRoom)
+		var roomString = Room_get_prefabString(thisRoom)
 																	//create first node
-var inst = instance_create_depth(x,y,0,obj_RoomNode) //CHANGE THIS TO WORK WITH W AND H AND THE FILE FORMAT
+var inst = instance_create_depth(x,y,0,obj_RoomNode) 
 inst.num = num++
 ds_list_add(nodesList,inst)
 inst.image_blend=c_blue
@@ -85,7 +108,6 @@ inst.breakObjs = ds_list_create()
 
 SpawnPrefabFromString(roomString,inst.x,inst.y)
 
-ds_list_destroy(templist)
 
 #endregion
 
@@ -94,44 +116,30 @@ for (var i = 0; i<MainRooms; i++){//loops until every room requrested in the mai
 	
 		
 		
-		var fname = ""
-		switch(0/*some random function here*/){ //load room file
+	switch(0/*some random function here*/){ //load room file
 		
-	case 0: //start
-		fname = "testRoomPrefab_1"//CreatePrefabFileName("testRoomPrefab_",1)
+		case 0: //start
+		
+			//there would be random values here to determine what variant of a room you would get
+		
+		break;
+		case 1: //exit
 	
-		
-	break;
-	case 1: //exit
-	//	SpawnPrefab(CreatePrefabFileName("testRoomPrefab_",2),nodeObj.x,nodeObj.y)
-	break;
-	case 2: //limited  WIP
-	break;
-	case 3: //unlimited WIP
-	//	SpawnPrefab(CreatePrefabFileName("testRoomPrefab_",3),nodeObj.x,nodeObj.y)
-	break;
+		break;
+		case 2: //limited  WIP
+		break;
+		case 3: //unlimited WIP
+	
+		break;
 	}
-		//load data about specific room and set room specific variables
-		//var file = file_text_open_read(fname)
-		//	var inputData = file_text_read_string(file)
-		//file_text_close(file)
-		var inputFile=file_text_open_read_ns(fname,65001) 
-			var inputData = string_load_ns(inputFile)
-		file_text_close_ns(inputFile)
-		//THIS ONLY WORKS ON WINDOWS, TO MY KNOWLEGE, MIGHT NEED TO LOOK HOW THE UN-SANDBOXER WORKS
 		
-		var templist = ds_list_create()
-		ds_list_read(templist,inputData)
-		//show_message(ds_list_find_value(templist,0))
 		
-		w = ds_list_find_value(templist,1)
-		h = ds_list_find_value(templist,2)
 		
-		//show_message(ds_list_size(templist))
-
-		var roomString = ds_list_find_value(templist,0)
+		var thisRoom = ds_list_find_value(roomsLibrary,0)
+		w = Room_get_width(thisRoom)
+		h = Room_get_height(thisRoom)
+		var roomString = Room_get_prefabString(thisRoom)
 		
-		ds_list_destroy(templist)
 		
 		var minDist =  2000 //w*h//sqrt((h*h)+(w*w))
 		var maxDist =  minDist
@@ -676,6 +684,68 @@ for(var node = 0; node< ds_list_size(nodesList);node++){//cycle through room nod
 			break;
 		}
 		currentObj = ds_list_find_value(thisList,obj)
+		
+		//check for specific condition for first item
+		
+		if obj==0{
+			var tempA=1
+			var tempB=2
+			var tempC=ds_list_size(thisList)-2
+			var tempD=ds_list_size(thisList)-3
+			
+			var testC = ds_list_find_value(thisList,tempC)
+				while testC.object_index==obj_breakstend{
+					tempC-=1
+					testC = ds_list_find_value(thisList,tempC)
+				}
+				
+			var testD = ds_list_find_value(thisList,tempD)
+				while testD.object_index==obj_breakstend{
+					tempD-=1
+					testD = ds_list_find_value(thisList,tempD)
+				}
+				
+			var testA = ds_list_find_value(thisList,tempA)
+			while testA.object_index==obj_breakstend{
+					tempA+=1
+					testA = ds_list_find_value(thisList,tempA)
+				}
+				
+			var testB = ds_list_find_value(thisList,tempB)
+			while testB.object_index==obj_breakstend{
+					tempB+=1
+					testB = ds_list_find_value(thisList,tempB)
+				}
+			
+			
+			if testA.object_index==obj_breakstend&&testB.object_index==obj_breakend{
+				repeat(2){
+						obj=obj+1
+						while obj >= ds_list_size(thisList){obj-=ds_list_size(thisList);continueFlag=1;}
+						var testobj = ds_list_find_value(thisList,obj)
+						if testobj.object_index==obj_breakstend{obj++}
+				}
+				currentObj = ds_list_find_value(thisList,obj)
+			}
+			else if testA.object_index==obj_breakend{
+				repeat(1){
+						obj=obj+1
+						while obj >= ds_list_size(thisList){obj-=ds_list_size(thisList);continueFlag=1;}
+						var testobj = ds_list_find_value(thisList,obj)
+						if testobj.object_index==obj_breakstend{obj++}
+				}
+				currentObj = ds_list_find_value(thisList,obj)
+			}
+			else if testC.object_index == obj_breakstart && testD.object_index == obj_breakstart{
+				repeat(3){
+						obj=obj+1
+						while obj >= ds_list_size(thisList){obj-=ds_list_size(thisList);continueFlag=1;}
+						var testobj = ds_list_find_value(thisList,obj)
+						if testobj.object_index==obj_breakstend{obj++}
+				}
+			}
+		}
+		
 		thisNode.walls[wallPairs,point % 2] = currentObj//alternates start and end of wall array
 		show_debug_message("slot ["+string(wallPairs)+","+string(point%2)+"] : "+string(object_get_name(currentObj.object_index)+" obj:"+string(obj)))
 		if (point % 2)==1 {wallPairs++}
@@ -687,11 +757,29 @@ for(var node = 0; node< ds_list_size(nodesList);node++){//cycle through room nod
 			var pos = obj+1
 			if pos >= ds_list_size(thisList){pos-=ds_list_size(thisList)}
 			var tempObj = ds_list_find_value(thisList,pos)
+			
+			if tempObj.object_index==obj_breakstend{
+				pos = obj+1
+				if pos >= ds_list_size(thisList){pos-=ds_list_size(thisList)}
+				tempObj = ds_list_find_value(thisList,pos)
+			}
+			
 			show_debug_message("checking for overlap, obj:"+string(obj)+" pos/listSize:"+string(pos)+"/"+string(ds_list_size(thisList)))
 			if tempObj.object_index==obj_breakstart{//overlapping
 					show_debug_message("OVERLAPPING!!!!!!!!!!!!")
-					obj = obj+2
-					if obj >= ds_list_size(thisList){obj-=ds_list_size(thisList);continueFlag=1;}
+					
+					repeat(3){
+						obj=obj+1
+						while obj >= ds_list_size(thisList){obj-=ds_list_size(thisList);continueFlag=1;}
+						var testobj = ds_list_find_value(thisList,obj)
+						if testobj.object_index==obj_breakstend{obj++}
+					}
+					
+					//while testobj.object_index!=obj_breakend{
+					//	obj+=1		
+					//	while obj >= ds_list_size(thisList){obj-=ds_list_size(thisList);continueFlag=1;}
+					//	testobj = ds_list_find_value(thisList,obj)
+					//}
 					
 					currentObj = ds_list_find_value(thisList,obj)
 					thisNode.walls[wallPairs,(point) % 2] = currentObj

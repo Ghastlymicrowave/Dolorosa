@@ -2,11 +2,11 @@ function item_init(){
 	with(obj_gameStart){//persistent conatiner for lib
 itemsLib[2][1]=0
 itemsLib[0][0]="acceleration up"
-itemsLib[0][1]=sp_badspikes
+itemsLib[0][1]=sp_item_placeholder_1
 itemsLib[1][0]="maxspd up"
-itemsLib[1][1]=sp_badCircle
+itemsLib[1][1]=sp_item_placeholder_2
 itemsLib[2][0]="attackspd up"
-itemsLib[2][1]=sp_idle
+itemsLib[2][1]=sp_item_placeholder_3
 	}
 }
 
@@ -16,11 +16,13 @@ itemsLib[2][1]=sp_idle
 function item_library_get_name(_itemID)
 {
 	if _itemID == noone {return ""}
+	if _itemID = -1 {return ""}
 	return obj_gameStart.itemsLib[_itemID][0]
 }
 function item_library_get_sprite(_itemID)
 {
-	if _itemID == noone {return sp_null}
+	if _itemID == noone {return sp_inventory1}
+	if _itemID = -1 {return sp_inventory1}
 	return obj_gameStart.itemsLib[_itemID][1]
 }
 

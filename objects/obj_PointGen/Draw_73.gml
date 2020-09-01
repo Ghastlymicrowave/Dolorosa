@@ -93,7 +93,7 @@ switch(t){
 			objx2=obj2.x
 			objy2=obj2.y
 			inst.host = id
-			inst.num = path
+			//inst.num = path
 			with (inst){
 				
 				var x1 = host.objx1

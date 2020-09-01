@@ -1,3 +1,11 @@
+
+if frameDelay==0{
+frameDelay=frameDelayLoop
+frame++
+if frame==frameLoop{frame=0}
+
+}else frameDelay--
+
 var a = application_get_position();
 
 var xoff = a[0];
@@ -101,8 +109,12 @@ for (var i = 0; i<ivDivided;i++){//for each full row, draws rows differently bec
 	
 			str = item_library_get_name(ds_list_find_value(global.inventory,iii))
 			spr = item_library_get_sprite(ds_list_find_value(global.inventory,iii))
+			var xmod = panelW/objectsPerRow/sprite_get_width(spr)
+			var ymod = panelH/MaxRowsPerPage/sprite_get_height(spr)
+			if xmod<ymod{ymod = xmod}
+			if ymod<xmod{xmod = ymod}
 			
-			draw_sprite(spr,depth-1,xx,yy)
+			draw_sprite_ext(spr,frame,xx,yy,xmod,ymod,0,c_white,1)
 			draw_text(xx,yy+50,str)
 			
 			var x1 = xx-panelW/objectsPerRow/2
@@ -187,8 +199,8 @@ for (var i = 0; i<maxEquips;i++){
 		var spr = sp_placeholderItem
 		var str = "placeholder"
 	
-		str = item_library_get_name(ds_list_find_value(global.currentEquips,i))
-		spr = item_library_get_sprite(ds_list_find_value(global.currentEquips,i))
+		str = item_library_get_name(-1)
+		spr = item_library_get_sprite(-1)
 		draw_text(xx,yy+50,str)
 		var sprw =sprite_get_width(spr)
 		var sprh =sprite_get_height(spr)
@@ -196,7 +208,7 @@ for (var i = 0; i<maxEquips;i++){
 	// final / regular = mod
 	var wmod = (panelW/(maxEquips+1)) / sprw
 	var hmod = (panelW/(maxEquips+1)) / sprh
-	draw_sprite_ext(spr,0,xx,yy,wmod,hmod,0,0,1)
+	draw_sprite_ext(spr,frame,xx,yy,wmod,hmod,0,0,1)
 	draw_text(xx,yy+50,str)
 	//draw_sprite(spr,0,xx,yy)
 }
@@ -243,7 +255,7 @@ for (var i = 0; i<ds_list_size(global.currentMapLocations);i++){
 
 	draw_sprite(spr,0,ivx1+panelW1*locationSlot[ds_list_find_value(global.currentMapLocations,i),0],ivy1+panelH1*locationSlot[ds_list_find_value(global.currentMapLocations,i),1])
 	
-	draw_sprite(spr,0,xx,yy)
+	draw_sprite(spr,frame,xx,yy)
 	draw_set_halign(fa_center)
 	draw_set_valign(fa_middle)
 	draw_text_ext_transformed(xx,yy-sprite_get_height(spr)/4,str,1,sprite_get_width(spr),4,4,0)
