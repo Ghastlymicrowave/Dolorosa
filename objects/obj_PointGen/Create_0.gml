@@ -103,6 +103,11 @@ inst.breakObjs = ds_list_create()
 				ds_list_add(inst.breakObjs,corner2 )
 				ds_list_add(inst.breakObjs,corner3 )
 				ds_list_add(inst.breakObjs,corner4 )
+				
+				corner1.breakID = -1
+				corner2.breakID = -1
+				corner3.breakID = -1
+				corner4.breakID = -1
 			}	
 
 
@@ -261,6 +266,11 @@ for (var i = 0; i<MainRooms; i++){//loops until every room requrested in the mai
 				ds_list_add(newObj.breakObjs,corner2 )
 				ds_list_add(newObj.breakObjs,corner3 )
 				ds_list_add(newObj.breakObjs,corner4 )
+				
+				corner1.breakID = -1
+				corner2.breakID = -1
+				corner3.breakID = -1
+				corner4.breakID = -1
 			}	
 
 			
@@ -628,7 +638,7 @@ for( var node = 0; node < ds_list_size(nodesList);node++;){//loop nodes
 	
 
 
-	while( object_get_name(ds_list_find_value(thisNode.breakObjs,0).object_index) != "obj_breakend" ){ // keep shifting list until it starts with a breakend
+	while( object_get_name(ds_list_find_value(thisNode.breakObjs,0).object_index) != "obj_breakstart" ){ // keep shifting list until it starts with a breakend
 
 		thisNode.shifted = ds_list_create()
 		
@@ -661,14 +671,14 @@ for(var node=0; node< ds_list_size(nodesList);node++){
 }
 
 
-//SETTING WALLS
+		////////////////////////////////////////////////////////////SETTING WALLS
 var thisNode;
 var thisList;
 var currentObj;
 var stopSkippingFlag =0;
 var wallPairs;
 for(var node = 0; node< ds_list_size(nodesList);node++){//cycle through room nodes
-	show_debug_message("###Node:"+string(node))
+	show_debug_message("###########Node:"+string(node))
 	thisNode = ds_list_find_value(nodesList,node)
 	thisList = thisNode.breakObjs
 	thisNode.walls[1,1] = 0 
@@ -677,7 +687,15 @@ for(var node = 0; node< ds_list_size(nodesList);node++){//cycle through room nod
 	var point = 0
 	var continueFlag=0
 	
+	
+	
+	
+	var breakflag = 0
+	var breakIDList 
+	breakIDList = ds_list_create()
+	
 	for(var obj = 0; obj < ds_list_size(thisList);obj++){//cycle through break objs on nodes
+		
 		if continueFlag{
 			continueFlag=0
 			show_debug_message("boke from obj loop")
@@ -687,6 +705,8 @@ for(var node = 0; node< ds_list_size(nodesList);node++){//cycle through room nod
 		
 		//check for specific condition for first item
 		
+		#region firstitem
+		/*
 		if obj==0{
 			var tempA=1
 			var tempB=2
@@ -744,11 +764,87 @@ for(var node = 0; node< ds_list_size(nodesList);node++){//cycle through room nod
 						if testobj.object_index==obj_breakstend{obj++}
 				}
 			}
+		}*/
+		#endregion 
+		
+		//breakstart needs to be first item !!!!!!!!!!!!!!!!!! change this soon!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		if obj = 0 {
+			ds_list_add(breakIDList,currentObj.breakID)
+			obj++
+			currentObj = ds_list_find_value(thisList,obj)
+		}
+		//show_debug_message(object_get_name(currentObj.object_index))
+		show_debug_message("breakID: "+string(currentObj.breakID))
+		
+		if currentObj.breakID != -1{//if not a corner obj
+		
+			var idPos = ds_list_find_index(breakIDList,currentObj.breakID)
+			show_debug_message("idPos: "+string(idPos))
+			if idPos != -1 {	//if id exists in list
+				ds_list_delete(breakIDList,idPos)
+				show_debug_message("deleted")
+				//WALL STARTS
+			} else {			//does not exist in list, a break starts?
+				
+				
+				
+				if ds_list_size(breakIDList)==0	{
+					
+					show_debug_message("added")
+					thisNode.walls[wallPairs,point % 2] = currentObj//alternates start and end of wall array
+					show_debug_message("slot ["+string(wallPairs)+","+string(point%2)+"] : "+string(object_get_name(currentObj.object_index)+" obj:"+string(obj)))
+					if (point % 2)==1 {
+						wallPairs++
+					}
+					point++
+				}
+				
+				if currentObj.object_index == obj_breakstart{
+				ds_list_add(breakIDList,currentObj.breakID)
+				}
+				
+				
+			}
+			show_debug_message("list size: "+string(ds_list_size(breakIDList)))
+			if ds_list_size(breakIDList)==0{
+				//CONTINUE WALL
+				thisNode.walls[wallPairs,point % 2] = currentObj//alternates start and end of wall array
+				show_debug_message("slot ["+string(wallPairs)+","+string(point%2)+"] : "+string(object_get_name(currentObj.object_index)+" obj:"+string(obj)))
+				if (point % 2)==1 {
+					wallPairs++
+				}
+				point++
+			}
+		
+		} else { //corner object
+			show_debug_message("list size: "+string(ds_list_size(breakIDList)))
+			if ds_list_size(breakIDList)==0{
+				//CONTINUE WALL
+				thisNode.walls[wallPairs,point % 2] = currentObj//alternates start and end of wall array
+				show_debug_message("slot ["+string(wallPairs)+","+string(point%2)+"] : "+string(object_get_name(currentObj.object_index)+" obj:"+string(obj)))
+				if (point % 2)==1 {
+					wallPairs++
+				}
+				point++
+				
+				thisNode.walls[wallPairs,point % 2] = currentObj//alternates start and end of wall array
+				show_debug_message("slot ["+string(wallPairs)+","+string(point%2)+"] : "+string(object_get_name(currentObj.object_index)+" obj:"+string(obj)))
+				if (point % 2)==1 {
+					wallPairs++
+				}
+				point++
+			}
+			//INCREMENT OBJ POS
+			
 		}
 		
+		#region old
+		/*
 		thisNode.walls[wallPairs,point % 2] = currentObj//alternates start and end of wall array
 		show_debug_message("slot ["+string(wallPairs)+","+string(point%2)+"] : "+string(object_get_name(currentObj.object_index)+" obj:"+string(obj)))
-		if (point % 2)==1 {wallPairs++}
+		if (point % 2)==1 {
+			wallPairs++
+		}
 		
 		switch(currentObj.object_index){
 			case obj_breakstart:
@@ -775,11 +871,6 @@ for(var node = 0; node< ds_list_size(nodesList);node++){//cycle through room nod
 						if testobj.object_index==obj_breakstend{obj++}
 					}
 					
-					//while testobj.object_index!=obj_breakend{
-					//	obj+=1		
-					//	while obj >= ds_list_size(thisList){obj-=ds_list_size(thisList);continueFlag=1;}
-					//	testobj = ds_list_find_value(thisList,obj)
-					//}
 					
 					currentObj = ds_list_find_value(thisList,obj)
 					thisNode.walls[wallPairs,(point) % 2] = currentObj
@@ -806,9 +897,19 @@ for(var node = 0; node< ds_list_size(nodesList);node++){//cycle through room nod
 			
 			break;
 		}
-		
-			
-		
+		*/
+		#endregion 
+		if (obj = ds_list_size(thisList)-1 &&  ds_list_size(breakIDList)==0){
+			obj = 0
+			currentObj = ds_list_find_value(thisList,obj)
+			thisNode.walls[wallPairs,point % 2] = currentObj//alternates start and end of wall array
+			show_debug_message("slot ["+string(wallPairs)+","+string(point%2)+"] : "+string(object_get_name(currentObj.object_index)+" obj:"+string(obj)))
+			if (point % 2)==1 {
+				wallPairs++
+			}
+			point++
+			break;
+		}
 	}
 	thisNode.wallPairs = wallPairs
 }

@@ -1,5 +1,6 @@
-/// @description Insert description here
-// You can write your code in this editor
+
+/*
+
 var targlist = ds_list_create()
 instance_place_list(x,y,obj_prewall,targlist,0)
 for(var i=ds_list_size(targlist);i>0;i--){
@@ -56,3 +57,5 @@ var inst2 = instance_create_depth(x,y,0,obj_wall)
 	inst2.sprite_index = spr_circleWallSprite
 	inst2.image_xscale = sprite_height / inst2.sprite_width
 	inst2.image_yscale = sprite_height / inst2.sprite_height
+	
+	*/
