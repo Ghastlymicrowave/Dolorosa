@@ -67,6 +67,7 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"16979712-2833-4175-9c9f-ac34bea3d88e","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "Prefab Editor Sprites",
     "path": "folders/Sprites/Prefab Editor Sprites.yy",

@@ -118,6 +118,4 @@ windowW = window_get_width()
 windowH = window_get_height()
 
 fscreen = 0
-ResizeViewport(0,windowW*1.5,windowH*1.5)
-camera_set_view_size(view_camera[0],windowW*2,windowH*2)
 instance_create_depth(0,0,0,obj_inventoryControl)
